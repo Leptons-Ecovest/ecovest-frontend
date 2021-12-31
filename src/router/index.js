@@ -1,12 +1,51 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+
+// import Home from '../views/Home.vue'
+
+// import Login from '../views/pages/Login.vue'
+
+// import Dashboard from '../views/pages/subscribers/Dashboard.vue'
+
+import Fullwidth from '../views/layouts/Fullwidth.vue'
+
+import DashboardLayout from '../views/layouts/Dashboard.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Fullwidth
   },
+
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: DashboardLayout
+  },
+
+
+  // {
+  //   path: '/login',
+  //   name: 'Login',
+  //   component: Fullwidth,
+  //     children: [{
+  //       name: '',
+  //       component: Login
+  //     }]
+  // },
+
+
+  // {
+  //   path: '/dashboard',
+  //   name: 'Dashboard',
+  //   component: DashboardLayout,
+  //     children: [{
+  //       name: '',
+  //       component: Login
+  //     }]
+  // },
+
+
   {
     path: '/about',
     name: 'About',
