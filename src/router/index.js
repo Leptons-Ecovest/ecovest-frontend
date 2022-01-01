@@ -2,7 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 // import Home from '../views/Home.vue'
 
-// import Login from '../views/pages/Login.vue'
+import Login from '../views/pages/Login.vue'
+
+import Register from '../views/pages/Register.vue'
 
 // import Dashboard from '../views/pages/subscribers/Dashboard.vue'
 
@@ -24,15 +26,26 @@ const routes = [
   },
 
 
-  // {
-  //   path: '/login',
-  //   name: 'Login',
-  //   component: Fullwidth,
-  //     children: [{
-  //       name: '',
-  //       component: Login
-  //     }]
-  // },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Fullwidth,
+      children: [{
+        path: '',
+        component: Login
+      }]
+  },
+
+
+  {
+    path: '/register',
+    name: 'Register',
+    component: Fullwidth,
+      children: [{
+        path: '',
+        component: Register
+      }]
+  },
 
 
   // {

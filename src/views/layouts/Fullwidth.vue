@@ -1,6 +1,6 @@
 <template>
 
-<div class="nk-body bg-white npc-default pg-auth">
+<div class="nk-body bg-dark npc-default pg-auth">
     <div class="nk-app-root">
         <!-- main @s -->
         <div class="nk-main ">
@@ -13,61 +13,7 @@
                             <div class="absolute-top-right d-lg-none p-3 p-sm-5">
                                 <a href="#" class="toggle btn-white btn btn-icon btn-light" data-target="athPromo"><em class="icon ni ni-info"></em></a>
                             </div>
-                            <div class="nk-block nk-block-middle nk-auth-body">
-                                <div class="brand-logo pb-5">
-                                    <a href="html/index.html" class="logo-link">
-                                        <img class="logo-light logo-img logo-img-lg" src="images/logo.png" srcset="images/logo2x.png 2x" alt="logo">
-                                        <img class="logo-dark logo-img logo-img-lg" src="images/logo-dark.png" srcset="images/logo-dark2x.png 2x" alt="logo-dark">
-                                    </a>
-                                </div>
-                                <div class="nk-block-head">
-                                    <div class="nk-block-head-content">
-                                        <h5 class="nk-block-title">Sign-In</h5>
-                                        <div class="nk-block-des">
-                                            <p>Access the DashLite panel using your email and passcode.</p>
-                                        </div>
-                                    </div>
-                                </div><!-- .nk-block-head -->
-                                <form action="#" class="form-validate is-alter" autocomplete="off">
-                                    <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="email-address">Email or Username</label>
-                                            <a class="link link-primary link-sm" tabindex="-1" href="#">Need Help?</a>
-                                        </div>
-                                        <div class="form-control-wrap">
-                                            <input autocomplete="off" type="text" class="form-control form-control-lg" required id="email-address" placeholder="Enter your email address or username">
-                                        </div>
-                                    </div><!-- .form-group -->
-                                    <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="password">Passcode</label>
-                                            <a class="link link-primary link-sm" tabindex="-1" href="html/pages/auths/auth-reset.html">Forgot Code?</a>
-                                        </div>
-                                        <div class="form-control-wrap">
-                                            <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                            </a>
-                                            <input autocomplete="new-password" type="password" class="form-control form-control-lg" required id="password" placeholder="Enter your passcode">
-                                        </div>
-                                    </div><!-- .form-group -->
-                                    <div class="form-group">
-                                        <button class="btn btn-lg btn-primary btn-block">Sign in</button>
-                                    </div>
-                                </form><!-- form -->
-                                <div class="form-note-s2 pt-4"> New on our platform? <a href="html/pages/auths/auth-register.html">Create an account</a>
-                                </div>
-                                <div class="text-center pt-4 pb-3">
-                                    <h6 class="overline-title overline-title-sap"><span>OR</span></h6>
-                                </div>
-                                <ul class="nav justify-center gx-4">
-                                    <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Google</a></li>
-                                </ul>
-                                <div class="text-center mt-5">
-                                    <span class="fw-500">I don't have an account? <a href="#">Try 15 days free</a></span>
-                                </div>
-                            </div><!-- .nk-block -->
+                                <router-view></router-view>
                             <div class="nk-block nk-auth-footer">
                                 <div class="nk-block-between">
                                     <ul class="nav nav-sm">
@@ -114,7 +60,7 @@
                                     </ul><!-- .nav -->
                                 </div>
                                 <div class="mt-3">
-                                    <p>&copy; 2021 DashLite. All Rights Reserved.</p>
+                                    <p>&copy; 2021 Leptons. All Rights Reserved.</p>
                                 </div>
                             </div><!-- .nk-block -->
                         </div><!-- .nk-split-content -->
@@ -124,10 +70,10 @@
                                     <div class="slider-item">
                                         <div class="nk-feature nk-feature-center">
                                             <div class="nk-feature-img">
-                                                <img class="round" src="images/slides/promo-a.png" srcset="images/slides/promo-a2x.png 2x" alt="">
+                                                <img class="round" src="https://leptonsmulticoncept.com/wp-content/uploads/2021/06/rvsdd-fnl_5-Photo.jpg" srcset="https://leptonsmulticoncept.com/wp-content/uploads/2021/06/rvsdd-fnl_5-Photo.jpg 2x" alt="">
                                             </div>
                                             <div class="nk-feature-content py-4 p-sm-5">
-                                                <h4>Dashlite</h4>
+                                                <h4>Leptons</h4>
                                                 <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                                             </div>
                                         </div>
@@ -138,7 +84,7 @@
                                                 <img class="round" src="images/slides/promo-b.png" srcset="images/slides/promo-b2x.png 2x" alt="">
                                             </div>
                                             <div class="nk-feature-content py-4 p-sm-5">
-                                                <h4>Dashlite</h4>
+                                                <h4>Leptons</h4>
                                                 <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                                             </div>
                                         </div>
@@ -149,7 +95,7 @@
                                                 <img class="round" src="images/slides/promo-c.png" srcset="images/slides/promo-c2x.png 2x" alt="">
                                             </div>
                                             <div class="nk-feature-content py-4 p-sm-5">
-                                                <h4>Dashlite</h4>
+                                                <h4>Leptons</h4>
                                                 <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                                             </div>
                                         </div>
@@ -172,3 +118,123 @@
   
 
 </template>
+
+<script>
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
+
+export default {
+
+    data() {
+        return {
+             fullPage: false,
+             email: '',
+             username: '',
+             password: '',
+             role: '',
+             passwordAttribute: 'password'
+        }
+    },
+
+    methods: {
+
+        togglePasswordVisibility(){
+       
+            if(this.passwordAttribute == 'password'){
+                this.passwordAttribute = 'text'
+            }else{
+                this.passwordAttribute = 'password'
+            }
+
+        },
+                submit() {
+                        // alert('start')
+                let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: true,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                });
+
+                    setTimeout(() => {
+                        loader.hide()
+                    }, 5000)
+
+                  
+                  this.axios({
+                      method: 'post',
+                      url: 'http://localhost:9111/api/login',
+                       data: {
+                            email: this.email,
+                            password: this.password
+                        },
+                  })
+                  .then((response)=>{
+                    //   alert(this.username)
+                    //   alert(this.password)
+
+                  
+                      this.email = this.username
+
+                      console.log(response)
+                    if (this.email == 'liyeanthony@gmail.com' && this.password == '08036483438') {
+                
+                        localStorage.setItem('user_role', '5')
+                        localStorage.setItem('user_data', JSON.stringify(response.data))
+                   
+                        loader.hide()
+                        toast.success('Login Successful');
+
+                     return this.$router.push('/BoardAdmin/Dashboard')
+                     
+                    
+                    }
+                    if (this.email == 'admin@rtvrs.com.ng' && this.password == 'admin@2021') {
+                
+                        localStorage.setItem('user_role', '6')
+                    
+                   
+                        loader.hide()
+                        toast.success('Login Successful');
+
+                      return this.$router.push('/Admin/Dashboard');
+                     
+                    
+                    }if(response.data.defaultSystemRole == 5){
+
+                        // alert('yes state')
+                        localStorage.setItem('user_role', '5')
+                        console.log('here')
+                        localStorage.setItem('user_data', JSON.stringify(response.data))
+                        console.log('there')
+                        
+                        loader.hide()
+                        toast.success('Login Successful');
+
+                        return this.$router.push('/BoardAdmin/Dashboard')
+                        
+                    }else{
+
+                        this.$router.push('/login');
+                        toast.error('Invalid Credentials');
+
+                    }
+                        
+                    })
+                  .catch((response)=>{
+                      console.log(response)
+                  })  
+
+
+            },
+            onCancel() {
+                console.log('User cancelled the loader.')
+                // loader.hide()
+            }
+    },
+    
+}
+</script>
+
