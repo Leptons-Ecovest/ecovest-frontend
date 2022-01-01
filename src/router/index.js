@@ -6,6 +6,10 @@ import Login from '../views/pages/Login.vue'
 
 import Register from '../views/pages/Register.vue'
 
+import EmailOTP from '../views/pages/EmailOTP.vue'
+
+import UserHome from '../views/pages/subscribers/Dashboard.vue'
+
 // import Dashboard from '../views/pages/subscribers/Dashboard.vue'
 
 import Fullwidth from '../views/layouts/Fullwidth.vue'
@@ -48,15 +52,29 @@ const routes = [
   },
 
 
-  // {
-  //   path: '/dashboard',
-  //   name: 'Dashboard',
-  //   component: DashboardLayout,
-  //     children: [{
-  //       name: '',
-  //       component: Login
-  //     }]
-  // },
+  {
+    path: '/verify',
+    name: 'EmailOTP',
+    component: Fullwidth,
+      children: [
+        {
+          path: '',
+          component: EmailOTP,
+        }
+      ]
+  },
+
+  {
+    path: '/user',
+    name: 'Dashboard',
+    component: DashboardLayout,
+      children: [
+        {
+        path: '',
+        component: UserHome
+      }
+    ]
+  },
 
 
   {

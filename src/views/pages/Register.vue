@@ -18,25 +18,25 @@
                                     <div class="form-group">
                                         <div class="form-label-group">
                                             <label class="form-label" for="email-address">Fullname</label>
-                                            <a class="link link-primary link-sm" tabindex="-1" href="#">Need Help?</a>
+                                            <a class="link link-primary link-sm d-none" tabindex="-1" href="#">Need Help?</a>
                                         </div>
                                         <div class="form-control-wrap">
-                                            <input v-model="email" autocomplete="off" type="text" class="form-control form-control-lg" required id="email-address" placeholder="Enter your email address or username">
+                                            <input v-model="name" autocomplete="off" type="text" class="form-control form-control-lg" required id="email-address" placeholder="Enter your fullname">
                                         </div>
                                     </div><!-- .form-group -->
                                     <div class="form-group">
                                         <div class="form-label-group">
-                                            <label class="form-label" for="email-address">Email or Username</label>
-                                            <a class="link link-primary link-sm" tabindex="-1" href="#">Need Help?</a>
+                                            <label class="form-label" for="email-address">Email</label>
+                                            <a class="link link-primary link-sm d-none" tabindex="-1" href="#">Need Help?</a>
                                         </div>
                                         <div class="form-control-wrap">
-                                            <input v-model="email" autocomplete="off" type="text" class="form-control form-control-lg" required id="email-address" placeholder="Enter your email address or username">
+                                            <input v-model="email" autocomplete="off" type="text" class="form-control form-control-lg" required id="email-address" placeholder="Enter your email address">
                                         </div>
                                     </div><!-- .form-group -->
                                     <div class="form-group">
                                         <div class="form-label-group">
                                             <label class="form-label" for="password">Passcode</label>
-                                            <a class="link link-primary link-sm" tabindex="-1" href="html/pages/auths/auth-reset.html">Forgot Code?</a>
+                                            <a class="link link-primary link-sm d-none" tabindex="-1" href="html/pages/auths/auth-reset.html">Forgot Code?</a>
                                         </div>
                                         <div class="form-control-wrap">
                                             <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                         <div class="form-label-group">
                                             <label class="form-label" for="password">Confirm Password</label>
-                                            <a class="link link-primary link-sm" tabindex="-1" href="html/pages/auths/auth-reset.html">Forgot Code?</a>
+                                            <a class="link link-primary link-sm d-none" tabindex="-1" href="html/pages/auths/auth-reset.html">Forgot Code?</a>
                                         </div>
                                         <div class="form-control-wrap">
                                             <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
@@ -78,3 +78,123 @@
                                 </div>
                             </div><!-- .nk-block -->
 </template>
+
+<script>
+// import LGA from '@/components/LGA.vue'
+
+
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
+
+export default {
+
+    components:{
+        // LGA
+    },
+
+    data() {
+        return {
+             fullPage: false,
+
+             name: '',
+             username: '',
+             email: '',
+             referrer_code: '',
+             password: '',
+            passwordAttribute: 'password'
+        }
+    },
+
+    methods: {
+
+        togglePasswordVisibility(){
+       
+            if(this.passwordAttribute == 'password'){
+                this.passwordAttribute = 'text'
+            }else{
+                this.passwordAttribute = 'password'
+            }
+
+        },
+                submit() {
+
+// alert(this.name)
+// alert(this.username)
+// alert(this.email)
+// alert(this.password)
+// alert(this.referrer_code)
+
+                        let loader = this.$loading.show({
+                            // Optional parameters
+                            container: this.fullPage ? null : this.$refs.formContainer,
+                            canCancel: false,
+                            onCancel: this.onCancel,
+                            color: '#6CC3EC',
+                        });
+                       this.axios({
+                                method: "post",
+                                url: 'http://localhost:9111/api/login',
+                                data: {
+                                    name: this.name,
+                                    // username: this.username,
+                                    email: this.email,
+                                    // referrer_code: this.referrer_code,
+                                    password: this.password
+                                },
+                                headers: {
+                                    'Access-Control-Allow-Origin': '*',
+                                    'Content-type': 'application/json',
+                                    'Accept': 'application/json',
+                                },
+                                
+                                })
+                                .then( (response) =>{
+                                    //handle success
+
+                                    console.log(response)
+
+                                    localStorage.setItem('user_role', response.data.user_data.role)
+                                    localStorage.setItem('user_token', response.data.access_token)
+                                    localStorage.setItem('user_data', JSON.stringify(response.data.user_data))
+
+                                    
+                                    loader.hide()
+
+                                     toast.success('Login Successful');
+
+                                    return this.$router.push('/verify')
+
+                                
+                                })
+                                .catch( (response)=> {
+
+                                    // alert(response);
+                                    //handle error
+                                    console.log(response);
+
+                                   toast.error('Invalid Credentials');
+
+                                    loader.hide()
+
+                                });
+            
+                  
+                    },
+
+                    onCancel() {
+                        console.log('User cancelled the loader.')
+                    },
+
+                   
+    },
+
+       mounted(){
+        // console.log(this.$route.params.id)
+        // this.referrer_code = this.$route.params.id
+    }
+    
+}
+</script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+

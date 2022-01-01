@@ -16,48 +16,7 @@
                                 <router-view></router-view>
                             <div class="nk-block nk-auth-footer">
                                 <div class="nk-block-between">
-                                    <ul class="nav nav-sm">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Terms & Condition</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Privacy Policy</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Help</a>
-                                        </li>
-                                        <li class="nav-item dropup">
-                                            <a class="dropdown-toggle dropdown-indicator has-indicator nav-link" data-toggle="dropdown" data-offset="0,10"><small>English</small></a>
-                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                <ul class="language-list">
-                                                    <li>
-                                                        <a href="#" class="language-item">
-                                                            <img src="images/flags/english.png" alt="" class="language-flag">
-                                                            <span class="language-name">English</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="language-item">
-                                                            <img src="images/flags/spanish.png" alt="" class="language-flag">
-                                                            <span class="language-name">Español</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="language-item">
-                                                            <img src="images/flags/french.png" alt="" class="language-flag">
-                                                            <span class="language-name">Français</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="language-item">
-                                                            <img src="images/flags/turkey.png" alt="" class="language-flag">
-                                                            <span class="language-name">Türkçe</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul><!-- .nav -->
+                                   
                                 </div>
                                 <div class="mt-3">
                                     <p>&copy; 2021 Leptons. All Rights Reserved.</p>
@@ -74,29 +33,36 @@
                                             </div>
                                             <div class="nk-feature-content py-4 p-sm-5">
                                                 <h4>Leptons</h4>
-                                                <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                                                <p>
+                                                    Putting your home in the spotlight
+                                                </p>
                                             </div>
                                         </div>
                                     </div><!-- .slider-item -->
                                     <div class="slider-item">
                                         <div class="nk-feature nk-feature-center">
                                             <div class="nk-feature-img">
-                                                <img class="round" src="images/slides/promo-b.png" srcset="images/slides/promo-b2x.png 2x" alt="">
+                                                <img class="round" src="https://leptonsmulticoncept.com/wp-content/uploads/2020/06/oak-3-scaled.jpg" srcset="images/slides/promo-b2x.png 2x" alt="">
                                             </div>
                                             <div class="nk-feature-content py-4 p-sm-5">
                                                 <h4>Leptons</h4>
-                                                <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                                                <p>
+                                                    We build ambientic homes for families
+                                                    
+                                                </p>
                                             </div>
                                         </div>
                                     </div><!-- .slider-item -->
                                     <div class="slider-item">
                                         <div class="nk-feature nk-feature-center">
                                             <div class="nk-feature-img">
-                                                <img class="round" src="images/slides/promo-c.png" srcset="images/slides/promo-c2x.png 2x" alt="">
+                                                <img class="round" src="https://leptonsmulticoncept.com/wp-content/uploads/2021/03/rvssddnw_8-Photo-2-1.jpg" srcset="images/slides/promo-c2x.png 2x" alt="">
                                             </div>
                                             <div class="nk-feature-content py-4 p-sm-5">
                                                 <h4>Leptons</h4>
-                                                <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                                                <p>
+                                                    Complete control of your property at your finger tips.    
+                                                </p>
                                             </div>
                                         </div>
                                     </div><!-- .slider-item -->
