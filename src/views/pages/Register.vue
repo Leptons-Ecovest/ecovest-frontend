@@ -8,7 +8,7 @@
                                 </div>
                                 <div class="nk-block-head">
                                     <div class="nk-block-head-content">
-                                        <h5 class="nk-block-title">Sign-Up</h5>
+                                        <h5 class="nk-block-title">Sign Up</h5>
                                         <div class="nk-block-des">
                                             <p>Access the DashLite panel using your email and passcode.</p>
                                         </div>
