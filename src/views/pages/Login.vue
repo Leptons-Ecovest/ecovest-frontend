@@ -136,6 +136,10 @@ export default {
                 // loader.hide()
             }
     },
+
+    mounted() {
+        alert(process.env.VUE_APP_URL)
+    },
     
 }
 </script>
