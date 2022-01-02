@@ -93,10 +93,7 @@ export default {
                     color: '#6CC3EC',
                 });
 
-                    setTimeout(() => {
-                        loader.hide()
-                    }, 5000)
-
+  
                   
                   this.axios({
                       method: 'post',
@@ -107,33 +104,6 @@ export default {
                         },
                   })
                   .then((response)=>{
-                    //   alert(this.username)
-                    //   alert(this.password)
-
-                  
-                    //   this.email = this.username
-
-                      console.log(response)
-
-                            this.axios({
-                                method: "post",
-                                url: 'http://localhost:9111/api/login',
-                                data: {
-                                    // name: this.name,
-                                    // username: this.username,
-                                    email: this.email,
-                                    // referrer_code: this.referrer_code,
-                                    password: this.password
-                                },
-                                headers: {
-                                    'Access-Control-Allow-Origin': '*',
-                                    'Content-type': 'application/json',
-                                    'Accept': 'application/json',
-                                },
-                                
-                                })
-                                .then( (response) =>{
-                                    //handle success
 
                                     console.log(response)
 
@@ -148,25 +118,15 @@ export default {
 
                                     return this.$router.push('/user/home')
 
-                                
-                                })
-                                .catch( (response)=> {
-
-                                    // alert(response);
-                                    //handle error
-                                    console.log(response);
-
-                                   toast.error('Invalid Credentials');
-
-                                    loader.hide()
-
-                                });
-            
-
-                        
+        
                     })
                   .catch((response)=>{
-                      console.log(response)
+
+                        console.log(response);
+
+                        toast.error('Invalid Credentials');
+
+                        loader.hide()
                   })  
 
 

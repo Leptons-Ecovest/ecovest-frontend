@@ -40,10 +40,10 @@
                                         </div>
                                         <div class="form-control-wrap">
                                             <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
+                                                <em @click="togglePasswordVisibility()" class="passcode-icon icon-show icon ni ni-eye"></em>
+                                                <em @click="togglePasswordVisibility()" class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                             </a>
-                                            <input v-model="password" autocomplete="new-password" type="password" class="form-control form-control-lg" required id="password" placeholder="Enter your passcode">
+                                            <input v-model="password" autocomplete="new-password" :type="passwordAttribute" class="form-control form-control-lg" required id="password" placeholder="Create a password">
                                         </div>
                                     </div><!-- .form-group -->
 
@@ -54,10 +54,10 @@
                                         </div>
                                         <div class="form-control-wrap">
                                             <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
+                                                <em @click="togglePasswordVisibility()" class="passcode-icon icon-show icon ni ni-eye"></em>
+                                                <em @click="togglePasswordVisibility()" class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                             </a>
-                                            <input v-model="password" autocomplete="new-password" type="password" class="form-control form-control-lg" required id="password" placeholder="Enter your passcode">
+                                            <input v-model="password_confirmation" autocomplete="new-password" :type="passwordAttribute" class="form-control form-control-lg" required id="password" placeholder="Enter your passcode">
                                         </div>
                                     </div><!-- .form-group -->
                                     <div class="form-group">
@@ -98,9 +98,9 @@ export default {
              fullPage: false,
 
              name: '',
-             username: '',
+            
              email: '',
-             referrer_code: '',
+            password_confirmation: '',
              password: '',
             passwordAttribute: 'password'
         }
@@ -134,7 +134,7 @@ export default {
                         });
                        this.axios({
                                 method: "post",
-                                url: 'http://localhost:9111/api/login',
+                                url: 'http://localhost:9111/api/register',
                                 data: {
                                     name: this.name,
                                     // username: this.username,

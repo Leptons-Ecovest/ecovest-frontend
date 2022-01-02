@@ -11,9 +11,9 @@
                         <div class="nk-header-wrap">
                             <div class="nk-header-brand">
                                 <a href="html/subscription/index.html" class="logo-link">
-                                    <img class="logo-light logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/2021/06/rvsdd-fnl_5-Photo.jpg" srcset="images/logo2x.png 2x" alt="logo">
-                                    <img class="logo-dark logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/2021/06/rvsdd-fnl_5-Photo.jpg" srcset="images/logo-dark2x.png 2x" alt="logo-dark">
-                                    <span class="nio-version">Subscription</span>
+                                    <img class="logo-light logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png" srcset="images/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png" srcset="images/logo-dark2x.png 2x" alt="logo-dark">
+                                    <span class="nio-version"></span>
                                 </a>
                             </div><!-- .nk-header-brand -->
                             <div class="nk-header-tools">
@@ -46,8 +46,7 @@
                                                 <ul class="link-list">
                                                     <li><a href="html/subscription/profile.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
                                                     <li><a href="html/subscription/profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
-                                                    <li><a href="html/subscription/profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
-                                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                                    
                                                 </ul>
                                             </div>
                                             <div class="dropdown-inner">
