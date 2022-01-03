@@ -97,7 +97,7 @@ export default {
                   
                   this.axios({
                       method: 'post',
-                      url: 'http://localhost:9111/api/login',
+                      url: process.env.VUE_APP_URL+'/api/login',
                        data: {
                             email: this.email,
                             password: this.password
@@ -116,7 +116,7 @@ export default {
 
                                      toast.success('Login Successful');
 
-                                    return this.$router.push('/user/home')
+                                    return this.$router.push('/user')
 
         
                     })

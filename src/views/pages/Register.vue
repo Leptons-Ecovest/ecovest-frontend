@@ -134,7 +134,7 @@ export default {
                         });
                        this.axios({
                                 method: "post",
-                                url: 'http://localhost:9111/api/register',
+                                url: process.env.VUE_APP_URL+'/api/register',
                                 data: {
                                     name: this.name,
                                     // username: this.username,
