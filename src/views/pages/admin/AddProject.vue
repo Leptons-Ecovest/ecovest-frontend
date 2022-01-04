@@ -40,6 +40,8 @@
 
                 </div>
 
+
+
                 <div class="col-md-6">
 
                     <div class="form-group">
@@ -74,7 +76,7 @@
 
                     <div class="form-group">
 
-                        <button class="btn btn-primary float-right">Submit</button>
+                        <button @click="add_project()" class="btn btn-primary float-right">Submit</button>
 
                     </div>
 
@@ -129,12 +131,24 @@
     </div>
 </template>
 <script>
+
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 export default {
     data() {
         return {
             
             user_data: [],
-            building_projects: []
+            building_projects: [],
+            title : '',
+            location : '',
+            apartment_size : '',
+            payment_plan : '',
+            property_price : '',
+            facilities : '',
+            estate_facilities : '',
+            duration : '',
   
         }
     },
@@ -169,6 +183,56 @@ export default {
 
             });
 
+        },
+        add_project(){
+
+
+                let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                });
+
+
+            this.axios({
+
+                
+                    method: 'post',
+                    url: process.env.VUE_APP_URL+'/api/create_project',
+                    data: {
+                        title : this.title,
+                        location : this.location,
+                        apartment_size : this.apartment_size,
+                        payment_plan : this.payment_plan,
+                        property_price : this.property_price,
+                        facilities : this.facilities,
+                        estate_facilities : this.estate_facilities,
+                        duration : this.duration,
+                        },
+            })
+            .then((response)=>{
+
+
+                console.log(response)
+
+                    loader.hide()
+
+
+                     this.get_building_projects()
+
+                toast.success('Project Added Successfully');
+
+
+            })
+            .catch((response)=>{
+
+                    loader.hide()
+                console.log(response)
+
+                 toast.error('An error occured');
+            })
         }
      
     },
