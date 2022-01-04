@@ -155,37 +155,37 @@
                                             </router-link>
                                         </li>
                                          <li class="nk-menu-item">
-                                            <router-link to="/projects" class="nk-menu-link">
+                                            <router-link to="/user/projects" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
                                                 <span class="nk-menu-text">Leptons Projects</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/my-projects" class="nk-menu-link">
+                                            <router-link to="/user/my-projects" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
                                                 <span class="nk-menu-text">My Projects</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/payment-history" class="nk-menu-link">
+                                            <router-link to="/user/payment-history" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-report-profit"></em></span>
                                                 <span class="nk-menu-text">Payment History</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/my-profile" class="nk-menu-link">
+                                            <router-link to="/user/my-profile" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
                                                 <span class="nk-menu-text">My Profile</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/messages" class="nk-menu-link">
+                                            <router-link to="/user/messages" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
                                                 <span class="nk-menu-text">Messages</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/support" class="nk-menu-link">
+                                            <router-link to="/user/support" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
                                                 <span class="nk-menu-text">Support</span>
                                             </router-link>
