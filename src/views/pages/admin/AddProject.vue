@@ -111,7 +111,7 @@
                         </div>
                         <div class="card-inner text-center">
                             <ul class="product-tags">
-                                <li><a href="#">Smart Watch</a></li>
+                             
                             </ul>
                             <h5 class="product-title"><a >{{building_project.title}}</a></h5>
                             <div class="product-price text-primary h5">N{{building_project.property_price}} Million</div>
