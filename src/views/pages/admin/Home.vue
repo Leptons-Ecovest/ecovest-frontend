@@ -1,10 +1,10 @@
 <template>
-    <div class="nk-content-body">
+   <div class="nk-content-body">
         <div class="nk-content-wrap">
             <div class="nk-block-head nk-block-head-lg">
                 <div class="nk-block-between-md g-4">
                     <div class="nk-block-head-content">
-                        <h2 class="nk-block-title fw-normal">Welcome, {{user_data.name}}</h2>
+                        <h2 class="nk-block-title fw-normal">Welcome, {{user_data.name}} </h2>
                         <div class="nk-block-des">
                             <p>Welcome to our dashboard. Manage your account and your subscriptions.</p>
                         </div>

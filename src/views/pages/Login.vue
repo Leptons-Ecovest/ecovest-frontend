@@ -116,7 +116,17 @@ export default {
 
                                      toast.success('Login Successful');
 
-                                    return this.$router.push('/user')
+                                     if (localStorage.getItem('user_role') == 'user') {
+
+                                         return this.$router.push('/user')
+                                         
+                                     }if (localStorage.getItem('user_role') == 'admin') {
+
+                                         return this.$router.push('/admin')
+                                         
+                                     }
+
+                                    
 
         
                     })
@@ -138,7 +148,7 @@ export default {
     },
 
     mounted() {
-        alert(process.env.VUE_APP_URL)
+        // alert(process.env.VUE_APP_URL)
     },
     
 }
