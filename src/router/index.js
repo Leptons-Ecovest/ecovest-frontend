@@ -37,6 +37,8 @@ import CreatePlan from '../views/pages/admin/CreatePlan.vue'
 
 import PaymentHistoryView from '../views/pages/admin/PaymentHistory.vue'
 
+import AddProject from '../views/pages/admin/AddProject.vue'
+
 
 
 // import Dashboard from '../views/pages/subscribers/Dashboard.vue'
@@ -99,7 +101,7 @@ const routes = [
   },
 
   {
-    path: '/user',
+    path: '/user/',
     name: 'Dashboardx',
     component: DashboardLayout,
       children: [
@@ -108,27 +110,27 @@ const routes = [
         component: UserHome
       },
       {
-        path: '/messages',
+        path: 'messages',
         component: UserMessages
       },
       {
-        path: '/profile',
+        path: 'profile',
         component: UserProfile
       },
       {
-        path: '/projects',
+        path: 'projects',
         component: Projects
       },
       {
-        path: '/payment-history',
+        path: 'payment-history',
         component: PaymentHistory
       },
       {
-        path: '/support',
+        path: 'support',
         component: Support
       },
       {
-        path: '/projects',
+        path: 'projects',
         component: UserProjects
       }
     ],
@@ -153,8 +155,8 @@ const routes = [
   },
 
   {
-    path: '/admin',
-    name: 'Dashboard',
+    path: '/admin/',
+    name: 'Dashboarda',
     component: DashboardLayout,
       children: [
         {
@@ -162,31 +164,35 @@ const routes = [
         component: AdminHome
       },
       {
-        path: '/messages',
+        path: 'messages',
         component: Messages
       },
       {
-        path: '/subscribers',
+        path: 'subscribers',
         component: Users
       },
       {
-        path: '/subscriber/:id',
+        path: 'subscriber/:id',
         component: User
       },
       {
-        path: '/create-payment-plan',
+        path: 'create-payment-plan',
         component: CreatePlan
       },
       {
-        path: '/projects',
+        path: 'projects',
         component: Projects
       },
       {
-        path: '/user-payment/:id',
+        path: 'add-project',
+        component: AddProject
+      },
+      {
+        path: 'user-payment/:id',
         component: PaymentHistoryView
       },
       {
-        path: '/support',
+        path: 'support',
         component: Support
       }
     ],

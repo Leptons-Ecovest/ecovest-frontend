@@ -154,6 +154,12 @@
                                                 <span class="nk-menu-text">Dashboard</span>
                                             </router-link>
                                         </li>
+                                         <li class="nk-menu-item">
+                                            <router-link to="/projects" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
+                                                <span class="nk-menu-text">Leptons Projects</span>
+                                            </router-link>
+                                        </li>
                                         <li class="nk-menu-item">
                                             <router-link to="/my-projects" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
@@ -199,31 +205,31 @@
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/members" class="nk-menu-link">
+                                            <router-link to="/admin/members" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
                                                 <span class="nk-menu-text">Members</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/projects" class="nk-menu-link">
+                                            <router-link to="/admin/projects" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-report-profit"></em></span>
                                                 <span class="nk-menu-text">Projects</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/messages" class="nk-menu-link">
+                                            <router-link to="/admin/messages" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
                                                 <span class="nk-menu-text">Messages</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/payments" class="nk-menu-link">
+                                            <router-link to="/admin/payments" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
                                                 <span class="nk-menu-text">Payments</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/support" class="nk-menu-link">
+                                            <router-link to="/admin/support" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
                                                 <span class="nk-menu-text">Support</span>
                                             </router-link>
