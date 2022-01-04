@@ -13,6 +13,30 @@
         </div>
 
         <div class="container py-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Due Date</th>
+                        <th>Expected Amount</th>
+                        <th>Amount Paid</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="payment_schedule in payment_schedules" :key="payment_schedule.index">
+                        <td>#</td>
+                        <td>{{payment_schedule.payment_due_date}}</td>
+                        <td>{{payment_schedule.expected_amount}} Million</td>
+                        <td>{{payment_schedule.amount_paid}}</td>
+                        <td>{{payment_schedule.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container py-3 d-none">
 
             <div class="row">
 
@@ -83,7 +107,9 @@ export default {
             subscribers_email: '',
             start_date: '',
             user_data: [],
-            building_projects: []
+            building_projects: [],
+
+            payment_schedules: []
   
         }
     },
@@ -120,21 +146,19 @@ export default {
 
         },
 
-        create_payment_plan(){
+        load_payment_plan(){
 
-            alert(this.building_project_title)
-            alert(this.subscribers_email)
-            alert(this.start_date)
-            alert(this.description)
+            // alert(this.building_project_title)
+            // alert(this.subscribers_email)
+            // alert(this.start_date)
+            // alert(this.description)
 
             this.axios({
-                    method: "post",
-                    url: process.env.VUE_APP_URL+'/api/create_payment_plan',
+                    method: "get",
+                    url: process.env.VUE_APP_URL+'/api/payment_plans',
                     data: {
                         start_date: this.start_date,
-                        subscribers_email: this.subscribers_email,
-                        building_project_title: this.building_project_title,
-                        description: this.description
+         
 
                     },
                     headers: {
@@ -145,6 +169,9 @@ export default {
                 },
             })
             .then((response)=>{
+
+                this.payment_schedules = response.data.payment_plan.payment_schedules
+
                 console.log(response)
             })
             .catch((response)=>{
@@ -157,9 +184,10 @@ export default {
 
     mounted() {
 
-        // alert(process.env.VUE_APP_URL+'/api/building_projects')
+        // alert(localStorage.getItem('user_token'))
         this.getUserData()
         this.get_building_projects()
+        this.load_payment_plan()
     },
 }
 </script>
