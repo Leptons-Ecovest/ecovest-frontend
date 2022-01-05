@@ -75,6 +75,12 @@
     </div>
 </template>
 <script>
+
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
+
+
 export default {
     data() {
         return {
@@ -122,10 +128,18 @@ export default {
 
         create_payment_plan(){
 
-            alert(this.building_project_title)
-            alert(this.subscribers_email)
-            alert(this.start_date)
-            alert(this.description)
+            // alert(this.building_project_title)
+            // alert(this.subscribers_email)
+            // alert(this.start_date)
+            // alert(this.description)
+
+                let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                });
 
             this.axios({
                     method: "post",
@@ -145,6 +159,9 @@ export default {
                 },
             })
             .then((response)=>{
+
+                 loader.hide()
+                    toast.success('Plan created successfully!!');
                 console.log(response)
             })
             .catch((response)=>{
