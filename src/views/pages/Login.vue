@@ -105,30 +105,28 @@ export default {
                   })
                   .then((response)=>{
 
-                                    console.log(response)
+                        console.log(response)
 
-                                    localStorage.setItem('user_role', response.data.user_data.role)
-                                    localStorage.setItem('user_token', response.data.access_token)
-                                    localStorage.setItem('user_data', JSON.stringify(response.data.user_data))
+                        localStorage.setItem('user_role', response.data.user_data.role)
+                        localStorage.setItem('user_token', response.data.access_token)
+                        localStorage.setItem('user_data', JSON.stringify(response.data.user_data))
 
-                                    
-                                    loader.hide()
+                        
+                        loader.hide()
 
-                                     toast.success('Login Successful');
+                            toast.success('Login Successful');
 
-                                     if (localStorage.getItem('user_role') == 'user') {
+                            if (localStorage.getItem('user_role') == 'user') {
 
-                                         return this.$router.push('/user')
-                                         
-                                     }if (localStorage.getItem('user_role') == 'admin') {
+                                return this.$router.push('/user')
+                                
+                            }if (localStorage.getItem('user_role') == 'admin') {
 
-                                         return this.$router.push('/admin')
-                                         
-                                     }
+                                return this.$router.push('/admin')
+                                
+                            }
 
-                                    
-
-        
+                                     
                     })
                   .catch((response)=>{
 

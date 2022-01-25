@@ -72,7 +72,7 @@ export default {
 
                   this.axios({
                       method: 'post',
-                      url: 'http://localhost:9111/api/verify_otp',
+                      url: process.env.VUE_APP_URL+'/api/verify_otp',
                        data: {
                             otp: this.otp,
                             // password: this.password
