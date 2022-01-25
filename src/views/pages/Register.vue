@@ -10,7 +10,7 @@
                                     <div class="nk-block-head-content">
                                         <h5 class="nk-block-title">Sign Up</h5>
                                         <div class="nk-block-des">
-                                            <p>Access the DashLite panel using your email and passcode.</p>
+                                            <p>Access the Ecovest panel using your email and passcode.</p>
                                         </div>
                                     </div>
                                 </div><!-- .nk-block-head -->
@@ -59,9 +59,20 @@
                                             </a>
                                             <input v-model="password_confirmation" autocomplete="new-password" :type="passwordAttribute" class="form-control form-control-lg" required id="password" placeholder="Enter your passcode">
                                         </div>
+                                       
+                                           <div class="form-check py-1">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                Terms and Conditions
+                                            </label>
+                                            </div>
+                                            
+                                            
+                                            
+                                            
                                     </div><!-- .form-group -->
                                     <div class="form-group">
-                                        <button @click="submit()" class="btn btn-lg btn-primary btn-block">Sign up</button>
+                                        <button @click="submit()" class="btn btn-lg btn-primary btn-block">Sign up...</button>
                                     </div>
                                 </div><!-- form -->
                                 <div class="form-note-s2 pt-4"> New on our platform? <a href="html/pages/auths/auth-register.html">Create an account</a>
