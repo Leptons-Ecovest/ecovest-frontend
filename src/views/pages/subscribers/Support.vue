@@ -65,8 +65,50 @@
                     </div>
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                         
-                        Pending
-                        
+                        <!-- <div class="accordion" id="accordionExample">
+
+
+                                <div class="card" v-for="open_ticket in open_tickets" :key="open_ticket.index">
+
+
+                                    <div class="card-header" v-bind:id="open_ticket.id+'nm'">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" v-bind:data-target="'#'+open_ticket.id+'nn'" aria-expanded="false" v-bind:aria-controls="open_ticket.id+'nn'">
+                                            {{open_ticket.title}}
+                                            </button>
+                                        </h2>
+                                    </div>
+
+                                    <div v-bind:id="open_ticket.id+'nn'" v-bind:class="' collapse '+(open_ticket.id == 2?'show':'')" v-bind:aria-labelledby="open_ticket.id+'nm'" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            {{open_ticket.body}}
+
+                                            ddddd
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                              
+                            </div> -->
+                                <div class="accordion" id="accordionExample">
+                                <div class="card" v-for="open_ticket in open_tickets" :key="open_ticket.index">
+                                    <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" v-bind:data-target="'#'+'collapse'+open_ticket.id+'real'" aria-expanded="false" v-bind:aria-controls="'collapse'+open_ticket.id+'real'">
+                                        {{open_ticket.title}}
+                                        </button>
+                                    </h2>
+                                    </div>
+
+                                    <div v-bind:id="'collapse'+open_ticket.id+'real'" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {{open_ticket.body}}
+                                    </div>
+                                    </div>
+                                </div>
+
+                                </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                         
@@ -101,7 +143,8 @@ export default {
             title: '',
             body: '',
             department: '',
-            file: ''
+            file: '',
+            open_tickets: []
 
         }
     },
@@ -146,6 +189,7 @@ export default {
              loader.hide()
 
                 console.log(response)
+                this.getOpenTickets()
 
                  return this.$router.push('/user/ticket-success')
             })
@@ -161,12 +205,41 @@ export default {
              this.file = this.$refs.file.files[0];
 
              console.log(this.file)
+        },
+        getOpenTickets(){
+
+    
+            this.axios({
+                url: process.env.VUE_APP_URL+'/api/tickets',
+                method: 'get',
+                headers:{
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+                params:{
+                    type: 'open'
+                }
+            })
+            .then((response)=>{
+                this.open_tickets = response.data
+                console.log(response.data)
+            })
+             .catch((response)=>{
+
+                console.log(response)
+            })
+
+
+
         }
     },
     
 
     mounted() {
         // alert('im here')
+        this.getOpenTickets()
     },
 
 
