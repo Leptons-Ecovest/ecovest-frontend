@@ -20,7 +20,9 @@ import Projects from '../views/pages/Projects.vue'
 
 import PaymentHistory from '../views/pages/subscribers/PaymentHistory.vue'
 
-import Support from '../views/pages/Support.vue'
+import Support from '../views/pages/subscribers/Support.vue'
+
+import TicketSuccess from '../views/pages/subscribers/TicketSuccess.vue'
 
 
 
@@ -129,6 +131,13 @@ const routes = [
         path: 'support',
         component: Support
       },
+
+      {
+        path: 'ticket-success',
+        component: TicketSuccess
+      },
+
+
       {
         path: 'projects',
         component: UserProjects
