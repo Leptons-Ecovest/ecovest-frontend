@@ -201,19 +201,7 @@ export default {
     },
 
     
-    beforeRouteEnter () {
-        // ...
 
-        if (localStorage.getItem('reloaded1')) {
-            // The page was just reloaded. Clear the value from local storage
-            // so that it will reload the next time this page is visited.
-            localStorage.removeItem('reloaded1');
-        } else {
-            // Set a flag so that we know not to reload the page twice.
-            localStorage.setItem('reloaded1', '1');
-            location.reload();
-        }
-    },
 
        mounted(){
         // console.log(this.$route.params.id)
