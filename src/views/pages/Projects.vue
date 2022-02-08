@@ -24,7 +24,7 @@
                     <div style="max-width: 200px;" class="card card-bordered product-card">
                         <div class="product-thumb">
                             <a >
-                                <img class="card-img-top" src="https://sp-ao.shortpixel.ai/client/to_webp,q_lossy,ret_img/https://leptonsmulticoncept.com/wp-content/uploads/2021/04/IMG-20210222-WA0020.jpg" alt="" >
+                                <img class="card-img-top" v-bind:src="getImageUrl(building_project.featured_image)" alt="" >
                             </a>
                             <ul class="product-badges">
                                 <li><span class="badge badge-success">New</span></li>
@@ -65,6 +65,12 @@ export default {
     },
 
     methods: {
+
+        getImageUrl(imgUrl){
+
+            return imgUrl;
+
+        },
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
 
@@ -84,7 +90,7 @@ export default {
             })
             .then((response)=>{
 
-                // console.log(response.data.building_projects)
+                console.log(response.data.building_projects)
 
                 this.building_projects = response.data.building_projects
 
