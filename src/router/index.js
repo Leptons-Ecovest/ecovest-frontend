@@ -39,7 +39,9 @@ import User from '../views/pages/admin/User.vue'
 import CreatePlan from '../views/pages/admin/CreatePlan.vue'
 
 
-import PaymentHistoryView from '../views/pages/admin/PaymentHistory.vue'
+import PaymentHistoryView from '../views/pages/admin/MembersSubscriptions.vue'
+
+import MemberSubscriptions from '../views/pages/admin/MembersSubscriptions.vue'
 
 import AddProject from '../views/pages/admin/AddProject.vue'
 
@@ -206,6 +208,10 @@ const routes = [
       {
         path: 'user-payment/:id',
         component: PaymentHistoryView
+      },
+      {
+        path: 'members-subscriptions',
+        component: MemberSubscriptions
       },
       {
         path: 'support',

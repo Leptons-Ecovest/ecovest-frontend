@@ -11,8 +11,8 @@
                         <div class="nk-header-wrap">
                             <div class="nk-header-brand">
                                 <a  class="logo-link">
-                                    <img class="logo-light logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png"  >
-                                    <img class="logo-dark logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png"  >
+                                    <img class="logo-light logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.pn"  >
+                                    <img class="logo-dark logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.pn"  >
                                     <span class="nio-version"></span>
                                 </a>
                             </div><!-- .nk-header-brand -->
@@ -223,9 +223,9 @@
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/admin/payments" class="nk-menu-link">
+                                            <router-link to="/admin/members-subscriptions" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
-                                                <span class="nk-menu-text">Payments</span>
+                                                <span class="nk-menu-text">Subscriptions</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
