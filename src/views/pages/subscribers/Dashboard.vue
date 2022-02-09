@@ -37,7 +37,7 @@
 
                                     <h4 class="py-2">Next Payment</h4>
 
-                                    <h6> {{ payment_schedules }} </h6>
+                                    <h6> {{ next_payment.payment_due_date }} </h6>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,8 @@ export default {
             
             user_data: [],
              payment_schedules: [],
-             building_project: []
+             building_project: [],
+             next_payment: []
         }
     },
 
@@ -145,6 +146,8 @@ export default {
                  this.building_project = response.data.payment_plan.building_project
 
                 this.payment_schedules = response.data.payment_plan.payment_schedules
+
+                this.next_payment = this.payment_schedules[0]
 
                 console.log(response)
             })
