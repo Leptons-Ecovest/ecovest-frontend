@@ -104,8 +104,11 @@
                             <a >
                                 <img class="card-img-top" v-bind:src="getImgUrl(building_project.featured_image)" alt="" >
                             </a>
-                            <ul class="product-badges">
-                                <li><button @click="removeProject(building_project.id)" class="badge badge-danger">Remove</button></li>
+                            <ul v-if="building_project.status=='active'" class="product-badges">
+                                <li><button @click="deactivateProject(building_project.id)" class="badge badge-danger">Deactivate</button></li>
+                            </ul>
+                             <ul v-else class="product-badges">
+                                <li><button @click="activateProject(building_project.id)"  class="badge badge-success">Activate</button></li>
                             </ul>
                            
                         </div>
@@ -157,7 +160,8 @@ export default {
 
     methods: {
 
-        removeProject(id){
+        
+        activateProject(id){
 
              let loader = this.$loading.show({
                     // Optional parameters
@@ -170,7 +174,7 @@ export default {
                 });
             
              this.axios({
-                url: process.env.VUE_APP_URL+'/api/remove_project',
+                url: process.env.VUE_APP_URL+'/api/activate_project',
                 method: 'post',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -192,7 +196,59 @@ export default {
 
                 this.get_building_projects();
 
-                toast.danger('Project Removed');
+                toast.success('Project Activated');
+
+
+                
+            })
+            .catch((response)=>{
+
+                 loader.hide()
+
+                console.log(response)
+
+                toast.danger('An error occured');
+            })
+
+
+        },
+
+        deactivateProject(id){
+
+             let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                    loader: 'bars',
+                    opacity: 0.3
+                });
+            
+             this.axios({
+                url: process.env.VUE_APP_URL+'/api/deactivate_project',
+                method: 'post',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+                data: {
+                    building_project_id : id
+                },
+
+            })
+            .then((response)=>{
+
+                loader.hide()
+
+                console.log(response)
+
+
+                this.get_building_projects();
+
+                toast.warning('Project Removed');
 
 
                 

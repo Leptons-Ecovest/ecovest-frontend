@@ -28,6 +28,8 @@ import TicketSuccess from '../views/pages/subscribers/TicketSuccess.vue'
 
 import AdminHome from '../views/pages/admin/Home.vue'
 
+import Members from '../views/pages/admin/Users.vue'
+
 import Messages from '../views/pages/admin/Messages.vue'
 
 import Users from '../views/pages/admin/Users.vue'
@@ -165,12 +167,17 @@ const routes = [
 
   {
     path: '/admin/',
-    name: 'Dashboarda',
+    name: 'Dashboard',
     component: DashboardLayout,
       children: [
         {
         path: '',
         component: AdminHome
+      },
+
+      {
+        path: 'members',
+        component: Members
       },
       {
         path: 'messages',
