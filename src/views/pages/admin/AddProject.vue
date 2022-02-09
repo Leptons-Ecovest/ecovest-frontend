@@ -105,7 +105,7 @@
                                 <img class="card-img-top" v-bind:src="getImgUrl(building_project.featured_image)" alt="" >
                             </a>
                             <ul class="product-badges">
-                                <li><span class="badge badge-success"></span></li>
+                                <li><button @click="removeProject(building_project.id)" class="badge badge-danger">Remove</button></li>
                             </ul>
                            
                         </div>
@@ -150,11 +150,64 @@ export default {
             estate_facilities : '',
             duration : '',
             file: '',
+
   
         }
     },
 
     methods: {
+
+        removeProject(id){
+
+             let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                    loader: 'bars',
+                    opacity: 0.3
+                });
+            
+             this.axios({
+                url: process.env.VUE_APP_URL+'/api/remove_project',
+                method: 'post',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+                data: {
+                    building_project_id : id
+                },
+
+            })
+            .then((response)=>{
+
+                loader.hide()
+
+                console.log(response)
+
+
+                this.get_building_projects();
+
+                toast.danger('Project Removed');
+
+
+                
+            })
+            .catch((response)=>{
+
+                 loader.hide()
+
+                console.log(response)
+
+                toast.danger('An error occured');
+            })
+
+
+        },
 
         getImgUrl(url){
 
@@ -178,12 +231,26 @@ export default {
         },
         get_building_projects(){
 
+                 let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                    loader: 'bars',
+                    opacity: 0.3
+                });
+
+
             this.axios({
                 url: process.env.VUE_APP_URL+'/api/building_projects',
                 method: 'GET',
                 
             })
             .then((response)=>{
+
+                loader.hide()
+
 
                 // console.log(response.data.building_projects)
 
