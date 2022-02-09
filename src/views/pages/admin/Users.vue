@@ -38,7 +38,7 @@
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
                         <td>
-                            <button @click="viewUser()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <button @click="viewUser(user.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                            Details
                             </button>
                         </td>
@@ -53,7 +53,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">{{user_data.name}}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -85,9 +85,15 @@ export default {
 
     methods: {
 
-        viewUser(){
+        viewUser(index){
 
-            alert('user user')
+                    this.user_data = 
+                    this.users.filter(element => 
+                                        (element.id == index))
+
+                    this.user_data = this.user_data[0]
+
+                    console.log(this.user_data[0])
 
         },
 
