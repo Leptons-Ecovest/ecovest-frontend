@@ -11,8 +11,8 @@
                         <div class="nk-header-wrap">
                             <div class="nk-header-brand">
                                 <a  class="logo-link">
-                                    <img class="logo-light logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.pn"  >
-                                    <img class="logo-dark logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.pn"  >
+                                    <img class="logo-light logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png"  >
+                                    <img class="logo-dark logo-img" src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png"  >
                                     <span class="nio-version"></span>
                                 </a>
                             </div><!-- .nk-header-brand -->
@@ -129,7 +129,7 @@
                                         </div>
                                     </li><!-- .dropdown -->
                                     <li class="d-lg-none">
-                                        <a href="#" class="toggle nk-quick-nav-icon mr-n1" data-target="sideNav"><em class="icon ni ni-menu"></em></a>
+                                        <a  class="toggle nk-quick-nav-icon mr-n1" data-target="sideNav"><em class="icon ni ni-menu"></em></a>
                                     </li>
                                 </ul><!-- .nk-quick-nav -->
                             </div><!-- .nk-header-tools -->
