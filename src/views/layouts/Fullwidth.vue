@@ -39,7 +39,7 @@
                                             </div>
                                         </div>
                                     </div><!-- .slider-item -->
-                                    <div class="slider-item">
+                                    <div class="slider-item d-none">
                                         <div class="nk-feature nk-feature-center">
                                             <div class="nk-feature-img">
                                                 <img class="round" src="https://leptonsmulticoncept.com/wp-content/uploads/2020/06/oak-3-scaled.jpg" srcset="images/slides/promo-b2x.png 2x" alt="">
@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                     </div><!-- .slider-item -->
-                                    <div class="slider-item">
+                                    <div class="slider-item d-none">
                                         <div class="nk-feature nk-feature-center">
                                             <div class="nk-feature-img">
                                                 <img class="round" src="https://leptonsmulticoncept.com/wp-content/uploads/2021/03/rvssddnw_8-Photo-2-1.jpg" srcset="images/slides/promo-c2x.png 2x" alt="">

@@ -40,6 +40,8 @@
                                     <div class="form-group">
                                         <button @click="submit()" class="btn btn-lg btn-primary btn-block">Sign in</button>
                                     </div>
+
+                                    
                                 </div><!-- form -->
                                 <div class="form-note-s2 pt-4"> New on our platform? <router-link to="/register">Create an account</router-link>
                                 </div>
