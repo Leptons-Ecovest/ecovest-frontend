@@ -30,7 +30,7 @@
                                             <a class="link link-primary link-sm d-none" tabindex="-1" href="html/pages/auths/auth-reset.html">Forgot Code?</a>
                                         </div>
                                         <div class="form-control-wrap">
-                                            <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
+                                            <a tabindex="-1" @click="togglePasswordVisibility()" class="form-icon form-icon-right passcode-switch lg" data-target="password">
                                                 <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                                 <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                             </a>
@@ -41,14 +41,14 @@
                                         <button @click="submit()" class="btn btn-lg btn-primary btn-block">Sign in</button>
                                     </div>
                                 </div><!-- form -->
-                                <div class="form-note-s2 pt-4"> New on our platform? <router-link to="/register">Create an account</router-link>>
+                                <div class="form-note-s2 pt-4"> New on our platform? <router-link to="/register">Create an account</router-link>
                                 </div>
-                                <div class="text-center pt-4 pb-3">
+                                <div class="text-center pt-4 pb-3 d-none">
                                     <h6 class="overline-title overline-title-sap"><span>OR</span></h6>
                                 </div>
-                                <ul class="nav justify-center gx-4">
-                                    <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Google</a></li>
+                                <ul class="nav justify-center gx-4 d-none">
+                                    <li class="nav-item d-none"><a class="nav-link" href="#">Facebook</a></li>
+                                    <li class="nav-item d-none"><a class="nav-link" href="#">Google</a></li>
                                 </ul>
                                
                             </div><!-- .nk-block -->

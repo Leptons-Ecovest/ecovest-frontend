@@ -39,9 +39,9 @@
                                             <a class="link link-primary link-sm d-none" tabindex="-1" href="html/pages/auths/auth-reset.html">Forgot Code?</a>
                                         </div>
                                         <div class="form-control-wrap">
-                                            <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em @click="togglePasswordVisibility()" class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em @click="togglePasswordVisibility()" class="passcode-icon icon-hide icon ni ni-eye-off"></em>
+                                            <a  @click="togglePasswordVisibility()" tabindex="-1"  class="form-icon form-icon-right passcode-switch lg" data-target="password">
+                                                <em  class="passcode-icon icon-show icon ni ni-eye"></em>
+                                                <em  class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                             </a>
                                             <input v-model="password" autocomplete="new-password" :type="passwordAttribute" class="form-control form-control-lg" required id="password" placeholder="Create a password">
                                         </div>
@@ -72,19 +72,21 @@
                                             
                                     </div><!-- .form-group -->
                                     <div class="form-group">
-                                        <button @click="submit()" class="btn btn-lg btn-primary btn-block">Sign up...</button>
+                                        <button @click="submit()" class="btn btn-lg btn-primary btn-block">Sign up</button>
                                     </div>
                                 </div><!-- form -->
-                                <div class="form-note-s2 pt-4"> New on our platform? <a href="html/pages/auths/auth-register.html">Create an account</a>
+                                <div class="form-note-s2 pt-4"> Already have an account? <router-link to="/login">Sign in</router-link>
                                 </div>
-                                <div class="text-center pt-4 pb-3">
+                                <div class="d-none">
+                                    <div class="text-center pt-4 pb-3">
                                     <h6 class="overline-title overline-title-sap"><span>OR</span></h6>
                                 </div>
-                                <ul class="nav justify-center gx-4">
+                                <ul class="nav justify-center gx-4 d-none">
                                     <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#">Google</a></li>
                                 </ul>
-                                <div class="text-center mt-5">
+                                </div>
+                                <div class="text-center mt-5 d-none">
                                     <span class="fw-500">I don't have an account? <a href="#">Try 15 days free</a></span>
                                 </div>
                             </div><!-- .nk-block -->
