@@ -262,7 +262,7 @@
                                     </ul>
                                 </div><!-- .nk-sidebar-menu -->
                                 <div class="nk-aside-close">
-                                    <a href="#" class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
+                                    <a  class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
                                 </div><!-- .nk-aside-close -->
                             </div><!-- .nk-aside -->
                                
