@@ -19,7 +19,7 @@
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown user-dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm">
                                                     <em class="icon ni ni-user-alt"></em>
