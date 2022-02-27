@@ -55,7 +55,7 @@
 
                                             </div> 
                                         </div>
-                                        <div class="col-md-4 pt-md-5 px-md-5 text-center">
+                                        <div class="col-md-4 pt-md-5 px-md-5 text-center d-none">
                                             <div class="form-group pt-5 ">
                                                 <button @click="deleteAvatar()" class="btn-danger btn signup-btn btn-block">Delete</button></div>
                                         </div>
@@ -71,14 +71,14 @@
                                      <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Name</label>
+                                                <label class="mt-3" for="">Name</label>
                                                 <input v-model="name"  type="text" class="form-control">
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Email Address</label>
+                                                <label class="mt-3" for="">Email Address</label>
                                                 <input v-model="email" type="text" class="form-control" disabled  >
                                             </div>
 
@@ -89,28 +89,28 @@
                                     <div class="row ">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Phone</label>
+                                                <label class="mt-3" for="">Phone</label>
                                                 <input v-model="phone"  type="text" class="form-control">
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Gender</label>
+                                                <label class="mt-3" for="">Gender</label>
                                                 <input v-model="gender"  type="text" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Date of Birth</label>
+                                                <label class="mt-3" for="">Date of Birth</label>
                                                 <input v-model="dob"  type="text" class="form-control">
                                             </div>
                                         </div>
 
                                          <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Address</label>
+                                                <label class="mt-3" for="">Address</label>
                                                 <input v-model="residential_address"  type="text" class="form-control">
                                             </div>
                                         </div>
@@ -119,28 +119,28 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Next of Kin Name: </label>
+                                                <label class="mt-3" for="">Next of Kin Name: </label>
                                                 <input type="text" v-model="nok_name" class="form-control" placeholder="Next of Kin Name">
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Next of Kin Email</label>
+                                                <label class="mt-3" for="">Next of Kin Email</label>
                                                 <input  type="text" v-model="nok_email" class="form-control" placeholder="Next of Kin Email">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Next of Kin Phone</label>
+                                                <label class="mt-3" for="">Next of Kin Phone</label>
                                                 <input  type="text" v-model="nok_phone" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="">Next of Kin Address</label>
+                                                <label class="mt-3" for="">Next of Kin Address</label>
                                                 <input  type="text" v-model="nok_address" class="form-control" placeholder="Next of Kin Address">
                                             </div>
                                         </div>
