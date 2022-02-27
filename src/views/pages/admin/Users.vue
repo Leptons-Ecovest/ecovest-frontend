@@ -59,9 +59,164 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
+
+                                    <div class="container py-3">
+
+
+                                                        <div class="row">
+                                                    
+                                                            <div class="col-md-12">
+
+                                                            
+
+
+                                                                <div class="container ">
+                                                                    <div class="row">
+                                                                    <div class="col-md-6 ">
+                                                                        <div class="form-group mx-auto text-center">
+
+                                                                        
+
+                                                                            <img 
+                                                                            onclick="document.getElementById('customFile').click()" 
+                                                                            id="previewImg" 
+                                                                            style="height: 100px; width: 100px; object-fit: cover; border-radius: 50%;" 
+                                                                            class="shadow border border-primary" 
+                                                                            :src="avatar??'https://eu.ui-avatars.com/api/?name='+name"
+                                                                            >
+
+                                                                            
+                                                                            <img 
+                                                                            onclick="document.getElementById('customFile').click()" 
+                                                                            id="previewImg2" 
+                                                                            style="height: 100px; width: 100px; object-fit: cover; border-radius: 50%;" 
+                                                                            class="shadow border border-primary d-none" 
+                                                                            src=""
+                                                                            >
+
+                                                                            
+
+                                                                            <div class="text-center d-none">
+                                                                                <input @change="previewFile4" ref="file" type="file" id="customFile"  > 
+                                                                            </div>
+
+
+                                                                        </div> 
+                                                                    </div>
+                                                                    <div class="col-md-6 pt-md-5 px-md-5 text-center d-none">
+                                                                        <div class="form-group pt-5 ">
+                                                                            <button @click="deleteAvatar()" class="btn-danger btn signup-btn btn-block">Delete</button></div>
+                                                                    </div>
+                                                                    <div class="col-md-4 px-md-5 text-center">
+                                                                        <div class="form-group pt-5 ">
+                                                                            <button @click="uploadAvatar()" class="btn-primary btn signup-btn btn-block">Upload</button></div>
+                                                                    </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Name</label>
+                                                                            <input v-model="name"  type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Email Address</label>
+                                                                            <input v-model="email" type="text" class="form-control" disabled  >
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="row ">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Phone</label>
+                                                                            <input v-model="phone"  type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Gender</label>
+                                                                            <input v-model="gender"  type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Date of Birth</label>
+                                                                            <input v-model="dob"  type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Address</label>
+                                                                            <input v-model="residential_address"  type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Next of Kin Name: </label>
+                                                                            <input type="text" v-model="nok_name" class="form-control" placeholder="Next of Kin Name">
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Next of Kin Email</label>
+                                                                            <input  type="text" v-model="nok_email" class="form-control" placeholder="Next of Kin Email">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Next of Kin Phone</label>
+                                                                            <input  type="text" v-model="nok_phone" class="form-control">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label class="mt-3" for="">Next of Kin Address</label>
+                                                                            <input  type="text" v-model="nok_address" class="form-control" placeholder="Next of Kin Address">
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+
+                                                            
+
+                                                                
+
+                                                            </div>
+                                                        </div>
+                                                
+
+
+                                                <div class="col-md-12 mx-auto py-5">
+                                                    
+                                                        <button v-if="loading" class="btn btn-primary btn-lg ">Updating...</button>
+
+                                                        <button v-else @click="updateProfile()" class="btn btn-primary btn-lg  ">Save</button>
+                                                    
+                                                </div>
+                                    
+                                    </div>
                                     
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer d-none">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
@@ -79,7 +234,21 @@ export default {
         return {
             users : [],
 
-            user_data: []
+            user_data: [],
+
+            residential_address: '',
+            phone: '',
+            gender: '',
+            nok_name: '',
+            nok_email: '',
+            nok_phone: '',
+            nok_address: '',
+            nin: '',
+            dob: '',
+            avatar: '',
+    
+            name: '',
+            email:'',
         }
     },
 
@@ -87,11 +256,27 @@ export default {
 
         viewUser(index){
 
+            console.log(index)
+
                     this.user_data = 
                     this.users.filter(element => 
                                         (element.id == index))
 
                     this.user_data = this.user_data[0]
+
+                        this.residential_address =  this.user_data?.profile.residential_address
+                        this.phone =  this.user_data.profile?.phone
+                        this.gender =  this.user_data.profile?.gender
+                        this.nok_name =  this.user_data.profile?.nok_name
+                        this.nok_email =  this.user_data.profile?.nok_email
+                        this.nok_phone =  this.user_data.profile?.nok_phone
+                        this.nok_address =  this.user_data.profile?.nok_address
+                        this.nin =  this.user_data.profile?.nin
+                        this.dob =  this.user_data.profile?.dob
+
+                        this.avatar =  this.user_data.avatar
+                        this.name =  this.user_data.name
+                        this.email = this.user_data.email
 
                     console.log(this.user_data[0])
 
@@ -134,6 +319,8 @@ export default {
                 this.users = response.data
             })
             .catch((response)=>{
+
+                loader.hide()
 
                 console.log(response)
             })
