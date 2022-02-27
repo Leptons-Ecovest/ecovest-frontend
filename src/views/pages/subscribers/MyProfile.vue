@@ -34,7 +34,7 @@
                                                 id="previewImg" 
                                                 style="height: 189px; width: 189px; object-fit: cover; border-radius: 50%;" 
                                                 class="shadow border border-primary" 
-                                                :src="business_logo??'https://eu.ui-avatars.com/api/?name='+profileData.name"
+                                                :src="avatar??'https://eu.ui-avatars.com/api/?name='+name"
                                                  >
 
                                                  
@@ -57,75 +57,98 @@
                                         </div>
                                         <div class="col-md-4 pt-md-5 px-md-5 text-center">
                                             <div class="form-group pt-5 ">
-                                                <button class="btn-danger btn signup-btn btn-block">Delete</button></div>
+                                                <button @click="deleteAvatar()" class="btn-danger btn signup-btn btn-block">Delete</button></div>
                                         </div>
                                         <div class="col-md-4 pt-md-5 px-md-5 text-center">
                                             <div class="form-group pt-5 ">
-                                                <button class="btn-primary btn signup-btn btn-block">Upload</button></div>
+                                                <button @click="uploadAvatar()" class="btn-primary btn signup-btn btn-block">Upload</button></div>
                                         </div>
 
                                         </div>
 
                                     </div>
 
-
                                      <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Business Name</label>
-                                                <input v-model="business_name" style="background-color: lightgrey" type="text" class="form-control">
+                                                <label for="">Name</label>
+                                                <input v-model="name"  type="text" class="form-control">
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Email Address</label>
-                                                <input v-model="email" style="background-color: lightgrey" type="text" class="form-control" disabled  >
+                                                <input v-model="email" type="text" class="form-control" disabled  >
                                             </div>
+
                                         </div>
                                     </div>
 
 
-                                    <div class="row py-4">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="">Contact Person Name</label>
-                                                <input v-model="contact_name" style="background-color: lightgrey" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="">Contact Person Phone</label>
-                                                <input v-model="contact_phone" style="background-color: lightgrey" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row py-4">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="">Country/ Country Code: </label>
-                                                <input style="background-color: lightgrey" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        
+                                    <div class="row ">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Phone</label>
-                                                <input style="background-color: lightgrey" type="text" class="form-control">
+                                                <input v-model="phone"  type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Gender</label>
+                                                <input v-model="gender"  type="text" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Date of Birth</label>
+                                                <input v-model="dob"  type="text" class="form-control">
+                                            </div>
+                                        </div>
+
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Address</label>
+                                                <input v-model="residential_address"  type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row py-4">
-                                        <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">About</label>
-                                                <textarea style="background-color: lightgrey" name="" id="" cols="30" rows="5" v-model="bio" class="form-control"></textarea>
+                                                <label for="">Next of Kin Name: </label>
+                                                <input type="text" v-model="nok_name" class="form-control" placeholder="Next of Kin Name">
                                             </div>
                                         </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Next of Kin Email</label>
+                                                <input  type="text" v-model="nok_email" class="form-control" placeholder="Next of Kin Email">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Next of Kin Phone</label>
+                                                <input  type="text" v-model="nok_phone" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Next of Kin Address</label>
+                                                <input  type="text" v-model="nok_address" class="form-control" placeholder="Next of Kin Address">
+                                            </div>
+                                        </div>
+
+
                                     </div>
+
+                                  
 
                                     
 
@@ -136,9 +159,9 @@
 
                     <div class="col-md-12 mx-auto py-5">
                         
-                            <button v-if="loading" class="btn btn-dark text-primary btn-lg col-md-3">Updating...</button>
+                            <button v-if="loading" class="btn btn-primary btn-lg ">Updating...</button>
 
-                            <button v-else @click="updateProfile()" class="btn btn-dark text-primary btn-lg col-md-3 ">Save</button>
+                            <button v-else @click="updateProfile()" class="btn btn-primary btn-lg  ">Save</button>
                         
                     </div>
            
@@ -152,6 +175,9 @@
     </div>
 </template>
 <script>
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 export default {
     data() {
         return {
@@ -160,27 +186,21 @@ export default {
 
             loading: false,
 
-            description: '',
-            country: '',
-            city: '',
-            available_to_travel: '',
-            category_id: 1,
-            contact_name: '',
-            contact_phone: '',
+            residential_address: '',
+            phone: '',
+            gender: '',
+            nok_name: '',
+            nok_email: '',
+            nok_phone: '',
+            nok_address: '',
+            nin: '',
+            dob: '',
+            avatar: '',
+    
+            name: '',
+            email:'',
 
-            pix1: '',
-            pix2: '',
-            pix3: '',
-
-            bio: '',
-
-            business_name: '',
-            email: '',
-
-            business_logo: '',
-            business_logo2: ''
-
-  
+        
         }
     },
 
@@ -203,41 +223,96 @@ export default {
                
                 // preview.style.display = "block";
 
-                 this.business_logo = this.$refs.file.files[0];
+                 this.avatar = this.$refs.file.files[0];
 
                
             }
 
         },
 
-        loadProfile(){
+        uploadAvatar(){
+            let formData = new FormData();
 
+            formData.append('avatar', this.avatar);
+            formData.append('type', 'avatar');
+
+            this.axios({
+                url: process.env.VUE_APP_URL + '/api/profiles',
+                method: 'post',
+                data: formData,
+                headers: {
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                }
+            })
+            .then((response) =>{
+
+                console.log(response)
+            })
+            .catch((response) =>{
+
+                console.log(response)
+            })
+
+
+        },
+
+        deleteAvatar(){
+
+            this.axios({
+                url: process.env.VUE_APP_URL + '/api/profiles',
+                method: 'post',
+                data: {
+                    type: 'avatar_remove'
+                },
+                headers: {
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                }
+            })
+            .then((response) =>{
+
+                console.log(response)
+            })
+            .catch((response) =>{
+
+                console.log(response)
+            })
+
+
+
+        },
+
+        loadProfile(){
              this.axios({
                 url: process.env.VUE_APP_URL+'/api/profiles',
                 method: 'get',
-                  headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': 'Bearer ' +localStorage.getItem('user_token')
-                    },
-
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
 
             })
             .then((response)=>{
 
-                this.profileData = response.data,
-                this.business_logo = response.data.profiles[0].business_logo_url
+                // this.profileData = response.data
 
-  
-            
-                this.contact_name = response.data.profiles[0].contact_name
-                this.contact_phone = response.data.profiles[0].contact_phone
-                this.bio = response.data.profiles[0].bio
-                this.business_name = response.data.profiles[0].business_name
-                this.email = response.data.email
+                this.residential_address = response.data.profile?.residential_address,
+                this.phone = response.data.profile?.phone,
+                this.gender = response.data.profile?.gender,
+                this.nok_name = response.data.profile?.nok_name,
+                this.nok_email = response.data.profile?.nok_email,
+                this.nok_phone = response.data.profile?.nok_phone,
+                this.nok_address = response.data.profile?.nok_address,
+                this.nin = response.data.profile?.nin,
+                this.dob = response.data.profile?.dob,
+                this.avatar = response.data.avatar,
+                this.name = response.data.name,
+                this.email = response.data.email,
 
-                console.log(response.data)
+
+
+                console.log(response)
             })
             .catch((response)=>{
 
@@ -251,31 +326,39 @@ export default {
 
             this.loading = true
 
-            let formData = new FormData();
-
-            formData.append('contact_name', this.contact_name);
-            formData.append('contact_phone', this.contact_phone);
-            formData.append('business_name', this.business_name);
-            formData.append('email', this.email);
-            formData.append('business_logo', this.business_logo);
-            formData.append('bio', this.bio);
-
+    
              this.axios({
                 url: process.env.VUE_APP_URL+'/api/profiles',
                 method: 'post',
-                  headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': 'Bearer ' +localStorage.getItem('user_token')
-                    },
-                    data: formData
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+                data:{
+                    residential_address: this.residential_address,
+                    phone: this.phone,
+                    gender: this.gender,
+                    nok_name: this.nok_name,
+                    nok_email: this.nok_email,
+                    nok_phone: this.nok_phone,
+                    nok_address: this.nok_address,
+                    nin: this.nin,
+                    dob: this.dob,
+                    avatar: this.avatar,
+                    bio: this.bio,
+                    name: this.name,
+                    email: this.email,
+                },
 
             })
             .then((response)=>{
 
 
                 this.loading = false
+
+                 toast.success('Profile Updated');
 
                 // this.profileData = response.data
 
@@ -284,6 +367,8 @@ export default {
             .catch((response)=>{
 
                 this.loading = false
+
+                toast.error('An error occured');
 
                 console.log(response)
             })
@@ -295,7 +380,9 @@ export default {
     },
 
     mounted() {
+
         this.loadProfile()
+
     },
 }
 </script>
