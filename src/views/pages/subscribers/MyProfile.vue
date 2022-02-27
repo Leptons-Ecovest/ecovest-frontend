@@ -257,6 +257,8 @@ export default {
             })
             .then((response) =>{
 
+                toast.success('Profile picture Updated');
+
                 console.log(response)
             })
             .catch((response) =>{
