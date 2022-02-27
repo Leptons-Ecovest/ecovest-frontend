@@ -97,14 +97,25 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="mt-3" for="">Gender</label>
-                                                <input v-model="gender"  type="text" class="form-control">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" v-model="gender" id="exampleRadios1" value="male" :checked="gender=='male'?'yes':''">
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" v-model="gender" id="exampleRadios2" value="female" :checked="gender=='female'?'yes':''">
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Female
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="mt-3" for="">Date of Birth</label>
-                                                <input v-model="dob"  type="text" class="form-control">
+                                                <input v-model="dob"  type="date" class="form-control">
                                             </div>
                                         </div>
 
@@ -119,7 +130,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="mt-3" for="">Next of Kin Name: </label>
+                                                <label class="mt-3" for="">Next of Kin Name </label>
                                                 <input type="text" v-model="nok_name" class="form-control" placeholder="Next of Kin Name">
                                             </div>
                                         </div>
