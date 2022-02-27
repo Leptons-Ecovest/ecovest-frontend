@@ -24,7 +24,7 @@
                     <div class="card card-bordered product-car">
                         <div class="product-thumb">
                             <a >
-                                <img class="card-img-top" v-bind:src="getImageUrl(building_project.featured_image)" alt="" >
+                                <img style="height: 230px; object-fit: cover;" class="card-img-top" v-bind:src="getImageUrl(building_project.featured_image)" alt="" >
                             </a>
                             <ul class="product-badges">
                                 <li><span class="badge badge-danger d-none"> Remove</span></li>

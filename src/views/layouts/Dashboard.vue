@@ -173,7 +173,7 @@
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/user/my-profile" class="nk-menu-link">
+                                            <router-link to="/user/profile" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
                                                 <span class="nk-menu-text">My Profile</span>
                                             </router-link>
