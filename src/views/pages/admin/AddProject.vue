@@ -64,10 +64,10 @@
                         <input type="number" class="form-control" v-model="duration" placeholder="Duration">
                     </div>
 
-                    <div class="form-group">
-                        <label >Featured Image</label>
-                        <input type="file" class="form-control" placeholder="Duration">
-                    </div>
+                      <div class="form-group">
+                            <label for="">Featured Image</label>
+                            <input @change="handleFileUpload()" type="file" ref="file" class="form-control-file" >
+                        </div>
 
 
                 </div>
@@ -99,13 +99,16 @@
 
                 <div v-for="building_project in building_projects" :key="building_project.index" class="col-lg-4 col-md-6 p-2">
 
-                    <div style="max-width: 200px;" class="card card-bordered product-card">
+                    <div  class="card card-bordered product-card">
                         <div class="product-thumb">
                             <a >
-                                <img class="card-img-top" src="https://sp-ao.shortpixel.ai/client/to_webp,q_lossy,ret_img/https://leptonsmulticoncept.com/wp-content/uploads/2021/04/IMG-20210222-WA0020.jpg" alt="" >
+                                <img class="card-img-top" v-bind:src="getImgUrl(building_project.featured_image)" alt="" >
                             </a>
-                            <ul class="product-badges">
-                                <li><span class="badge badge-success">New</span></li>
+                            <ul v-if="building_project.status=='active'" class="product-badges">
+                                <li><button @click="deactivateProject(building_project.id)" class="badge badge-danger">Deactivate</button></li>
+                            </ul>
+                             <ul v-else class="product-badges">
+                                <li><button @click="activateProject(building_project.id)"  class="badge badge-success">Activate</button></li>
                             </ul>
                            
                         </div>
@@ -149,11 +152,130 @@ export default {
             facilities : '',
             estate_facilities : '',
             duration : '',
+            file: '',
+
   
         }
     },
 
     methods: {
+
+        
+        activateProject(id){
+
+             let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                    loader: 'bars',
+                    opacity: 0.3
+                });
+            
+             this.axios({
+                url: process.env.VUE_APP_URL+'/api/activate_project',
+                method: 'post',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+                data: {
+                    building_project_id : id
+                },
+
+            })
+            .then((response)=>{
+
+                loader.hide()
+
+                console.log(response)
+
+
+                this.get_building_projects();
+
+                toast.success('Project Activated');
+
+
+                
+            })
+            .catch((response)=>{
+
+                 loader.hide()
+
+                console.log(response)
+
+                toast.danger('An error occured');
+            })
+
+
+        },
+
+        deactivateProject(id){
+
+             let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                    loader: 'bars',
+                    opacity: 0.3
+                });
+            
+             this.axios({
+                url: process.env.VUE_APP_URL+'/api/deactivate_project',
+                method: 'post',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+                data: {
+                    building_project_id : id
+                },
+
+            })
+            .then((response)=>{
+
+                loader.hide()
+
+                console.log(response)
+
+
+                this.get_building_projects();
+
+                toast.warning('Project Removed');
+
+
+                
+            })
+            .catch((response)=>{
+
+                 loader.hide()
+
+                console.log(response)
+
+                toast.danger('An error occured');
+            })
+
+
+        },
+
+        getImgUrl(url){
+
+            return url;
+
+        },
+
+        handleFileUpload(){
+            this.file = this.$refs.file.files[0];
+
+            console.log(this.file)
+        },
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
 
@@ -165,12 +287,26 @@ export default {
         },
         get_building_projects(){
 
+                 let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                    loader: 'bars',
+                    opacity: 0.3
+                });
+
+
             this.axios({
                 url: process.env.VUE_APP_URL+'/api/building_projects',
                 method: 'GET',
                 
             })
             .then((response)=>{
+
+                loader.hide()
+
 
                 // console.log(response.data.building_projects)
 
@@ -193,7 +329,26 @@ export default {
                     canCancel: false,
                     onCancel: this.onCancel,
                     color: '#6CC3EC',
+                    loader: 'bars',
+                    opacity: 0.3
                 });
+
+                let formData = new FormData();
+
+                formData.append('featured_image', this.file);
+                formData.append('title', this.title);
+                formData.append('location', this.location);
+                formData.append('apartment_size', this.fiapartment_sizele);
+                formData.append('payment_plan', this.payment_plan);
+                formData.append('property_price', this.property_price);
+                formData.append('facilities', this.facilities);
+                formData.append('estate_facilities', this.estate_facilities);
+                formData.append('duration', this.duration);
+
+
+
+
+
 
 
             this.axios({
@@ -201,16 +356,7 @@ export default {
                 
                     method: 'post',
                     url: process.env.VUE_APP_URL+'/api/create_project',
-                    data: {
-                        title : this.title,
-                        location : this.location,
-                        apartment_size : this.apartment_size,
-                        payment_plan : this.payment_plan,
-                        property_price : this.property_price,
-                        facilities : this.facilities,
-                        estate_facilities : this.estate_facilities,
-                        duration : this.duration,
-                        },
+                    data: formData,
             })
             .then((response)=>{
 

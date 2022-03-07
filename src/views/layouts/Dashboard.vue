@@ -19,7 +19,7 @@
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown user-dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm">
                                                     <em class="icon ni ni-user-alt"></em>
@@ -129,7 +129,7 @@
                                         </div>
                                     </li><!-- .dropdown -->
                                     <li class="d-lg-none">
-                                        <a href="#" class="toggle nk-quick-nav-icon mr-n1" data-target="sideNav"><em class="icon ni ni-menu"></em></a>
+                                        <a  class="toggle nk-quick-nav-icon mr-n1" data-target="sideNav"><em class="icon ni ni-menu"></em></a>
                                     </li>
                                 </ul><!-- .nk-quick-nav -->
                             </div><!-- .nk-header-tools -->
@@ -173,7 +173,7 @@
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/user/my-profile" class="nk-menu-link">
+                                            <router-link to="/user/profile" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
                                                 <span class="nk-menu-text">My Profile</span>
                                             </router-link>
@@ -223,9 +223,9 @@
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <router-link to="/admin/payments" class="nk-menu-link">
+                                            <router-link to="/admin/members-subscriptions" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
-                                                <span class="nk-menu-text">Payments</span>
+                                                <span class="nk-menu-text">Subscriptions</span>
                                             </router-link>
                                         </li>
                                         <li class="nk-menu-item">
@@ -262,7 +262,7 @@
                                     </ul>
                                 </div><!-- .nk-sidebar-menu -->
                                 <div class="nk-aside-close">
-                                    <a href="#" class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
+                                    <a  class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
                                 </div><!-- .nk-aside-close -->
                             </div><!-- .nk-aside -->
                                

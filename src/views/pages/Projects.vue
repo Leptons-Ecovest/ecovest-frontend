@@ -19,21 +19,21 @@
 
             <div class="row">
 
-                <div v-for="building_project in building_projects" :key="building_project.index" class="col-lg-4 col-md-6 p-2">
+                <div v-for="building_project in building_projects" :key="building_project.index" class="col-lg-4 col-md-6 p-1">
 
-                    <div style="max-width: 200px;" class="card card-bordered product-card">
+                    <div class="card card-bordered product-car">
                         <div class="product-thumb">
                             <a >
-                                <img class="card-img-top" src="https://sp-ao.shortpixel.ai/client/to_webp,q_lossy,ret_img/https://leptonsmulticoncept.com/wp-content/uploads/2021/04/IMG-20210222-WA0020.jpg" alt="" >
+                                <img style="height: 230px; object-fit: cover;" class="card-img-top" v-bind:src="getImageUrl(building_project.featured_image)" alt="" >
                             </a>
                             <ul class="product-badges">
-                                <li><span class="badge badge-success">New</span></li>
+                                <li><span class="badge badge-danger d-none"> Remove</span></li>
                             </ul>
                            
                         </div>
                         <div class="card-inner text-center">
                             <ul class="product-tags">
-                                <li><a href="#">Smart Watch</a></li>
+                           
                             </ul>
                             <h5 class="product-title"><a >{{building_project.title}}</a></h5>
                             <div class="product-price text-primary h5">N{{building_project.property_price}} Million</div>
@@ -65,6 +65,12 @@ export default {
     },
 
     methods: {
+
+        getImageUrl(imgUrl){
+
+            return imgUrl;
+
+        },
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
 
@@ -84,7 +90,7 @@ export default {
             })
             .then((response)=>{
 
-                // console.log(response.data.building_projects)
+                console.log(response.data.building_projects)
 
                 this.building_projects = response.data.building_projects
 

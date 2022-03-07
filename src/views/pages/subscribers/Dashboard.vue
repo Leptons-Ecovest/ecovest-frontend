@@ -11,6 +11,44 @@
                     </div>
                 </div>
             </div><!-- .nk-block-head -->
+
+
+            <div class="nk-block">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-6 p-3">
+
+                            <div class="card card-bordered">
+                                <div class="card-body">
+                                    <h6>Current Project</h6>
+                                    <h4 class="py-2">{{building_project.title}}</h4>
+                                    <h6>Location: <br>{{building_project.location}}</h6>
+                                    <h6>Payment Plan: <br>{{building_project.payment_plan}}</h6>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 p-3">
+
+                            <div class="card border">
+                                <div class="card-body">
+
+                                    <h4 class="py-2">Next Payment</h4>
+
+                                    <h6> {{ next_payment.payment_due_date }} </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+ 
          
             <div class="nk-block">
                 <div class="card card-bordered">
@@ -22,94 +60,29 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-tranx">
-                        <thead>
-                            <tr class="tb-tnx-head">
-                                <th class="tb-tnx-id"><span class="">#</span></th>
-                                <th class="tb-tnx-info">
-                                    <span class="tb-tnx-desc d-none d-sm-inline-block">
-                                        <span>Bill For</span>
-                                    </span>
-                                    <span class="tb-tnx-date d-md-inline-block d-none">
-                                        <span class="d-md-none">Date</span>
-                                        <span class="d-none d-md-block">
-                                            <span>Issue Date</span>
-                                            <span>Due Date</span>
-                                        </span>
-                                    </span>
-                                </th>
-                                <th class="tb-tnx-amount">
-                                    <span class="tb-tnx-total">Total</span>
-                                    <span class="tb-tnx-status d-none d-md-inline-block">Status</span>
-                                </th>
+                    <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Due Date</th>
+                        <th>Expected Amount</th>
+                        <th>Amount Paid</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
 
-                                </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tb-tnx-item">
-                                <td class="tb-tnx-id">
-                                    <a href="#"><span>4947</span></a>
-                                </td>
-                                <td class="tb-tnx-info">
-                                    <div class="tb-tnx-desc">
-                                        <span class="title">Enterprize Year Subscrition</span>
-                                    </div>
-                                    <div class="tb-tnx-date">
-                                        <span class="date">10-05-2019</span>
-                                        <span class="date">10-13-2019</span>
-                                    </div>
-                                </td>
-                                <td class="tb-tnx-amount">
-                                    <div class="tb-tnx-total">
-                                        <span class="amount">$599.00</span>
-                                    </div>
-                                    <div class="tb-tnx-status">
-                                        <span class="badge badge-dot badge-warning">Due</span>
-                                    </div>
-                                </td>
-                            </tr><!-- .tb-tnx-item -->
-                            <tr class="tb-tnx-item">
-                                <td class="tb-tnx-id">
-                                    <a href="#"><span>4904</span></a>
-                                </td>
-                                <td class="tb-tnx-info">
-                                    <div class="tb-tnx-desc">
-                                        <span class="title">Maintenance Year Subscription</span>
-                                    </div>
-                                    <div class="tb-tnx-date">
-                                        <span class="date">06-19-2019</span>
-                                        <span class="date">06-26-2019</span>
-                                    </div>
-                                </td>
-                                <td class="tb-tnx-amount">
-                                    <div class="tb-tnx-total">
-                                        <span class="amount">$99.00</span>
-                                    </div>
-                                    <div class="tb-tnx-status"><span class="badge badge-dot badge-success">Paid</span></div>
-                                </td>
-                            </tr><!-- .tb-tnx-item -->
-                            <tr class="tb-tnx-item">
-                                <td class="tb-tnx-id">
-                                    <a href="#"><span>4829</span></a>
-                                </td>
-                                <td class="tb-tnx-info">
-                                    <div class="tb-tnx-desc">
-                                        <span class="title">Enterprize Year Subscrition</span>
-                                    </div>
-                                    <div class="tb-tnx-date">
-                                        <span class="date">10-04-2018</span>
-                                        <span class="date">10-12-2018</span>
-                                    </div>
-                                </td>
-                                <td class="tb-tnx-amount">
-                                    <div class="tb-tnx-total">
-                                        <span class="amount">$599.00</span>
-                                    </div>
-                                    <div class="tb-tnx-status"><span class="badge badge-dot badge-success">Paid</span></div>
-                                </td>
-                            </tr><!-- .tb-tnx-item -->
-                        </tbody>
-                    </table>
+                <tbody>
+                    <tr v-for="payment_schedule in payment_schedules" :key="payment_schedule.index">
+                        <td>#</td>
+                        <td>{{payment_schedule.payment_due_date}}</td>
+                        <td>{{payment_schedule.expected_amount}} Million</td>
+                        <td>{{payment_schedule.amount_paid}}</td>
+                        <td>
+                            <span class="badge badge-primary">{{payment_schedule.status}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
                 </div><!-- .card -->
             </div><!-- .nk-block -->
         </div>
@@ -123,11 +96,66 @@ export default {
     data() {
         return {
             
-            user_data: []
+            user_data: [],
+             payment_schedules: [],
+             building_project: [],
+             next_payment: []
         }
     },
 
     methods: {
+
+               load_payment_plan(){
+
+                       let loader = this.$loading.show({
+                            // Optional parameters
+                            container: this.fullPage ? null : this.$refs.formContainer,
+                            canCancel: false,
+                            onCancel: this.onCancel,
+                            color: '#6CC3EC',
+                            loader: 'bars',
+                            opacity: 0.3
+                        });
+
+  
+
+            // alert(this.building_project_title)
+            // alert(this.subscribers_email)
+            // alert(this.start_date)
+            // alert(this.description)
+
+            this.axios({
+                    method: "get",
+                    url: process.env.VUE_APP_URL+'/api/payment_plans',
+                    data: {
+                        start_date: this.start_date,
+         
+
+                    },
+                    headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+            })
+            .then((response)=>{
+
+                 loader.hide()
+
+                 this.building_project = response.data.payment_plan.building_project
+
+                this.payment_schedules = response.data.payment_plan.payment_schedules
+
+                this.next_payment = this.payment_schedules[0]
+
+                console.log(response)
+            })
+            .catch((response)=>{
+                console.log(response)
+            })
+
+        },
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
 
@@ -142,6 +170,8 @@ export default {
 
     mounted() {
         this.getUserData()
+
+        this.load_payment_plan()
     },
 }
 </script>

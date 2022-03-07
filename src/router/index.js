@@ -20,11 +20,15 @@ import Projects from '../views/pages/Projects.vue'
 
 import PaymentHistory from '../views/pages/subscribers/PaymentHistory.vue'
 
-import Support from '../views/pages/Support.vue'
+import Support from '../views/pages/subscribers/Support.vue'
+
+import TicketSuccess from '../views/pages/subscribers/TicketSuccess.vue'
 
 
 
 import AdminHome from '../views/pages/admin/Home.vue'
+
+import Members from '../views/pages/admin/Users.vue'
 
 import Messages from '../views/pages/admin/Messages.vue'
 
@@ -35,7 +39,9 @@ import User from '../views/pages/admin/User.vue'
 import CreatePlan from '../views/pages/admin/CreatePlan.vue'
 
 
-import PaymentHistoryView from '../views/pages/admin/PaymentHistory.vue'
+import PaymentHistoryView from '../views/pages/admin/MembersSubscriptions.vue'
+
+import MemberSubscriptions from '../views/pages/admin/MembersSubscriptions.vue'
 
 import AddProject from '../views/pages/admin/AddProject.vue'
 
@@ -129,6 +135,13 @@ const routes = [
         path: 'support',
         component: Support
       },
+
+      {
+        path: 'ticket-success',
+        component: TicketSuccess
+      },
+
+
       {
         path: 'projects',
         component: UserProjects
@@ -156,12 +169,17 @@ const routes = [
 
   {
     path: '/admin/',
-    name: 'Dashboarda',
+    name: 'Dashboard',
     component: DashboardLayout,
       children: [
         {
         path: '',
         component: AdminHome
+      },
+
+      {
+        path: 'members',
+        component: Members
       },
       {
         path: 'messages',
@@ -190,6 +208,10 @@ const routes = [
       {
         path: 'user-payment/:id',
         component: PaymentHistoryView
+      },
+      {
+        path: 'members-subscriptions',
+        component: MemberSubscriptions
       },
       {
         path: 'support',

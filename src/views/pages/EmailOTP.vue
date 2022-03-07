@@ -98,7 +98,7 @@ export default {
 
                     toast.success('Email Verified');
 
-                    return this.$router.push('/user/home')
+                    return this.$router.push('/user')
 
                                 
         
