@@ -6,7 +6,7 @@
                     <div class="nk-block-head-content">
                         <h2 class="nk-block-title fw-normal">Welcome, {{user_data.name}}</h2>
                         <div class="nk-block-des">
-                            <p>Welcome to our dashboard. Manage your account and your subscriptions.</p>
+                            <p>Welcome to our dashboard. Manage your account and your projects.</p>
                         </div>
                     </div>
                 </div>
