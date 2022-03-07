@@ -51,7 +51,7 @@
                                     <li class="nav-item"><a class="nav-link" href="#">Google</a></li>
                                 </ul>
                                
-                            </div><!-- .nk-block -->
+                            </div>
 </template>
 
 <script>
