@@ -43,6 +43,8 @@ import PaymentHistoryView from '../views/pages/admin/MembersSubscriptions.vue'
 
 import MemberSubscriptions from '../views/pages/admin/MembersSubscriptions.vue'
 
+import UpdatePaymentPlan from '../views/pages/admin/UpdatePaymentPlan.vue'
+
 import AddProject from '../views/pages/admin/AddProject.vue'
 
 
@@ -212,6 +214,12 @@ const routes = [
       {
         path: 'members-subscriptions',
         component: MemberSubscriptions
+      },
+
+      {
+        path: 'update-payment-plan/:id',
+        name: 'update-payment-plan',
+        component: UpdatePaymentPlan
       },
       {
         path: 'support',

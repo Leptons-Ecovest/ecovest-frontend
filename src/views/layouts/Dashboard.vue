@@ -228,6 +228,13 @@
                                                 <span class="nk-menu-text">Subscriptions</span>
                                             </router-link>
                                         </li>
+
+                                        <li class="nk-menu-item">
+                                            <router-link to="/admin/create-subscription" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
+                                                <span class="nk-menu-text"> Create Subscriptions</span>
+                                            </router-link>
+                                        </li>
                                         <li class="nk-menu-item">
                                             <router-link to="/admin/support" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>

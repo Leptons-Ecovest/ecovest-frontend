@@ -49,7 +49,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Name: </h5>
@@ -57,8 +57,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div style="min-height: 230px;" class="modal-body">
-          <div class="container py-3">
+      <div style="min-height: 230px;" class="modal-body table-responsive">
+          <div class="">
             <table class="table">
                 <thead>
                     <tr>
@@ -67,6 +67,7 @@
                         <th>Expected Amount</th>
                         <th>Amount Paid</th>
                         <th>Status</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -75,17 +76,25 @@
                         <td>#</td>
                         <td>{{payment_schedule.payment_due_date}}</td>
                         <td>{{payment_schedule.expected_amount}} Million</td>
-                        <td>{{payment_schedule.amount_paid}}</td>
+                        <td>
+                            <input :id="payment_schedule.id" type="number" class="form-control" :value="payment_schedule.amount_paid">
+                        </td>
                         <td>{{payment_schedule.status}}</td>
+                        <td>
+
+                            <button v-if="loading"  class="btn btn-primary" disabled>updating...</button>
+
+                            <button v-else @click="updatePaymentPlan(payment_schedule.id)" class="btn btn-primary">update</button>
+
+                      
+                            <!-- <router-link target="_blank" :to="{name: 'update-payment-plan', params:{id: payment_schedule.id}}" class="btn btn-primary">update payment</router-link> -->
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+     
     </div>
   </div>
 </div>
@@ -97,12 +106,16 @@
 </template>
 
 <script>
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 export default {
     data() {
         return {
             payment_plans: [],
             user_payment_schedules: [],
-            plan: null
+            plan: null,
+            loading: false
         }
     },
 
@@ -165,6 +178,41 @@ export default {
                 console.log(response)
             })
 
+
+        },
+
+        updatePaymentPlan(payment_schedule_id){
+
+            this.loading = true
+            var payment_amount = document.getElementById(payment_schedule_id).value
+
+            // alert(payment_amount)
+
+
+            this.axios({
+                url: process.env.VUE_APP_URL + '/api/update_payment_plan',
+                method: 'post',
+                headers:{
+                    'Authorization': 'Bearer '+localStorage.getItem('user_token')
+                },
+                data:{
+                    payment_schedule_id: payment_schedule_id,
+                    payment_amount: payment_amount
+                }
+            })
+            .then((response) =>{
+                this.loading = false
+                console.log(response)
+
+                 toast.success('Plan Updated');
+
+                this.getPaymentPlans()
+
+
+            })
+            .catch((response) =>{
+                console.log(response)
+            })
 
         }
     },

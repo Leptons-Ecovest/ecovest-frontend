@@ -37,7 +37,7 @@
 
                                     <h4 class="py-2">Next Payment</h4>
 
-                                    <h6> {{ next_payment.payment_due_date }} </h6>
+                                    <h6> {{ unpaid_schedules.payment_due_date }} </h6>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                         <td>{{payment_schedule.expected_amount}} Million</td>
                         <td>{{payment_schedule.amount_paid}}</td>
                         <td>
-                            <span class="badge badge-primary">{{payment_schedule.status}}</span>
+                            <span :class="'badge badge-'+payment_schedule.color_code">{{payment_schedule.status}}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -99,7 +99,8 @@ export default {
             user_data: [],
              payment_schedules: [],
              building_project: [],
-             next_payment: []
+             next_payment: [],
+             unpaid_schedules: []
         }
     },
 
@@ -146,6 +147,8 @@ export default {
                  this.building_project = response.data.payment_plan.building_project
 
                 this.payment_schedules = response.data.payment_plan.payment_schedules
+
+                this.unpaid_schedules = response.data.unpaid_schedules[0]
 
                 this.next_payment = this.payment_schedules[0]
 
