@@ -87,7 +87,7 @@
                 <div class="card card-bordered">
                     <div class="card-inner card-inner-md">
                         <div class="card-title-group">
-                            <h6 class="card-title">Payment History</h6>
+                            <h6 class="card-title">Latest Payment</h6>
                             <div class="card-action">
                                 <a href="html/subscription/payments.html" class="link link-sm">See All <em class="icon ni ni-chevron-right"></em></a>
                             </div>
