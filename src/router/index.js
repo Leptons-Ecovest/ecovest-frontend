@@ -145,7 +145,7 @@ const routes = [
 
 
       {
-        path: 'projects',
+        path: 'my-projects',
         component: UserProjects
       }
     ],

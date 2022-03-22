@@ -16,28 +16,61 @@
             <div class="nk-block">
                 <div class="container-fluid">
 
-                    <div class="row">
+                    <div class="row match-height">
                         <div class="col-md-6 p-3">
 
-                            <div class="card card-bordered">
-                                <div class="card-body">
-                                    <h6>Current Project</h6>
-                                    <h4 class="py-2">{{building_project.title}}</h4>
-                                    <h6>Location: <br>{{building_project.location}}</h6>
-                                    <h6>Payment Plan: <br>{{building_project.payment_plan}}</h6>
+                         
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div v-for="payment_plan,key in payment_plans" :key="key" :class="'carousel-item '+(key==0?'active':'')">
+
+                                        <div style="height: 250px;" class="card card-bordered bg-dark">
+                                            <div  class="card-body text-white py-2">
+                                                <h6>Current Project</h6>
+                                                
+                                                <h6 class="">
+                                                    <span class="">Description:</span> <br><h4>{{payment_plan.description}}</h4>
+                                                </h6>
+                                                <h4 class="pt-3"><span class="text-primary py-1">{{payment_plan.building_project.title}}</span></h4>
+                                                <h6>Location: <br><span class="text-primary py-1">{{payment_plan.building_project.location}}</span></h6>
+                                                <h6>Payment Plan: <br><span class="text-primary py-1">{{payment_plan.building_project.payment_plan}}</span></h6>
 
 
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                </div>
+                                <div class="bg-dark">
+                                    <button style="margin-top: 250px;" class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                    <button class="btn-primar py-5 btn"></button>
+                                </button>
+                                <button style="margin-top: 250px;" class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+                                    <span class=" carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                    <button class="btn-primar py-5 btn"></button>
+                                </button>
                                 </div>
                             </div>
+
+                            
                         </div>
                         <div class="col-md-6 p-3">
 
-                            <div class="card border">
+                            <div style="height: 230px;"  class="card border">
                                 <div class="card-body">
 
                                     <h4 class="py-2">Next Payment</h4>
 
-                                    <h6> {{ unpaid_schedules.payment_due_date }} </h6>
+                                    <h6> {{ unpaid_schedules.payment_due?'No Payment Plan Yet.':(unpaid_schedules.payment_due_date) }} </h6>
                                 </div>
                             </div>
                         </div>
@@ -96,17 +129,18 @@ export default {
     data() {
         return {
             
-            user_data: [],
+             user_data: [],
              payment_schedules: [],
              building_project: [],
              next_payment: [],
-             unpaid_schedules: []
+             unpaid_schedules: [],
+             payment_plans: []
         }
     },
 
     methods: {
 
-               load_payment_plan(){
+        load_payment_plan(){
 
                        let loader = this.$loading.show({
                             // Optional parameters
@@ -144,17 +178,21 @@ export default {
 
                  loader.hide()
 
-                 this.building_project = response.data.payment_plan.building_project
+                 this.payment_plans = response.data.payment_plan
 
-                this.payment_schedules = response.data.payment_plan.payment_schedules
+                //  this.building_project = response.data.payment_plan.building_project
 
-                this.unpaid_schedules = response.data.unpaid_schedules[0]
+                // this.payment_schedules = response.data.payment_plan.payment_schedules
 
-                this.next_payment = this.payment_schedules[0]
+                // this.unpaid_schedules = response.data.unpaid_schedules[0]
+
+                // this.next_payment = this.payment_schedules[0]
 
                 console.log(response)
             })
             .catch((response)=>{
+
+                loader.hide()
                 console.log(response)
             })
 
@@ -162,6 +200,7 @@ export default {
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
 
+            console.log(this.user_data)
 
             if(localStorage.getItem('user_role') == 'admin'){
 

@@ -230,7 +230,7 @@
                                         </li>
 
                                         <li class="nk-menu-item">
-                                            <router-link to="/admin/create-subscription" class="nk-menu-link">
+                                            <router-link to="/admin/create-payment-plan" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><em class="icon ni ni-download-cloud"></em></span>
                                                 <span class="nk-menu-text"> Create Subscriptions</span>
                                             </router-link>
