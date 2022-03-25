@@ -130,7 +130,8 @@ const routes = [
         component: Projects
       },
       {
-        path: 'payment-history',
+        path: 'payment-history/:id',
+        name: 'my-payment-history',
         component: PaymentHistory
       },
       {

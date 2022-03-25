@@ -4,7 +4,12 @@
             <div class="nk-block-head nk-block-head-lg">
                 <div class="nk-block-between-md g-4">
                     <div class="nk-block-head-content">
-                        <h2 class="nk-block-title fw-normal">My Payment Plan</h2>
+                        <h2 class="nk-block-title fw-normal">My Payment History</h2>
+
+                        <h6>Project Title: {{title}}</h6>
+                        <h6>Project Location: {{location}}</h6>
+                        <h6>Project Payment Plan: {{payment_plan}}</h6>
+                        <h6>Date Created: {{date_created}}</h6>
                        
                     </div>
                 </div>
@@ -25,8 +30,8 @@
                 </thead>
 
                 <tbody>
-                    <tr v-for="payment_schedule in payment_schedules" :key="payment_schedule.index">
-                        <td>#</td>
+                    <tr v-for="payment_schedule,key in payment_schedules" :key="key">
+                        <td>{{key + 1}}</td>
                         <td>{{payment_schedule.payment_due_date}}</td>
                         <td>{{payment_schedule.expected_amount}} Million</td>
                         <td>{{payment_schedule.amount_paid}}</td>
@@ -36,61 +41,7 @@
             </table>
         </div>
 
-        <div class="container py-3 d-none">
-
-            <div class="row">
-
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                        <label >Building Projects</label>
-                        <select class="form-control" v-model="building_project_title" >
-
-                   
-
-                            <option v-for="building_project in building_projects" :key="building_project.index" >{{building_project.title}}</option>
-
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label >Subscribers Email</label>
-                        <input type="text" class="form-control" v-model="subscribers_email" placeholder="Enter Subscriber email">
-                    </div>
-
-                    <div class="form-group">
-                        <label >Date</label>
-                        <input type="date" class="form-control" v-model="start_date" placeholder="">
-                    </div>
-
-                    <div class="form-group">
-                        <label >Description</label>
-                        <input type="text" class="form-control" v-model="description" placeholder="">
-                    </div>
-
-
-                </div>
-
-           
-
-                <div class="col-md-12 py-3 ">
-
-                    <div class="form-group">
-
-                        <button @click="create_payment_plan()" class="btn btn-primary float-right">Submit</button>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-
-
-
-        </div>
+       
 
       
         <!-- footer @s -->
@@ -102,14 +53,12 @@
 export default {
     data() {
         return {
-            building_project_title: '',
-            description: '',
-            subscribers_email: '',
-            start_date: '',
-            user_data: [],
-            building_projects: [],
-
-            payment_schedules: []
+           
+            payment_schedules: [],
+            title: '',
+            location: '',
+            payment_plan: '',
+            date_created: '',
   
         }
     },
@@ -124,29 +73,9 @@ export default {
                 this.user = false
             }
         },
-        get_building_projects(){
+      
 
-            this.axios({
-                url: process.env.VUE_APP_URL+'/api/building_projects',
-                method: 'GET',
-                
-            })
-            .then((response)=>{
-
-                // console.log(response.data.building_projects)
-
-                this.building_projects = response.data.building_projects
-
-            })
-            .catch((response)=>{
-
-                console.log(response)
-
-            });
-
-        },
-
-        load_payment_plan(){
+        load_payment_schedules(){
 
             // alert(this.building_project_title)
             // alert(this.subscribers_email)
@@ -156,8 +85,9 @@ export default {
             this.axios({
                     method: "get",
                     url: process.env.VUE_APP_URL+'/api/payment_plans',
-                    data: {
+                    params: {
                         start_date: this.start_date,
+                        payment_plan_id : this.$route.params.id
          
 
                     },
@@ -169,10 +99,15 @@ export default {
                 },
             })
             .then((response)=>{
-
-                this.payment_schedules = response.data.payment_plan.payment_schedules
-
                 console.log(response)
+                this.payment_schedules = response.data
+
+                this.title = response.data[0].payment_plan.building_project.title
+                this.location = response.data[0].payment_plan.building_project.location
+                this.payment_plan = response.data[0].payment_plan.building_project.payment_plan
+                this.date_created = response.data[0].payment_plan.created_at
+
+               
             })
             .catch((response)=>{
                 console.log(response)
@@ -185,9 +120,11 @@ export default {
     mounted() {
 
         // alert(localStorage.getItem('user_token'))
+
+
         this.getUserData()
-        this.get_building_projects()
-        this.load_payment_plan()
+     
+        this.load_payment_schedules()
     },
 }
 </script>

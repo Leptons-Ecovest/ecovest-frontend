@@ -69,8 +69,11 @@
                                 <div class="card-body">
 
                                     <h4 class="py-2">Next Payment</h4>
-
-                                    <h6> {{ unpaid_schedules.payment_due?'No Payment Plan Yet.':(unpaid_schedules.payment_due_date) }} </h6>
+                       <h6> {{ unpaid_schedules_building_project.title}}</h6>
+                       <h6> {{ unpaid_schedules_building_project.location}}</h6>
+                       <h6> {{ unpaid_schedules_building_project.payment_plan}}</h6>
+                       <h6> N {{ unpaid_schedules_building_project.property_price}}Million</h6>
+                                    <h6> {{ unpaid_schedules.payment_due_date}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -105,8 +108,8 @@
                 </thead>
 
                 <tbody>
-                    <tr v-for="payment_schedule in payment_schedules" :key="payment_schedule.index">
-                        <td>#</td>
+                    <tr v-for="payment_schedule,key in paid_schedules" :key="key">
+                        <td>{{key + 1}}</td>
                         <td>{{payment_schedule.payment_due_date}}</td>
                         <td>{{payment_schedule.expected_amount}} Million</td>
                         <td>{{payment_schedule.amount_paid}}</td>
@@ -130,10 +133,13 @@ export default {
         return {
             
              user_data: [],
-             payment_schedules: [],
-             building_project: [],
+     
+
              next_payment: [],
              unpaid_schedules: [],
+             
+             paid_schedules: [],
+             unpaid_schedules_building_project: [],
              payment_plans: []
         }
     },
@@ -184,11 +190,21 @@ export default {
 
                 // this.payment_schedules = response.data.payment_plan.payment_schedules
 
-                // this.unpaid_schedules = response.data.unpaid_schedules[0]
+                this.unpaid_schedules = response.data.unpaid_schedules
+
+                this.unpaid_schedules_building_project = response.data.unpaid_schedules.payment_plan.building_project
+
+                this.paid_schedules = response.data.paid_schedules
 
                 // this.next_payment = this.payment_schedules[0]
 
                 console.log(response)
+
+                console.log(this.unpaid_schedules)
+
+                console.log(this.paid_schedules)
+
+                console.log(this.unpaid_schedules_building_project)
             })
             .catch((response)=>{
 
