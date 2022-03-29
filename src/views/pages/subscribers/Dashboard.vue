@@ -19,8 +19,9 @@
                     <div class="row match-height">
                         <div class="col-md-6 p-3">
 
+                                
                          
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div v-if="unpaid_schedules_building_project.title" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -61,19 +62,30 @@
                                 </div>
                             </div>
 
+
+                            <div v-else class="card-body">
+                                    <h4 class="py-2">Projects</h4>
+                                        <h6 class="py-2 text-center">No Projects created yet.</h6>
+                                </div>
+
                             
                         </div>
                         <div class="col-md-6 p-3">
 
                             <div style="height: 230px;"  class="card border">
-                                <div class="card-body">
+                                <div v-if="unpaid_schedules_building_project.title" class="card-body">
 
                                     <h4 class="py-2">Next Payment</h4>
-                       <h6> {{ unpaid_schedules_building_project.title}}</h6>
-                       <h6> {{ unpaid_schedules_building_project.location}}</h6>
-                       <h6> {{ unpaid_schedules_building_project.payment_plan}}</h6>
-                       <h6> N {{ unpaid_schedules_building_project.property_price}}Million</h6>
+                                    <h6> {{ unpaid_schedules_building_project.title}}</h6>
+                                    <h6> {{ unpaid_schedules_building_project.location}}</h6>
+                                    <h6> {{ unpaid_schedules_building_project.payment_plan}}</h6>
+                                    <h6> N {{ unpaid_schedules_building_project.property_price}}Million</h6>
                                     <h6> {{ unpaid_schedules.payment_due_date}}</h6>
+                                </div>
+
+                                <div v-else class="card-body">
+                                    <h4 class="py-2">Next Payment</h4>
+                                        <h6 class="py-2 text-center">No Payment Plans Yet.</h6>
                                 </div>
                             </div>
                         </div>
@@ -96,29 +108,34 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Due Date</th>
-                        <th>Expected Amount</th>
-                        <th>Amount Paid</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
+                    <table v-if="unpaid_schedules_building_project.title" class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Due Date</th>
+                                <th>Expected Amount</th>
+                                <th>Amount Paid</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
 
-                <tbody>
-                    <tr v-for="payment_schedule,key in paid_schedules" :key="key">
-                        <td>{{key + 1}}</td>
-                        <td>{{payment_schedule.payment_due_date}}</td>
-                        <td>{{payment_schedule.expected_amount}} Million</td>
-                        <td>{{payment_schedule.amount_paid}}</td>
-                        <td>
-                            <span :class="'badge badge-'+payment_schedule.color_code">{{payment_schedule.status}}</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        <tbody>
+                            <tr v-for="payment_schedule,key in paid_schedules" :key="key">
+                                <td>{{key + 1}}</td>
+                                <td>{{payment_schedule.payment_due_date}}</td>
+                                <td>{{payment_schedule.expected_amount}} Million</td>
+                                <td>{{payment_schedule.amount_paid}}</td>
+                                <td>
+                                    <span :class="'badge badge-'+payment_schedule.color_code">{{payment_schedule.status}}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div v-else class="card-body">
+                                    
+                                        <h6 class="py-2 text-center">No Payments yet.</h6>
+                                </div>
                 </div><!-- .card -->
             </div><!-- .nk-block -->
         </div>
@@ -185,7 +202,7 @@ export default {
 
                  loader.hide()
 
-                 this.payment_plans = response.data.payment_plan
+                 this.payment_plans = response.data.payment_plan??null
 
                 //  this.building_project = response.data.payment_plan.building_project
 
@@ -193,7 +210,7 @@ export default {
 
                 this.unpaid_schedules = response.data.unpaid_schedules
 
-                this.unpaid_schedules_building_project = response.data.unpaid_schedules?.payment_plan.building_project
+                this.unpaid_schedules_building_project = response.data.unpaid_schedules.payment_plan.building_project??null 
 
                 this.paid_schedules = response.data.paid_schedules
 
