@@ -83,7 +83,7 @@
         </button>
       </div>
       <div class="modal-body">
-        
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus quibusdam reiciendis quam! Magni, voluptatibus reprehenderit enim autem a facilis voluptate nulla labore ad eius perspiciatis id molestias sequi optio animi.
       </div>
   
     </div>

@@ -181,6 +181,7 @@ export default {
                 },
             })
             .then((response)=>{
+                console.log(response)
 
                  loader.hide()
 
@@ -192,7 +193,7 @@ export default {
 
                 this.unpaid_schedules = response.data.unpaid_schedules
 
-                this.unpaid_schedules_building_project = response.data.unpaid_schedules.payment_plan.building_project
+                this.unpaid_schedules_building_project = response.data.unpaid_schedules?.payment_plan.building_project
 
                 this.paid_schedules = response.data.paid_schedules
 
