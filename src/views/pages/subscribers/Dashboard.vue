@@ -21,7 +21,7 @@
 
                                 
                          
-                            <div v-if="unpaid_schedules_building_project.title" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div v-if="unpaid_schedules_notify_list.length > 0" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -30,9 +30,12 @@
                                 <div class="carousel-inner">
                                     <div v-for="payment_plan,key in payment_plans" :key="key" :class="'carousel-item '+(key==0?'active':'')">
 
-                                        <div style="height: 250px;" class="card card-bordered bg-dark">
+                                        <div style="height: 320px;" class="card card-bordered bg-dark">
+                                            <div class="card-header">
+                                                <button class="btn btn-primary btn-sm float-right">{{payment_plan.status}}</button>
+                                            </div>
                                             <div  class="card-body text-white py-2">
-                                                <h6>Current Project</h6>
+                                                <h6> Project Subscribed</h6>
                                                 
                                                 <h6 class="">
                                                     <span class="">Description:</span> <br><h4>{{payment_plan.description}}</h4>
@@ -73,7 +76,7 @@
                         <div class="col-md-6 p-3">
 
                             <div style="height: 230px;"  class="card border">
-                                <div v-if="unpaid_schedules_building_project.title" class="card-body">
+                                <div v-if="unpaid_schedules_notify_list.length > 0" class="card-body">
 
                                     <h4 class="py-2">Next Payment</h4>
                                     <h6> {{ unpaid_schedules_building_project.title}}</h6>
@@ -108,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                    <table v-if="unpaid_schedules_building_project.title" class="table">
+                    <table v-if="unpaid_schedules_notify_list.length > 0" class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -120,7 +123,7 @@
                         </thead>
 
                         <tbody>
-                            <tr v-for="payment_schedule,key in paid_schedules" :key="key">
+                            <tr v-for="payment_schedule,key in unpaid_schedules_notify_list" :key="key">
                                 <td>{{key + 1}}</td>
                                 <td>{{payment_schedule.payment_due_date}}</td>
                                 <td>{{payment_schedule.expected_amount}} Million</td>
@@ -150,6 +153,8 @@ export default {
         return {
             
              user_data: [],
+
+             unpaid_schedules_notify_list: [],
      
 
              next_payment: [],
@@ -198,11 +203,15 @@ export default {
                 },
             })
             .then((response)=>{
+
                 console.log(response)
 
                  loader.hide()
 
                  this.payment_plans = response.data.payment_plan??null
+
+
+                 this.unpaid_schedules_notify_list = response.data.unpaid_schedules_notify_list
 
                 //  this.building_project = response.data.payment_plan.building_project
 
@@ -210,7 +219,18 @@ export default {
 
                 this.unpaid_schedules = response.data.unpaid_schedules
 
-                this.unpaid_schedules_building_project = response.data.unpaid_schedules.payment_plan.building_project??null 
+                if (this.unpaid_schedules.length == 0) {
+
+                    this.unpaid_schedules_building_project = []
+                    
+                } else {
+
+                    this.unpaid_schedules_building_project = response.data.unpaid_schedules.payment_plan.building_project??null 
+                    
+                }
+                
+
+                
 
                 this.paid_schedules = response.data.paid_schedules
 
