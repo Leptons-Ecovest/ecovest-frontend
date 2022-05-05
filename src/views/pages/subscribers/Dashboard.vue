@@ -30,7 +30,7 @@
                                 <div class="carousel-inner">
                                     <div v-for="payment_plan,key in payment_plans" :key="key" :class="'carousel-item '+(key==0?'active':'')">
 
-                                        <div style="height: 320px;" class="card card-bordered bg-dark">
+                                        <div style="height: 250px;" class="card card-bordered bg-dark">
                                             <div class="card-header">
                                                 <button class="btn btn-primary btn-sm float-right">{{payment_plan.status}}</button>
                                             </div>
@@ -42,7 +42,7 @@
                                                 </h6>
                                                 <h4 class="pt-3"><span class="text-primary py-1">{{payment_plan.building_project.title}}</span></h4>
                                                 <h6>Location: <br><span class="text-primary py-1">{{payment_plan.building_project.location}}</span></h6>
-                                                <h6>Payment Plan: <br><span class="text-primary py-1">{{payment_plan.building_project.payment_plan}}</span></h6>
+                                                <!-- <h6>Payment Plan: <br><span class="text-primary py-1">{{payment_plan.building_project.payment_plan}}</span></h6> -->
 
 
                                             </div>
@@ -75,13 +75,23 @@
                         </div>
                         <div class="col-md-6 p-3">
 
-                            <div style="height: 230px;"  class="card border">
+                            <div style="height: 250px;"  class="card border shadow">
                                 <div v-if="unpaid_schedules_notify_list.length > 0" class="card-body">
 
                                     <h4 class="py-2">Next Payment</h4>
                                     <h6> {{ unpaid_schedules_building_project.title}}</h6>
                                     <h6> {{ unpaid_schedules_building_project.location}}</h6>
+
                                     <h6> {{ unpaid_schedules_building_project.payment_plan}}</h6>
+
+                                    <h6>
+                                        {{unpaid_schedules_notify_list[0].amount_paid != 0?'paid':'30%'}} |
+                                        {{unpaid_schedules_notify_list[1].amount_paid != 0?'paid':'20%'}} |
+                                        {{unpaid_schedules_notify_list[2].amount_paid != 0?'paid':'20%'}} |
+                                        {{unpaid_schedules_notify_list[3].amount_paid != 0?'paid':'20%'}} |
+                                        {{unpaid_schedules_notify_list[4].amount_paid != 0?'paid':'10%'}}
+                                    </h6>
+
                                     <h6> N {{ unpaid_schedules_building_project.property_price}}Million</h6>
                                     <h6> {{ unpaid_schedules.payment_due_date}}</h6>
                                 </div>
