@@ -82,18 +82,66 @@
                                     <h6> {{ unpaid_schedules_building_project.title}}</h6>
                                     <h6> {{ unpaid_schedules_building_project.location}}</h6>
 
-                                    <h6> {{ unpaid_schedules_building_project.payment_plan}}</h6>
+                                    <!-- <h6> {{ unpaid_schedules_building_project.payment_plan}}</h6> -->
 
                                     <h6>
-                                        {{unpaid_schedules_notify_list[0].amount_paid != 0?'paid':'30%'}} |
-                                        {{unpaid_schedules_notify_list[1].amount_paid != 0?'paid':'20%'}} |
-                                        {{unpaid_schedules_notify_list[2].amount_paid != 0?'paid':'20%'}} |
-                                        {{unpaid_schedules_notify_list[3].amount_paid != 0?'paid':'20%'}} |
-                                        {{unpaid_schedules_notify_list[4].amount_paid != 0?'paid':'10%'}}
+                                        {{unpaid_schedules_notify_list[0].amount_paid != 0?'':
+                                        
+                                        '30% = ' +unpaid_schedules_notify_list[0].expected_amount+'M'
+                                        
+                                        }} 
+                                        {{unpaid_schedules_notify_list[1].amount_paid != 0?'':
+                                        
+                                        '20% = ' +unpaid_schedules_notify_list[1].expected_amount+'M'
+                                        
+                                        }} 
+                                        {{unpaid_schedules_notify_list[2].amount_paid != 0?'':
+                                        
+                                        '20% = ' +unpaid_schedules_notify_list[2].expected_amount+'M'
+                                        
+                                        }} 
+                                        {{unpaid_schedules_notify_list[3].amount_paid != 0?'':
+                                        
+                                        '20% = ' +unpaid_schedules_notify_list[3].expected_amount+'M'
+                                        
+                                        }} 
+                                        {{unpaid_schedules_notify_list[4].amount_paid != 0?'':
+                                        
+                                        '10% = ' +unpaid_schedules_notify_list[4].expected_amount+'M'
+                                        
+                                        }}
                                     </h6>
 
-                                    <h6> N {{ unpaid_schedules_building_project.property_price}}Million</h6>
-                                    <h6> {{ unpaid_schedules.payment_due_date}}</h6>
+                                        <h6>
+                                        {{unpaid_schedules_notify_list[0].amount_paid != 0?'':
+                                        
+                                        unpaid_schedules_notify_list[0].payment_due_date+','
+                                        
+                                        }} 
+                                        {{unpaid_schedules_notify_list[1].amount_paid != 0?'':
+                                        
+                                        unpaid_schedules_notify_list[1].payment_due_date+','
+                                        
+                                        }} 
+                                        {{unpaid_schedules_notify_list[2].amount_paid != 0?'':
+                                        
+                                        unpaid_schedules_notify_list[2].payment_due_date+','
+                                        
+                                        }} 
+                                        {{unpaid_schedules_notify_list[3].amount_paid != 0?'':
+                                        
+                                        unpaid_schedules_notify_list[3].payment_due_date+','
+                                        
+                                        }} 
+                                        {{unpaid_schedules_notify_list[4].amount_paid != 0?'':
+                                        
+                                        unpaid_schedules_notify_list[4].payment_due_date+','
+                                        
+                                        }}
+                                    </h6>
+
+                                    <!-- <h6> N {{ unpaid_schedules_building_project.property_price}}Million</h6>-->
+                                    <!-- <h6> {{ unpaid_schedules.payment_due_date}}</h6>  -->
                                 </div>
 
                                 <div v-else class="card-body">
