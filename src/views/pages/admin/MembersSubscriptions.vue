@@ -39,6 +39,7 @@
                             <button @click="loadPaymentSchedule(user_plan.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Details
                             </button>
+                            <router-link class="ml-2 btn btn-secondary" :to="{name: 'update-progress',params:{id:user_plan.id}}">Update</router-link>
                         </td>
                     </tr>
                 </tbody>

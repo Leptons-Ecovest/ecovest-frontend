@@ -47,6 +47,8 @@ import UpdatePaymentPlan from '../views/pages/admin/UpdatePaymentPlan.vue'
 
 import AddProject from '../views/pages/admin/AddProject.vue'
 
+import UpdateProgress from '../views/pages/admin/UpdateProgress.vue'
+
 
 
 // import Dashboard from '../views/pages/subscribers/Dashboard.vue'
@@ -211,6 +213,12 @@ const routes = [
       {
         path: 'user-payment/:id',
         component: PaymentHistoryView
+      },
+
+      {
+        path: 'update-progress/:id',
+        name: 'update-progress',
+        component: UpdateProgress
       },
       {
         path: 'members-subscriptions',
