@@ -30,7 +30,7 @@
                                 <div class="carousel-inner">
                                     <div v-for="payment_plan,key in payment_plans" :key="key" :class="'carousel-item '+(key==0?'active':'')">
 
-                                        <div style="height: 250px;" class="card card-bordered bg-dark">
+                                        <div style="height: 280px;" class="card card-bordered bg-dark">
                                             <div class="card-header">
                                                 <button class="btn btn-primary btn-sm float-right">{{payment_plan.status}}</button>
                                             </div>
@@ -82,9 +82,14 @@
                                     <h6> {{ unpaid_schedules_building_project.title}}</h6>
                                     <h6> {{ unpaid_schedules_building_project.location}}</h6>
 
+                                    <!-- {{unpaid_schedules_notify_list_filtered}} -->
+
+                                
+
                                     <!-- <h6> {{ unpaid_schedules_building_project.payment_plan}}</h6> -->
 
-                                    <h6>
+                                    <h6 style="width: 90px; height: 20px; overflow: hidden;" class="">
+                                    
                                         {{unpaid_schedules_notify_list[0].amount_paid != 0?'':
                                         
                                         '30% = ' +unpaid_schedules_notify_list[0].expected_amount+'M'
@@ -112,7 +117,7 @@
                                         }}
                                     </h6>
 
-                                        <h6>
+                                        <h6 style="width: 120px; height: 20px; overflow: hidden;" class="">
                                         {{unpaid_schedules_notify_list[0].amount_paid != 0?'':
                                         
                                         unpaid_schedules_notify_list[0].payment_due_date+','
@@ -213,6 +218,8 @@ export default {
              user_data: [],
 
              unpaid_schedules_notify_list: [],
+
+             unpaid_schedules_notify_list_filtered: [],
      
 
              next_payment: [],
@@ -270,6 +277,11 @@ export default {
 
 
                  this.unpaid_schedules_notify_list = response.data.unpaid_schedules_notify_list
+
+                this.unpaid_schedules_notify_list_filtered = this.unpaid_schedules_notify_list
+                    .filter(element => 
+                    (element.amount_paid
+                    ==0))
 
                 //  this.building_project = response.data.payment_plan.building_project
 
