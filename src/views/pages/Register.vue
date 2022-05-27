@@ -168,6 +168,9 @@ export default {
                             onCancel: this.onCancel,
                             color: '#6CC3EC',
                         });
+
+
+                        
                        this.axios({
                                 method: "post",
                                 url: process.env.VUE_APP_URL+'/api/register',

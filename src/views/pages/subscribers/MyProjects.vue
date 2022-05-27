@@ -15,6 +15,24 @@
         </div>
 
         <div class="container">
+
+
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="pills-home-ab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Status</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Description</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Project Payment Plan</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+</div>
             <div class="row">
                 <div class="col-md-10">
                     <div v-for="project,key in my_projects" :key="key" class="card shadow">
@@ -28,6 +46,7 @@
                                <div class="t text-primary">
                                 <h6> {{project.building_project.title}}</h6>
                                <h6> {{project.building_project.location}}</h6>
+                               
                                <h6> {{project.building_project.payment_plan}}</h6>
                                </div>
 

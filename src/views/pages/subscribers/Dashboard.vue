@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-md-6 p-3">
 
-                            <div style="height: 250px;"  class="card border shadow">
+                            <div style="min-height: 250px;"  class="card border shadow">
                                 <div v-if="unpaid_schedules_notify_list.length > 0" class="card-body">
 
                                     <h4 class="py-2">Next Payment</h4>
@@ -147,6 +147,10 @@
 
                                     <!-- <h6> N {{ unpaid_schedules_building_project.property_price}}Million</h6>-->
                                     <!-- <h6> {{ unpaid_schedules.payment_due_date}}</h6>  -->
+
+                                    <div class="c py-5 text-center">
+                                        <router-link to="/user/payment-page" class="btn btn-primary">Make Payment</router-link>
+                                    </div>
                                 </div>
 
                                 <div v-else class="card-body">

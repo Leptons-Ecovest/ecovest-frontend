@@ -12,6 +12,11 @@ import UserHome from '../views/pages/subscribers/Dashboard.vue'
 
 import UserMessages from '../views/pages/subscribers/Messages.vue'
 
+import PaymentPage from '../views/pages/subscribers/PaymentPage.vue'
+
+import PaymentSuccess from '../views/pages/subscribers/PaymentSuccess.vue'
+
+
 import UserProfile from '../views/pages/subscribers/MyProfile.vue'
 
 import UserProjects from '../views/pages/subscribers/MyProjects.vue'
@@ -123,6 +128,19 @@ const routes = [
         path: 'messages',
         component: UserMessages
       },
+
+      {
+        path: 'payment-page',
+        component: PaymentPage
+      },
+
+
+      {
+        path: 'upload-success',
+        component: PaymentSuccess
+      },
+
+
       {
         path: 'profile',
         component: UserProfile
@@ -190,6 +208,8 @@ const routes = [
         path: 'messages',
         component: Messages
       },
+
+
       {
         path: 'subscribers',
         component: Users
