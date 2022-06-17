@@ -62,7 +62,7 @@
                         </div>
                         <div class="tab-pane fade px-0" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                 
-                               <div class="card shadow">
+                               <div style="height: 340px; overflow:scroll" class="card shadow">
                                 <div class="card-body">
                                      <table class="table">
                                     <thead>
