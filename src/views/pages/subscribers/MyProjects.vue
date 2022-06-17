@@ -16,9 +16,9 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-12">
 
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="pills-home-ab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Project Details</a>
                         </li>
@@ -31,11 +31,15 @@
                     </ul>
 
                 </div>  
-                <div class="col-md-9">
+                <div class="col-md-12">
                     
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                
+                                <div class="card">
+                                    <div class="card-body">
+
+                                    </div>
+                                </div>
                             <div v-for="project,key in my_projects" :key="key" class="card shadow">
                                 <div class="card-body d-flex justify-content-around">
                                 <div class="c p-1">
@@ -102,7 +106,7 @@
                         </div>
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                 
-                                                        <div v-for="project,key in my_projects" :key="key" :class="'card shadow '+(project.status=='running'?'bg-success text-white':'')">
+                            <div v-for="project,key in my_projects" :key="key" :class="'card shadow '+(project.status=='running'?'bg-success text-white':'')">
                                 <div class="card-body d-flex justify-content-around">
                                 <div class="c p-1">
                                     <img style="width: 120px; height: 120px; object-fit: cover; border-raduis: 23px;" :src="project.building_project.featured_image??'https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png'" alt="">
