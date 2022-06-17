@@ -15,24 +15,126 @@
         </div>
 
         <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="pills-home-ab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Project Details</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Payment History</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Project Status</a>
+                        </li>   
+                    </ul>
+
+                </div>  
+                <div class="col-md-9">
+                    
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                
+                            <div v-for="project,key in my_projects" :key="key" class="card shadow">
+                                <div class="card-body d-flex justify-content-around">
+                                <div class="c p-1">
+                                    <img style="width: 120px; height: 120px; object-fit: cover; border-raduis: 23px;" :src="project.building_project.featured_image??'https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png'" alt="">
+
+                                </div>
+                                <div class="d">
+                                    <h4>{{project.description}}</h4>
+                                    <div class="t text-primary">
+                                        <h6> {{project.building_project.title}}</h6>
+                                    <h6> {{project.building_project.location}}</h6>
+                                    
+                                    <h6> {{project.building_project.payment_plan}}</h6>
+                                    </div>
+
+                                    <router-link :to="{name: 'my-payment-history', params:{id:project.id}}" class="btn btn-primary mt-1 float-right">details</router-link>
+                                    
+
+                                </div>
+
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div class="tab-pane fade px-0" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                
+                               <div class="card shadow">
+                                <div class="card-body">
+                                     <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Project</th>
+                                            <th>Due Date</th>
+                                            <th>Expected Amount</th>
+                                            <th>Amount Paid</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr v-for="payment,key in my_payments" :key="key">
+                                            <td>{{key + 1}}</td>
+                                            <td>
+                                                
+                                                {{payment.payment_plan.description}}
+                                                
+                                                </td>
+                                            <td>{{payment.payment_due_date}}</td>
+                                            <td>{{payment.expected_amount}} Million</td>
+                                            <td>{{payment.amount_paid}}</td>
+                                            <td>
+                                                <span :class="'badge badge-'+payment.color_code">{{payment.status}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                               </div>
+
+                               
+                        
+                        
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                
+                                                        <div v-for="project,key in my_projects" :key="key" :class="'card shadow '+(project.status=='running'?'bg-success text-white':'')">
+                                <div class="card-body d-flex justify-content-around">
+                                <div class="c p-1">
+                                    <img style="width: 120px; height: 120px; object-fit: cover; border-raduis: 23px;" :src="project.building_project.featured_image??'https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png'" alt="">
+
+                                </div>
+                                <div class="d">
+                                    <h4>{{project.description}}</h4>
+                                    <div class="t text-primary">
+                                        <h6> {{project.building_project.title}}</h6>
+                                    <h6> {{project.building_project.location}}</h6>
+                                    
+                                    <h6> {{project.building_project.payment_plan}}</h6>
+                                    </div>
+
+                                    <a  class="btn btn-primary mt-1 float-right">{{project.status}}</a>
+                                    
+
+                                </div>
+
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="pills-home-ab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Status</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Description</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Project Payment Plan</a>
-  </li>
-</ul>
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
-</div>
+        <div class="container d-none">
+
             <div class="row">
                 <div class="col-md-10">
                     <div v-for="project,key in my_projects" :key="key" class="card shadow">
@@ -71,7 +173,8 @@ export default {
 
     data() {
         return {
-            my_projects: []
+            my_projects: [],
+            my_payments: []
         }
     },
 
@@ -115,6 +218,8 @@ export default {
                  loader.hide()
 
                  this.my_projects = response.data.payment_plan
+
+                 this.my_payments = response.data.payment_schedules
 
                 //  this.building_project = response.data.payment_plan.building_project
 
