@@ -7,8 +7,8 @@
                     <div class="nk-block-head-content">
                         <h2 class="nk-block-title fw-normal">All Members</h2>
 
-
-                        <button @click="sendOfferLetters()" class="btn btn-primary shadow">Send Offer Letter(s)</button>
+                        <button v-if="loading"  class="btn btn-primary shadow" disabled>Please wait...</button>
+                        <button v-else @click="sendOfferLetters()" class="btn btn-primary shadow">Send Offer Letter(s)</button>
                        
                     </div>
                 </div>
@@ -17,7 +17,7 @@
         </div>
 
 
-        <div class="container">
+        <div class="container table-responsive">
 
 
             <table class="table">
@@ -31,6 +31,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" >
+                                <label class="form-check-label" for="exampleCheck1">All</label>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                     <tr v-for="user in users" :key="user.id">
                         <td>
                               <div class="form-group form-check">
@@ -257,7 +269,9 @@ export default {
             name: '',
             email:'',
 
-            all_user_ids: []
+            all_user_ids: [],
+
+            loading: false
         }
     },
 
@@ -340,6 +354,39 @@ export default {
 
 
         sendOfferLetters(){
+
+            this.loading = true;
+
+
+            this.axios({
+                url: process.env.VUE_APP_URL+'/api/send_batch',
+                method: 'post',
+                data: {
+                    ids: this.all_user_ids
+                },
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    
+                },
+
+            })
+            .then((response)=>{   
+                
+                this.loading = false;
+
+                console.log(response)
+         
+            })
+            .catch((response)=>{
+
+                console.log(response)
+            })
+
+            
+
+
             console.log(this.all_user_ids)
         }
     },
