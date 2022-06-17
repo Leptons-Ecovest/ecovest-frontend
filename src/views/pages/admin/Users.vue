@@ -6,6 +6,9 @@
                 <div class="nk-block-between-md g-4">
                     <div class="nk-block-head-content">
                         <h2 class="nk-block-title fw-normal">All Members</h2>
+
+
+                        <button @click="sendOfferLetters()" class="btn btn-primary shadow">Send Offer Letter(s)</button>
                        
                     </div>
                 </div>
@@ -29,7 +32,11 @@
                 </thead>
                 <tbody>
                     <tr v-for="user in users" :key="user.id">
-                        <td></td>
+                        <td>
+                              <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" v-model="all_user_ids" :value="user.id" id="exampleCheck1">
+                            </div>
+                        </td>
                         <td>
                             <img style="width: 50px; height: 50px; border-radius: 50%;" class="shadow" :src="getImgUrl(user.avatar)" alt="">
 
@@ -249,6 +256,8 @@ export default {
     
             name: '',
             email:'',
+
+            all_user_ids: []
         }
     },
 
@@ -327,6 +336,11 @@ export default {
                 console.log(response)
             })
 
+        },
+
+
+        sendOfferLetters(){
+            console.log(this.all_user_ids)
         }
     },
 
