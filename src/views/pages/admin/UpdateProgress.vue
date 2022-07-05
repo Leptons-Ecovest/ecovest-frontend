@@ -129,8 +129,11 @@
 
 
 
-                                        <div class="form-group py-3">
-                                            <button @click="submitReport()" class="btn btn-success float-right">Update</button>
+                                        <div v-if="loading" class="form-group py-3">
+                                            <button  class="btn btn-success float-right" disabled>Submitting...</button>
+                                        </div>
+                                        <div v-else class="form-group py-3">
+                                            <button @click="submitReport()" class="btn btn-success float-right">Submit</button>
                                         </div>
                     </div>
                     
@@ -165,6 +168,10 @@
 
 <script>
 
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
+
 export default {
     data() {
         return {
@@ -174,7 +181,8 @@ export default {
             issues: '',
             stage: '',
             percent: '',
-            userDatax: []
+            userDatax: [],
+            loading: false
         }
     },
     methods: {
@@ -223,6 +231,9 @@ export default {
 
         submitReport(){
 
+
+            this.loading = true
+
             // console.log(this.$route.params.id);
 
             let formData = new FormData();
@@ -243,10 +254,7 @@ export default {
             formData.append('stage', this.stage)
             formData.append('percent', this.percent)
 
-            
-
-
-
+        
 
 
             this.axios({
@@ -264,7 +272,10 @@ export default {
             })
             .then((response)=>{
 
+                this.loading = false
 
+
+                toast.success('Report Submitted');
 
                 // this.profileData = response.data
 
