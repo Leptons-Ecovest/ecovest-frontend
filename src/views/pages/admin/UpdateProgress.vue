@@ -18,14 +18,17 @@
 
             <div v-for="report,index in reports" :key="index.id" class="card mb-3 border shadow">
                 <div class="card-body">
-                    <h6>Project Title</h6>
-                    <p>Description of work done</p>
+                    <h6>{{report.payment_plan.building_project.title}}</h6>
+                    <p>{{report.description}}</p>
+                    <p>{{report.issues}}</p>
+                    <p class="badge badge-warning">{{report.stage}} {{report.percentage_completion}}%</p>
+                    
                     <div class="media">
                         <p class="text-muted">media files...</p>
                     </div>
-                    <div class="assets d-flex justify-content-start flex-wrap">
-                        <div v-for="image,index in report.assets" :key="index.id" class="">
-                            <img :src="image.media_url" alt="">
+                    <div class="assetx d-flex justify-content-start flex-wrap">
+                        <div v-for="image,index in report.assets" :key="index.id" class="p-1">
+                            <img style="max-height: 120px; max-width: 120px;" :src="image.media_url" alt="">
                         </div>
 
                     </div>
@@ -162,9 +165,7 @@ export default {
 
             console.log(event)
 
-            var total_file = event.target.files.length;
-
-            
+            var total_file = event.target.files.length;            
 
            var mediax = this.$refs.file.files;
 
@@ -198,20 +199,6 @@ export default {
                 
             }
 
-            //    if(event.target.files.length > 0){
-            //     var src = URL.createObjectURL(event.target.files[0]);
-
-            //     document.getElementById("previewImg").classList.add('d-none')
-            //     document.getElementById("previewImg2").classList.remove('d-none')
-            //     var preview = document.getElementById("previewImg2");
-            //     preview.src = src;
-               
-            //     // preview.style.display = "block";
-
-            //      this.avatar = this.$refs.file.files[0];
-
-               
-            // }
 
         },
 
@@ -221,7 +208,15 @@ export default {
 
             let formData = new FormData();
 
-            formData.append('assets[]', this.$refs.file.files)
+            var mediax = this.$refs.file.files;
+
+            for (let index = 0; index < mediax.length; index++) {
+
+                formData.append('assets[]',this.$refs.file.files[index]);
+                
+            }
+
+
             formData.append('building_project_id', this.$route.params.id)
 
             formData.append('description', this.description)
