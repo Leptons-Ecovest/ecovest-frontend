@@ -4,7 +4,7 @@
             <div class="nk-block-head nk-block-head-lg">
                 <div class="nk-block-between-md g-4">
                     <div class="nk-block-head-content">
-                        <h2 class="nk-block-title fw-normal">My Payment History</h2>
+                        <h2 class="nk-block-title fw-normal">My Project Details</h2>
 
                         <h6>Project Title: {{title}}</h6>
                         <h6>Project Location: {{location}}</h6>
@@ -17,7 +17,24 @@
          
         </div>
 
+
+        <div class="container">
+            <h2>Project Details</h2>
+
+            <h6>Floor Plan</h6>
+
+                <img style="min-height: 150px; " src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png" alt="">
+
+            <h6>3D view</h6>
+
+                <img style="min-height: 150px; " src="https://wpmedia.roomsketcher.com/content/uploads/2021/12/07133333/RoomSketcher-High-Quality-3D-Floor-Plans.jpg" alt="">
+
+
+        </div>
+
         <div class="container py-3">
+
+             <h2>My Payment History</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -45,8 +62,31 @@
 
          <h2 class="nk-block-title fw-normal">Project Progress</h2>
 
+         <div style="height: 450px; overflow: scroll;" class="c">
 
-         
+            <div v-for="report,index in reports" :key="index.id" class="card mb-3 border shadow">
+                        <div class="card-body">
+                            <h6>Description:</h6>
+                            <p>{{report.description_work}}</p>
+                            <h6>Issues:</h6>
+                            <p>{{report.issues}}</p>
+                            <p class="badge badge-warning">{{report.stage}}</p>
+                            
+                           
+                            <div class="assetx d-flex justify-content-start flex-wrap">
+                                <div v-for="image,index in report.assets" :key="index.id" class="p-1">
+                                    <img style="max-height: 120px; max-width: 120px;" :src="image.media_url" alt="">
+                                </div>
+        
+                            </div>
+                            <span class="font-weight-bold">Percentage Completion: {{report.percentage_completion}}%</span>
+                            <span class="float-right">{{report.created_at}}</span>
+                        </div>
+            </div>
+
+         </div>
+
+
 
        
 
@@ -66,6 +106,7 @@ export default {
             location: '',
             payment_plan: '',
             date_created: '',
+            reports: []
   
         }
     },
@@ -120,7 +161,38 @@ export default {
                 console.log(response)
             })
 
-        }
+        },
+
+        getReports(){
+
+
+            this.axios({
+                url: process.env.VUE_APP_URL+'/api/get_reports',
+                method: 'post',
+                data:{
+                    payment_plan_id: this.$route.params.id
+                },
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+
+            })
+            .then((response)=>{
+
+                 console.log(response)
+
+                this.reports = response.data
+
+
+               
+            })
+            .catch((response)=>{
+
+                console.log(response)
+            })
+            
+        },
      
     },
 
@@ -132,6 +204,8 @@ export default {
         this.getUserData()
      
         this.load_payment_schedules()
+
+        this.getReports()
     },
 }
 </script>
