@@ -75,10 +75,48 @@
 
          
           <div class="form-group">
-              <textarea name="description" class="form-control" placeholder="Description of progress of work" id="" cols="30" rows="5"></textarea>
+            <label for="">Description</label>
+              <textarea v-model="description" name="description" class="form-control" placeholder="Description of progress of work" id="" cols="30" rows="5"></textarea>
           </div>
           <div class="form-group">
-              <button @click="submitReport()" class="btn btn-success">Update</button>
+            <label for="">Issues</label>
+              <textarea v-model="issues" name="description" class="form-control" placeholder="Description of progress of work" id="" cols="30" rows="5"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Stage</label>
+                    <select name="" id="" class="form-control">
+                        <option value="Foundation">Foundation</option>
+                        <option value="Slab">Slab</option>
+                        <option value="Interior Design">Interior Design</option>
+        
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="">Percentage Completion</label>
+                  <select name="" id="" class="form-control">
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="60">60</option>
+                      <option value="80">80</option>
+                      <option value="100">100</option>
+                  </select>
+                </div>
+                
+            </div>
+          </div>
+
+
+
+
+          <div class="form-group py-3">
+              <button @click="submitReport()" class="btn btn-success float-right">Update</button>
           </div>
 
 
@@ -104,7 +142,11 @@ export default {
     data() {
         return {
             media: [],
-            reports: []
+            reports: [],
+            description: '',
+            issues: '',
+            stage: '',
+            percent: ''
         }
     },
     methods: {
@@ -169,10 +211,23 @@ export default {
 
         submitReport(){
 
+            // console.log(this.$route.params.id);
+
             let formData = new FormData();
 
             formData.append('assets[]', this.$refs.file.files)
-            formData.append('payment_plan_id', this.$router.params.id)
+            formData.append('building_project_id', this.$route.params.id)
+
+            formData.append('description', this.description)
+            formData.append('issues', this.issues)
+            formData.append('stage', this.stage)
+            formData.append('percent', this.percent)
+
+            
+
+
+
+
 
             this.axios({
                 url: process.env.VUE_APP_URL+'/api/progress_report',
@@ -208,6 +263,7 @@ export default {
             this.axios({
                 url: process.env.VUE_APP_URL+'/api/progress_report',
                 method: 'get',
+
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': 'Bearer ' +localStorage.getItem('user_token')
@@ -234,6 +290,7 @@ export default {
     },
 
     mounted() {
+
         this.getReports()
     },
 }
