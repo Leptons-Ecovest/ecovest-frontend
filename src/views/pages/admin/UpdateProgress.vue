@@ -23,6 +23,12 @@
                     <div class="media">
                         <p class="text-muted">media files...</p>
                     </div>
+                    <div class="assets d-flex justify-content-start flex-wrap">
+                        <div v-for="image,index in report.assets" :key="index.id" class="">
+                            <img :src="image.media_url" alt="">
+                        </div>
+
+                    </div>
                     <span class="float-right">2 days ago</span>
                 </div>
             </div>
@@ -87,7 +93,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">Stage</label>
-                    <select name="" id="" class="form-control">
+                    <select v-model="stage" id="" class="form-control">
                         <option value="Foundation">Foundation</option>
                         <option value="Slab">Slab</option>
                         <option value="Interior Design">Interior Design</option>
@@ -100,7 +106,7 @@
 
                 <div class="form-group">
                   <label for="">Percentage Completion</label>
-                  <select name="" id="" class="form-control">
+                  <select v-model="percent" name="" id="" class="form-control">
                       <option value="10">10</option>
                       <option value="20">20</option>
                       <option value="60">60</option>
