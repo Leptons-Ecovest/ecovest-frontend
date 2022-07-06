@@ -31,13 +31,17 @@
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
-                    <h6>Floor Plan</h6>
+                    <h6>Floor Plan and 3D Designs</h6>
 
-                <img style="min-height: 150px; " src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png" alt="">
+                    <div class="d-flex justify-content-start flex-wrap">
+                        
+                        <div class="p-1"><img class="shadow" style="max-height: 250px; " src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png" alt=""></div>
+        
+                   
+        
+                        <div class="p-1"><img class="shadow" style="max-height: 250px; " src="https://wpmedia.roomsketcher.com/content/uploads/2021/12/07133333/RoomSketcher-High-Quality-3D-Floor-Plans.jpg" alt=""></div>
+                    </div>
 
-            <h6>3D view</h6>
-
-                <img style="min-height: 150px; " src="https://wpmedia.roomsketcher.com/content/uploads/2021/12/07133333/RoomSketcher-High-Quality-3D-Floor-Plans.jpg" alt="">
 
       </div>
     </div>
