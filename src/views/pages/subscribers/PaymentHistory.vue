@@ -18,16 +18,108 @@
         </div>
 
 
-        <div class="container">
-            <h2>Project Details</h2>
 
-            <h6>Floor Plan</h6>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Project Assets
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+                    <h6>Floor Plan</h6>
 
                 <img style="min-height: 150px; " src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png" alt="">
 
             <h6>3D view</h6>
 
                 <img style="min-height: 150px; " src="https://wpmedia.roomsketcher.com/content/uploads/2021/12/07133333/RoomSketcher-High-Quality-3D-Floor-Plans.jpg" alt="">
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Payment History
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+                    <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Due Date</th>
+                        <th>Expected Amount</th>
+                        <th>Amount Paid</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="payment_schedule,key in payment_schedules" :key="key">
+                        <td>{{key + 1}}</td>
+                        <td>{{payment_schedule.payment_due_date}}</td>
+                        <td>{{payment_schedule.expected_amount}} Million</td>
+                        <td>{{payment_schedule.amount_paid}}</td>
+                        <td>{{payment_schedule.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Project Progress
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        
+         <div style="height: 450px; overflow: scroll;" class="c">
+
+            <div v-for="report,index in reports" :key="index.id" class="card mb-3 border shadow">
+                        <div class="card-body">
+                            <h6>Description:</h6>
+                            <p>{{report.description_work}}</p>
+                            <h6>Issues:</h6>
+                            <p>{{report.issues}}</p>
+                            <p class="badge badge-warning">{{report.stage}}</p>
+                            
+                           
+                            <div class="assetx d-flex justify-content-start flex-wrap">
+                                <div v-for="image,index in report.assets" :key="index.id" class="p-1">
+                                    <img style="max-height: 120px; max-width: 120px;" :src="image.media_url" alt="">
+                                </div>
+        
+                            </div>
+                            <span class="font-weight-bold">Percentage Completion: {{report.percentage_completion}}%</span>
+                            <span class="float-right">{{report.created_at}}</span>
+                        </div>
+            </div>
+
+         </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <div class="container">
+            <h2>Project Details</h2>
+
 
 
         </div>
@@ -61,30 +153,6 @@
 
 
          <h2 class="nk-block-title fw-normal">Project Progress</h2>
-
-         <div style="height: 450px; overflow: scroll;" class="c">
-
-            <div v-for="report,index in reports" :key="index.id" class="card mb-3 border shadow">
-                        <div class="card-body">
-                            <h6>Description:</h6>
-                            <p>{{report.description_work}}</p>
-                            <h6>Issues:</h6>
-                            <p>{{report.issues}}</p>
-                            <p class="badge badge-warning">{{report.stage}}</p>
-                            
-                           
-                            <div class="assetx d-flex justify-content-start flex-wrap">
-                                <div v-for="image,index in report.assets" :key="index.id" class="p-1">
-                                    <img style="max-height: 120px; max-width: 120px;" :src="image.media_url" alt="">
-                                </div>
-        
-                            </div>
-                            <span class="font-weight-bold">Percentage Completion: {{report.percentage_completion}}%</span>
-                            <span class="float-right">{{report.created_at}}</span>
-                        </div>
-            </div>
-
-         </div>
 
 
 
