@@ -15,8 +15,31 @@
         </div>
 
         <div class="container">
+
+                                        <div v-for="project,key in my_projects" :key="key" class="card shadow">
+                                <div class="card-body d-flex justify-content-around">
+                                <div class="c p-1">
+                                    <img style="width: 120px; height: 120px; object-fit: cover; border-raduis: 23px;" :src="project.building_project.featured_image??'https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png'" alt="">
+
+                                </div>
+                                <div class="d">
+                                    <h4>{{project.description}}</h4>
+                                    <div class="t text-primary">
+                                        <h6> {{project.building_project.title}}</h6>
+                                    <h6> {{project.building_project.location}}</h6>
+                                    
+                                    <h6> {{project.building_project.payment_plan}}</h6>
+                                    </div>
+
+                                    <router-link :to="{name: 'my-payment-history', params:{id:project.id}}" class="btn btn-primary mt-1 float-right">details</router-link>
+                                    
+
+                                </div>
+
+                                </div>
+                            </div>
             <div class="">
-                <div class="">
+                <div class="d-none">
 
                     <ul class="nav nav-pills mb-3 nav-fill card-body shadow row" id="pills-tab" role="tablist">
                         <li class="nav-item col-md-4" role="presentation">
@@ -40,28 +63,7 @@
 
                                     </div>
                                 </div>
-                            <div v-for="project,key in my_projects" :key="key" class="card shadow">
-                                <div class="card-body d-flex justify-content-around">
-                                <div class="c p-1">
-                                    <img style="width: 120px; height: 120px; object-fit: cover; border-raduis: 23px;" :src="project.building_project.featured_image??'https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png'" alt="">
 
-                                </div>
-                                <div class="d">
-                                    <h4>{{project.description}}</h4>
-                                    <div class="t text-primary">
-                                        <h6> {{project.building_project.title}}</h6>
-                                    <h6> {{project.building_project.location}}</h6>
-                                    
-                                    <h6> {{project.building_project.payment_plan}}</h6>
-                                    </div>
-
-                                    <router-link :to="{name: 'my-payment-history', params:{id:project.id}}" class="btn btn-primary mt-1 float-right">details</router-link>
-                                    
-
-                                </div>
-
-                                </div>
-                            </div>
                         
                         </div>
                         <div class="tab-pane fade px-0" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">

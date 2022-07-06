@@ -24,7 +24,7 @@
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Project Assets
+          <h6>Project Assets</h6>
         </button>
       </h2>
     </div>
@@ -46,7 +46,7 @@
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Payment History
+          <h6>My Payment History</h6>
         </button>
       </h2>
     </div>
@@ -80,7 +80,7 @@
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Project Progress
+          <h6>My Project Progress Report</h6>
         </button>
       </h2>
     </div>
@@ -117,42 +117,6 @@
 </div>
 
 
-        <div class="container">
-            <h2>Project Details</h2>
-
-
-
-        </div>
-
-        <div class="container py-3">
-
-             <h2>My Payment History</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Due Date</th>
-                        <th>Expected Amount</th>
-                        <th>Amount Paid</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr v-for="payment_schedule,key in payment_schedules" :key="key">
-                        <td>{{key + 1}}</td>
-                        <td>{{payment_schedule.payment_due_date}}</td>
-                        <td>{{payment_schedule.expected_amount}} Million</td>
-                        <td>{{payment_schedule.amount_paid}}</td>
-                        <td>{{payment_schedule.status}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-
-         <h2 class="nk-block-title fw-normal">Project Progress</h2>
 
 
 
