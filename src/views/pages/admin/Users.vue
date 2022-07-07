@@ -27,6 +27,7 @@
                         <th></th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>OTP</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -56,6 +57,7 @@
                         </td>
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
+                        <td>{{user.otp}}</td>
                         <td>
                             <button @click="viewUser(user.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                            Details
