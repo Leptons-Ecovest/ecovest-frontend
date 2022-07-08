@@ -43,8 +43,27 @@
 
                     <div class="form-group">
                         <label >Description</label>
-                        <text-area type="text" class="form-control" v-model="description" placeholder=""></text-area>
+                        <textarea  row="5" type="text" class="form-control" v-model="description" placeholder="Lets have some more details about the project for this user"></textarea>
                     </div>
+
+                    <div class="form-group d-flex justify-content-start"> 
+                        
+                        <div class="c">
+
+                            s
+
+
+                        </div>
+
+                        <div class="c">
+
+                            s
+                            
+                        </div>
+
+                    </div>
+
+
 
 
                 </div>
