@@ -131,7 +131,7 @@ export default {
                         // loader.hide()
 
 
-                         return this.$router.push('/create-user-plan')
+                         return this.$router.push('create-payment-plan2/34')
 
                     });
 
