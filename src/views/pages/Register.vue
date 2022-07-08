@@ -155,11 +155,11 @@ export default {
         },
                 submit() {
 
-// alert(this.name)
-// alert(this.username)
-// alert(this.email)
-// alert(this.password)
-// alert(this.referrer_code)
+                        // alert(this.name)
+                        // alert(this.username)
+                        // alert(this.email)
+                        // alert(this.password)
+                        // alert(this.referrer_code)
 
                         let loader = this.$loading.show({
                             // Optional parameters
@@ -202,7 +202,19 @@ export default {
 
                                      toast.success('Login Successful');
 
-                                    return this.$router.push('/verify')
+                            if (localStorage.getItem('user_role') == 'user') {
+
+                                alert('welcome')
+
+                                return this.$router.push('/user')
+                                
+                            }if (localStorage.getItem('user_role') == 'admin') {
+
+                                return this.$router.push('/admin')
+                                
+                            }
+
+                                    // return this.$router.push('/verify')
 
                                 
                                 })

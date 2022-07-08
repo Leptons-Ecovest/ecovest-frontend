@@ -41,8 +41,11 @@ import Users from '../views/pages/admin/Users.vue'
 
 import User from '../views/pages/admin/User.vue'
 
-import CreatePlan from '../views/pages/admin/CreatePlan.vue'
+import NewUser from '../views/pages/admin/AddNew.vue'
 
+import CreatePlan2 from '../views/pages/admin/CreatePlan2.vue'
+
+import CreatePlan from '../views/pages/admin/CreatePlan.vue'
 
 import PaymentHistoryView from '../views/pages/admin/MembersSubscriptions.vue'
 
@@ -205,6 +208,10 @@ const routes = [
         component: Members
       },
       {
+        path: 'new-user',
+        component: NewUser
+      },
+      {
         path: 'messages',
         component: Messages
       },
@@ -221,6 +228,11 @@ const routes = [
       {
         path: 'create-payment-plan',
         component: CreatePlan
+      },
+
+      {
+        path: 'create-payment-plan2/:id',
+        component: CreatePlan2
       },
       {
         path: 'projects',

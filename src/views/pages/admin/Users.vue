@@ -5,10 +5,13 @@
             <div class="nk-block-head nk-block-head-lg">
                 <div class="nk-block-between-md g-4">
                     <div class="nk-block-head-content">
+                        
                         <h2 class="nk-block-title fw-normal">All Members</h2>
 
-                        <button v-if="loading"  class="btn btn-primary shadow" disabled>Please wait...</button>
-                        <button v-else @click="sendOfferLetters()" class="btn btn-primary shadow">Send Offer Letter(s)</button>
+                        <router-link to="/admin/new-user" class="btn btn-primary shadow" disabled>Add New Member</router-link>
+
+                        <button v-if="loading"  class="btn btn-primary shadow d-none" disabled>Please wait...</button>
+                        <button v-else @click="sendOfferLetters()" class="btn btn-primary shadow d-none">Send Offer Letter(s)</button>
                        
                     </div>
                 </div>
@@ -34,7 +37,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="form-group form-check">
+                            <div class="form-group form-check d-none">
                                 <input type="checkbox" class="form-check-input" >
                                 <label class="form-check-label" for="exampleCheck1">All</label>
                             </div>
@@ -46,7 +49,7 @@
                     </tr>
                     <tr v-for="user in users" :key="user.id">
                         <td>
-                              <div class="form-group form-check">
+                              <div class="form-group form-check d-none">
                                 <input type="checkbox" class="form-check-input" v-model="all_user_ids" :value="user.id" id="exampleCheck1">
                             </div>
                         </td>
