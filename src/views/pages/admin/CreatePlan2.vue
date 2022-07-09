@@ -16,7 +16,7 @@
 
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-12">
 
                     <h6 class="text-center">Step 2/6</h6>
 
@@ -46,7 +46,79 @@
                         <textarea  row="5" type="text" class="form-control" v-model="description" placeholder="Lets have some more details about the project for this user"></textarea>
                     </div>
 
-                    <div class="form-group d-flex justify-content-start"> 
+                    <div class=""> 
+
+
+                        <div v-for="payment_stage in payment_stages" :key="payment_stage.id" class="d-flex justify-content-start">
+                            <div class="form-group">
+                                <label for="">Stage</label>
+                                <input type="text" class="form-control" :value="payment_stage.stage">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Percent</label>
+                                <input type="text" class="form-control" :value="payment_stage.percent">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Amount</label>
+                                <input type="text" class="form-control" :value="payment_stage.amount">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">A Boundary</label>
+                                <input type="date" class="form-control" :value="new Date(Date.parse(payment_stage.aboundary_date))">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">B Boundary</label>
+                                <input type="date" class="form-control" :value="payment_stage.bboundary_date">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">==</label>
+                                <button class="btn btn-primary">update</button>
+                            </div>
+                        </div>
+
+
+                        
+
+
+                        <div class="form-group">
+                            <label for="">Number of stages</label>
+                            <input v-model="no_stages" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Amount</label>
+                            <input v-model="amount" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Payment Plan</label>
+                            <input v-model="payment_plan_id" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">User Id</label>
+                            <input v-model="user_id" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Start Date</label>
+                            <input v-model="start_date" type="date" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Number of Months</label>
+                            <input v-model="no_months" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <button @click="createStages()" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        
                         
                         <div class="c">
 
@@ -110,7 +182,16 @@ export default {
             subscribers_email: '',
             start_date: '',
             user_data: [],
-            building_projects: []
+            building_projects: [],
+
+            no_stages: '',
+            amount: '',
+            payment_plan_id: '',
+            user_id: '',
+            start_date: '',
+            no_months: '',
+
+            payment_stages: []
   
         }
     },
@@ -189,6 +270,65 @@ export default {
                 console.log(response)
             })
 
+        },
+
+        createStages(){
+
+            alert(this.no_stages);
+
+            this.axios({
+                url: process.env.VUE_APP_URL+'/api/create_payment_stage',
+                data:{
+                    no_stages: this.no_stages,
+                    amount: this.amount,
+                    payment_plan_id: this.payment_plan_id,
+                    user_id: this.user_id,
+                    start_date: this.start_date, 
+                    no_months: this.no_months, 
+                },
+                method: 'post',
+                
+            })
+            .then((response)=>{
+
+                console.log(response)
+
+                // this.building_projects = response.data.building_projects
+
+            })
+            .catch((response)=>{
+
+                console.log(response)
+
+            });
+
+        },
+
+        paymentStages(){
+
+
+            this.axios({
+                url: process.env.VUE_APP_URL+'/api/payment_plan_stages',
+                data:{
+                    payment_plan_id: 39
+                },
+                method: 'post',
+                
+            })
+            .then((response)=>{
+
+                console.log(response)
+
+                this.payment_stages =response.data
+
+
+            })
+            .catch((response)=>{
+
+                console.log(response)
+
+            });
+
         }
      
     },
@@ -198,6 +338,8 @@ export default {
         // alert(process.env.VUE_APP_URL+'/api/building_projects')
         this.getUserData()
         this.get_building_projects()
+
+        this.paymentStages()
     },
 }
 </script>
