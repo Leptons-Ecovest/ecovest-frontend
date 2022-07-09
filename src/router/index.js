@@ -47,6 +47,8 @@ import CreatePlan2 from '../views/pages/admin/CreatePlan2.vue'
 
 import CreatePlan from '../views/pages/admin/CreatePlan.vue'
 
+import CreatePaymentSchedule from '../views/pages/admin/CreatePaymentSchedule.vue'
+
 import PaymentHistoryView from '../views/pages/admin/MembersSubscriptions.vue'
 
 import MemberSubscriptions from '../views/pages/admin/MembersSubscriptions.vue'
@@ -233,6 +235,11 @@ const routes = [
       {
         path: 'create-payment-plan2/:id',
         component: CreatePlan2
+      },
+
+      {
+        path: 'create-payment-schedule/:id',
+        component: CreatePaymentSchedule
       },
       {
         path: 'projects',

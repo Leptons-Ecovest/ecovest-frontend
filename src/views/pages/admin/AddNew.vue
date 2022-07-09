@@ -28,12 +28,12 @@
 
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Subscriber Name">
+                    <input type="text" class="form-control" v-model="name" placeholder="Enter Subscriber Name">
                 </div>
 
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="text" class="form-control" placeholder="Enter Subscribers Email">
+                    <input type="email" class="form-control" v-model="email" placeholder="Enter Subscribers Email">
                 </div>
 
                 <div class="form-group">
@@ -42,7 +42,8 @@
                 </div>
 
                 <div class="form-group">
-                    <button @click="submit()" class="btn btn-primary">Submit</button>
+                     <button v-if="loading"  class="btn btn-primary" disabled>Creating new user please wait...</button>
+                    <button v-else @click="submit()" class="btn btn-primary">Submit</button>
                 </div>
 
 
@@ -56,20 +57,24 @@
 </template>
 
 <script>
-// import { useToast } from 'vue-toastification'
+import { useToast } from 'vue-toastification'
 
-// const toast = useToast()
+const toast = useToast()
 
 export default {
     data() {
         return {
-            
+            name: '',
+            email: '',
+            loading: false
         }
     },
 
     methods: {
 
         submit() {
+
+            this.loading = true
 
 
             // let loader = this.$loading.show({
@@ -96,13 +101,18 @@ export default {
                         'Access-Control-Allow-Origin': '*',
                         'Content-type': 'application/json',
                         'Accept': 'application/json',
+                        'Authorization': 'Bearer ' +localStorage.getItem('user_token')
                     },
                     
                     })
                     .then( (response) =>{
                         //handle success
 
+                        this.loading = false
+
                         console.log(response)
+
+                        return this.$router.push('create-payment-plan2/'+ response.data.id)
 
                         // localStorage.setItem('user_role', response.data.user_data.role)
                         // localStorage.setItem('user_token', response.data.access_token)
@@ -126,12 +136,9 @@ export default {
                         //handle error
                         console.log(response);
 
-                        // toast.error('Something went wrong');
+                        toast.error('Something went wrong');
 
                         // loader.hide()
-
-
-                         return this.$router.push('create-payment-plan2/34')
 
                     });
 
