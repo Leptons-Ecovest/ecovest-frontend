@@ -272,6 +272,8 @@ export default {
 
         },
 
+        
+
         createStages(){
 
             alert(this.no_stages);
