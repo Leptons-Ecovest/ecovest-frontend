@@ -48,7 +48,7 @@
                                     <td>
                                         <div class="form-group">
                                  
-                                            <input type="text" class="form-control" :value="payment_stage.percent">
+                                            <input  type="text" class="form-control" :value="payment_stage.percent">
                                         </div>
                                     </td>
                                     <td >
@@ -61,9 +61,9 @@
                                     </td>
                                     <td>
     
-                                        <div class="form-group">
+                                        <div class="form-group">{{payment_stage.aboundary_date}}
                                 
-                                            <input type="date" class="form-control" :value="new Date(Date.parse(payment_stage.aboundary_date))">
+                                            <input :id="payment_stage.id" type="date" class="form-control" :value="'07-03-2000'">
                                         </div>
                                         
                                     </td>
@@ -154,12 +154,14 @@
     </div>
 </template>
 <script>
+import moment from "moment";
 // import { useToast } from 'vue-toastification'
 // const toast = useToast()
 
 export default {
     data() {
         return {
+            moment: moment,
             building_project_title: '',
             description: '',
             subscribers_email: '',
@@ -174,11 +176,17 @@ export default {
             start_date: '',
             no_months: '',
 
-            payment_stages: []
+            payment_stages: [],
+
+            percent: []
   
         }
     },
     methods: {
+        formatDate(date){
+            alert('jjk')
+            return document.getElementById(date).value = "2014-02-09";
+        },
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
 
@@ -265,6 +273,10 @@ export default {
                 console.log(response)
 
             });
+
+        },
+
+        updateStage(){
 
         }
      
