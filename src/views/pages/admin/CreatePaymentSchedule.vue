@@ -22,39 +22,71 @@
 
                     
 
-                    <div class="table table-responsive"> 
+                    <div class="table-responsive"> 
 
+                        <table class="table">
+                            <thead>
 
-                        <div v-for="payment_stage in payment_stages" :key="payment_stage.id" class="d-flex justify-content-start">
-                            <div class="form-group">
-                                <label for="">Stage</label>
-                                <input type="text" class="form-control" :value="payment_stage.stage">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Percent</label>
-                                <input type="text" class="form-control" :value="payment_stage.percent">
-                            </div>
+                                <tr>
 
-                            <div class="form-group">
-                                <label for="">Amount</label>
-                                <input type="text" class="form-control" :value="payment_stage.amount">
-                            </div>
+                                    <th>Stages</th>
+                                    <th>Percentage</th>
+                                    <th>Amount</th>
+                                    <th>A Boundary</th>
+                                    <th>B Boundary</th>
+                                    <th></th>
+                                    
+                                    
+                                </tr>
 
-                            <div class="form-group">
-                                <label for="">A Boundary</label>
-                                <input type="date" class="form-control" :value="new Date(Date.parse(payment_stage.aboundary_date))">
-                            </div>
+                            </thead>
+                            <tbody>
+                                <tr v-for="payment_stage in payment_stages" :key="payment_stage.id" >
+                                    <td>
+                                        {{payment_stage.stage}}
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                 
+                                            <input type="text" class="form-control" :value="payment_stage.percent">
+                                        </div>
+                                    </td>
+                                    <td >
+                                        
+                                        <div style="width:120px;" class="form-group">
+                                            
+                                            <input type="text" class="form-control" :value="payment_stage.amount">
+                                        </div>
+    
+                                    </td>
+                                    <td>
+    
+                                        <div class="form-group">
+                                
+                                            <input type="date" class="form-control" :value="new Date(Date.parse(payment_stage.aboundary_date))">
+                                        </div>
+                                        
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            
+                                            <input type="date" class="form-control" :value="payment_stage.bboundary_date">
+                                        </div>
+                                        
+                                    </td>
+                                    <td>
+    
+                                        <div class="form-group">
+                                          
+                                            <button class="btn btn-primary">update</button>
+                                        </div>
+                                        
+                                    </td>
+                                </tr>
 
-                            <div class="form-group">
-                                <label for="">B Boundary</label>
-                                <input type="date" class="form-control" :value="payment_stage.bboundary_date">
-                            </div>
+                            </tbody>
 
-                            <div class="form-group">
-                                <label for="">==</label>
-                                <button class="btn btn-primary">update</button>
-                            </div>
-                        </div>
+                        </table>
 
 
 
@@ -80,16 +112,6 @@
                         <div class="form-group">
                             <label for="">Amount</label>
                             <input v-model="amount" type="number" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Payment Plan</label>
-                            <input v-model="payment_plan_id" type="number" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">User Id</label>
-                            <input v-model="user_id" type="number" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -132,11 +154,8 @@
     </div>
 </template>
 <script>
-
-import { useToast } from 'vue-toastification'
-
-const toast = useToast()
-
+// import { useToast } from 'vue-toastification'
+// const toast = useToast()
 
 export default {
     data() {
@@ -159,7 +178,6 @@ export default {
   
         }
     },
-
     methods: {
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
@@ -170,6 +188,7 @@ export default {
                 this.user = false
             }
         },
+
         get_building_projects(){
 
             this.axios({
@@ -192,63 +211,15 @@ export default {
 
         },
 
-        create_payment_plan(){
-
-            // alert(this.building_project_title)
-            // alert(this.subscribers_email)
-            // alert(this.start_date)
-            // alert(this.description)
-
-                let loader = this.$loading.show({
-                    // Optional parameters
-                    container: this.fullPage ? null : this.$refs.formContainer,
-                    canCancel: false,
-                    onCancel: this.onCancel,
-                    color: '#6CC3EC',
-                });
-
-            this.axios({
-                    method: "post",
-                    url: process.env.VUE_APP_URL+'/api/create_payment_plan',
-                    data: {
-                        start_date: this.start_date,
-                        subscribers_email: this.subscribers_email,
-                        building_project_title: this.building_project_title,
-                        description: this.description
-
-                    },
-                    headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
-                },
-            })
-            .then((response)=>{
-
-                 loader.hide()
-                    toast.success('Plan created successfully!!');
-                console.log(response)
-            })
-            .catch((response)=>{
-                console.log(response)
-            })
-
-        },
-
-
-
         createStages(){
 
-            alert(this.no_stages);
 
             this.axios({
                 url: process.env.VUE_APP_URL+'/api/create_payment_stage',
                 data:{
                     no_stages: this.no_stages,
                     amount: this.amount,
-                    payment_plan_id: this.payment_plan_id,
-                    user_id: this.user_id,
+                    payment_plan_id: this.$route.params.id,
                     start_date: this.start_date, 
                     no_months: this.no_months, 
                 },
@@ -259,7 +230,7 @@ export default {
 
                 console.log(response)
 
-                // this.building_projects = response.data.building_projects
+                this.paymentStages()
 
             })
             .catch((response)=>{
@@ -276,7 +247,7 @@ export default {
             this.axios({
                 url: process.env.VUE_APP_URL+'/api/payment_plan_stages',
                 data:{
-                    payment_plan_id: 39
+                    payment_plan_id: this.$route.params.id
                 },
                 method: 'post',
                 
