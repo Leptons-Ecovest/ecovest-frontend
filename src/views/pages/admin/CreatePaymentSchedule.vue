@@ -48,7 +48,7 @@
                                     <td>
                                         <div class="form-group">
                                  
-                                            <input  type="text" class="form-control" :value="payment_stage.percent">
+                                            <input  type="text" id="percent" class="form-control" :value="payment_stage.percent">
                                         </div>
                                     </td>
                                     <td >
@@ -61,16 +61,16 @@
                                     </td>
                                     <td>
     
-                                        <div class="form-group">{{payment_stage.aboundary_date}}
+                                        <div class="form-group">
                                 
-                                            <input :id="payment_stage.id" type="date" class="form-control" :value="'07-03-2000'">
+                                            <input :id="payment_stage.id" type="date" class="form-control" :value="moment(payment_stage.aboundary_date).format('YYYY-MM-DD')">
                                         </div>
                                         
                                     </td>
                                     <td>
                                         <div class="form-group">
                                             
-                                            <input type="date" class="form-control" :value="payment_stage.bboundary_date">
+                                            <input type="date" class="form-control" :value="moment(payment_stage.bboundary_date).format('YYYY-MM-DD')">
                                         </div>
                                         
                                     </td>
@@ -78,7 +78,7 @@
     
                                         <div class="form-group">
                                           
-                                            <button class="btn btn-primary">update</button>
+                                            <button @click="updateStages()" class="btn btn-primary">update</button>
                                         </div>
                                         
                                     </td>
@@ -178,7 +178,9 @@ export default {
 
             payment_stages: [],
 
-            percent: []
+            percents: [],
+
+
   
         }
     },
@@ -276,13 +278,19 @@ export default {
 
         },
 
-        updateStage(){
+        updateStages(){
+
+            alert('stages')
+
+            console.log(document.getElementById('percent'))
 
         }
      
     },
 
     mounted() {
+
+        // alert(moment().format())
 
         // alert(process.env.VUE_APP_URL+'/api/building_projects')
         this.getUserData()
