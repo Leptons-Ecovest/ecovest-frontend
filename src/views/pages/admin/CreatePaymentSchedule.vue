@@ -18,11 +18,11 @@
 
                 <div class="col-md-12">
 
-                    <h6 class="text-center">Step 2/6</h6>
+                    <h6 class="text-center ">Step 2/6</h6>
 
                     
 
-                    <div class="table-responsive"> 
+                    <div class="table-responsive pt-3"> 
 
                         <table class="table">
                             <thead>
@@ -48,14 +48,14 @@
                                     <td>
                                         <div class="form-group">
                                  
-                                            <input  type="text" id="percent" class="form-control" :value="payment_stage.percent">
+                                            <input  type="text" :id="'percent'+payment_stage.id" class="form-control" :value="payment_stage.percent">
                                         </div>
                                     </td>
                                     <td >
                                         
                                         <div style="width:120px;" class="form-group">
                                             
-                                            <input type="text" class="form-control" :value="payment_stage.amount">
+                                            <input type="text" :id="'amount'+payment_stage.id" class="form-control" :value="payment_stage.amount">
                                         </div>
     
                                     </td>
@@ -63,22 +63,30 @@
     
                                         <div class="form-group">
                                 
-                                            <input :id="payment_stage.id" type="date" class="form-control" :value="moment(payment_stage.aboundary_date).format('YYYY-MM-DD')">
+                                            <input :id="'aboundary'+payment_stage.id" type="date" class="form-control" :value="moment(payment_stage.aboundary_date).format('YYYY-MM-DD')">
                                         </div>
                                         
                                     </td>
                                     <td>
                                         <div class="form-group">
                                             
-                                            <input type="date" class="form-control" :value="moment(payment_stage.bboundary_date).format('YYYY-MM-DD')">
+                                            <input :id="'bboundary'+payment_stage.id" type="date" class="form-control" :value="moment(payment_stage.bboundary_date).format('YYYY-MM-DD')">
                                         </div>
                                         
                                     </td>
                                     <td>
     
-                                        <div class="form-group">
+                                        <div  class="form-group">
                                           
-                                            <button @click="updateStages()" class="btn btn-primary">update</button>
+                                            <button :id="'updateBtn'+payment_stage.id" @click="updateStages(
+                                                payment_stage.id,
+                                                'percent'+payment_stage.id,
+                                                'amount'+payment_stage.id,
+                                                'aboundary'+payment_stage.id,
+                                                'bboundary'+payment_stage.id,
+                                                'updateBtn'+payment_stage.id
+
+                                            )" class="btn btn-primary">update</button>
                                         </div>
                                         
                                     </td>
@@ -278,9 +286,50 @@ export default {
 
         },
 
-        updateStages(){
+        updateStages(id, percent, amount, aboundary, bboundary, btnId){
 
-            alert('stages')
+            // alert(document.getElementById(percent).value)
+            // alert(document.getElementById(amount).value)
+            // alert(document.getElementById(aboundary).value)
+            // alert(document.getElementById(bboundary).value)
+            // alert(document.getElementById(btnId).innerHTML)
+
+            document.getElementById(btnId).innerHTML='updating...'
+
+
+            this.axios({
+                url: process.env.VUE_APP_URL+'/api/update_payment_stage',
+                method: 'post',
+                data:{
+                    id: id,
+                    percent: document.getElementById(percent).value,
+                    amount: document.getElementById(amount).value,
+                    aboundary: document.getElementById(aboundary).value,
+                    bboundary: document.getElementById(bboundary).value,
+                    payment_plan_id: this.$route.params.id
+                    
+                }
+                
+            })
+            .then((response)=>{
+
+                this.paymentStages()
+
+                document.getElementById(btnId).innerHTML='update'
+
+
+                console.log(response)
+
+                // console.log(response.data.building_projects)
+
+
+            })
+            .catch((response)=>{
+
+                console.log(response)
+
+            });
+
 
             console.log(document.getElementById('percent'))
 

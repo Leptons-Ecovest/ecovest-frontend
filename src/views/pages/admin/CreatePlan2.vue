@@ -18,7 +18,7 @@
 
                 <div class="col-md-12">
 
-                    <h6 class="text-center">Step 2/6</h6>
+                    <h6 class="text-center py-3">Step 2/6</h6>
 
                     <div class="form-group">
                         <label >Building Projects</label>
@@ -77,6 +77,7 @@
     </div>
 </template>
 <script>
+import moment from "moment";
 
 import { useToast } from 'vue-toastification'
 
@@ -97,7 +98,7 @@ export default {
             amount: '',
             payment_plan_id: '',
             user_id: '',
-            start_date: '',
+            start_date: moment().format('YYYY-MM-DD'),
             no_months: '',
 
             payment_stages: []
