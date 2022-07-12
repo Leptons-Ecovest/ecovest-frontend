@@ -62,9 +62,11 @@
                         <td>{{user.email}}</td>
                         <td>{{user.otp}}</td>
                         <td>
-                            <button @click="viewUser(user.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <button @click="viewUser(user.id)" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal">
                            Details
-                            </button>
+                            </button> <br>
+
+                            <router-link :to="'/admin/create-payment-plan2/'+user.id" class="btn btn-warning btn-sm btn-block">Create Plan</router-link>
                         </td>
                     </tr>
                 </tbody>
