@@ -97,6 +97,37 @@
                         </table>
 
 
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <h6>Send Offer Contract</h6>
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+
+                                        <div class="form-group py-1">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                <label class="custom-file-label" for="inputGroupFile01">Upload Brochure</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group py-1">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                <label class="custom-file-label" for="inputGroupFile01">Upload Offer Letter</label>
+                                            </div>
+                                        </div>
+                                            <button class="btn btn-primary btn-lg">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                     </div>
 
