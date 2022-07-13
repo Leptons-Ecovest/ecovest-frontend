@@ -18,7 +18,7 @@
 
                 <div class="col-md-12">
 
-                    <h6 class="text-center ">Step 2/6</h6>
+                    <h6 class="text-center ">Step 2/4</h6>
 
                     
 
@@ -108,21 +108,25 @@
                                 </div>
 
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body">
+                                    <div class="card-body col-md-6 mx-auto">
 
                                         <div class="form-group py-1">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                <input @change="previewFile1" type="file"  class="custom-file-input" ref="brochure" aria-describedby="inputGroupFileAddon01">
                                                 <label class="custom-file-label" for="inputGroupFile01">Upload Brochure</label>
                                             </div>
                                         </div>
                                         <div class="form-group py-1">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                <input @change="previewFile2" type="file"  class="custom-file-input" ref="offer_letter" aria-describedby="inputGroupFileAddon01">
                                                 <label class="custom-file-label" for="inputGroupFile01">Upload Offer Letter</label>
                                             </div>
                                         </div>
-                                            <button class="btn btn-primary btn-lg">Submit</button>
+                                        <div class="form-group text-center">
+                                            
+                                            <button @click="uploadFiles()" class="btn btn-primary btn-lg">Submit</button>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -219,11 +223,95 @@ export default {
 
             percents: [],
 
+            brochure: '',
+            offer_letter: ''
+
 
   
         }
     },
     methods: {
+
+        previewFile1(event){
+
+            alert('brochure')
+
+
+            console.log(event)
+
+               if(event.target.files.length > 0){
+                // var src = URL.createObjectURL(event.target.files[0]);
+
+                // document.getElementById("previewImg").classList.add('d-none')
+                // document.getElementById("previewImg2").classList.remove('d-none')
+                // var preview = document.getElementById("previewImg2");
+                // preview.src = src;
+               
+                // preview.style.display = "block";
+
+                 this.brochure = this.$refs.brochure.files[0];
+
+               
+            }
+
+        },
+
+        previewFile2(event){
+
+            alert('offer letter')
+
+
+            console.log(event)
+
+               if(event.target.files.length > 0){
+                // var src = URL.createObjectURL(event.target.files[0]);
+
+                // document.getElementById("previewImg").classList.add('d-none')
+                // document.getElementById("previewImg2").classList.remove('d-none')
+                // var preview = document.getElementById("previewImg2");
+                // preview.src = src;
+               
+                // preview.style.display = "block";
+
+                 this.offer_letter = this.$refs.offer_letter.files[0];
+
+               
+            }
+
+        },
+
+        uploadFiles(){
+
+            console.log(document.getElementById('brochure').value)
+
+            let formData = new FormData();
+
+            formData.append('brochure', this.brochure);
+            formData.append('offer_letter', this.offer_letter);
+            formData.append('user_email', this.user_data.email);
+            formData.append('payment_plans_id', this.$route.params.id)
+
+
+            this.axios({
+                url: process.env.VUE_APP_URL + '/api/send_offer_letter',
+                method: 'post',
+                data: formData,
+                headers: {
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                }
+            })
+            .then((response) =>{
+
+
+                console.log(response)
+            })
+            .catch((response) =>{
+
+                console.log(response)
+            })
+
+
+        },
         formatDate(date){
             alert('jjk')
             return document.getElementById(date).value = "2014-02-09";

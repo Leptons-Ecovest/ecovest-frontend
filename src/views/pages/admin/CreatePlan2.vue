@@ -18,7 +18,7 @@
 
                 <div class="col-md-12">
 
-                    <h6 class="text-center py-3">Step 2/6</h6>
+                    <h6 class="text-center py-3">Step 1/4</h6>
 
                     <div class="form-group">
                         <label >Building Projects</label>
