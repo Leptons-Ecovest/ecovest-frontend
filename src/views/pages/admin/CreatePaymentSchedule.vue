@@ -123,8 +123,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group text-center">
-                                            
-                                            <button @click="uploadFiles()" class="btn btn-primary btn-lg">Submit</button>
+                                            <button v-if="email_loading"  class="btn btn-primary btn-lg" disabled>Submiting...</button>
+                                            <button v-else @click="uploadFiles()" class="btn btn-primary btn-lg">Submit</button>
 
                                         </div>
                                     </div>
@@ -224,7 +224,10 @@ export default {
             percents: [],
 
             brochure: '',
-            offer_letter: ''
+            offer_letter: '',
+            user_email : '',
+
+            email_loading: false
 
 
   
@@ -282,7 +285,7 @@ export default {
 
         uploadFiles(){
 
-            console.log(document.getElementById('brochure').value)
+            this.email_loading = true
 
             let formData = new FormData();
 
@@ -291,16 +294,21 @@ export default {
             formData.append('user_email', this.user_data.email);
             formData.append('payment_plans_id', this.$route.params.id)
 
+            alert(this.$route.params.id)
+
 
             this.axios({
-                url: process.env.VUE_APP_URL + '/api/send_offer_letter',
+                url: process.env.VUE_APP_URL + '/api/send_letter',
                 method: 'post',
                 data: formData,
                 headers: {
-                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token'),
+                     'Content-Type': 'multipart/form-data'
                 }
             })
             .then((response) =>{
+
+                this.email_loading = false
 
 
                 console.log(response)
@@ -318,6 +326,10 @@ export default {
         },
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
+
+            this.user_email = this.user_data.email
+
+           
 
 
             if(localStorage.getItem('user_role') == 'admin'){
