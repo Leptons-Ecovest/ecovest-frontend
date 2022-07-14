@@ -81,7 +81,7 @@ export default {
                             'Access-Control-Allow-Origin': '*',
                             'Content-type': 'application/json',
                             'Accept': 'application/json',
-                            'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                            // 'Authorization': 'Bearer ' +localStorage.getItem('user_token')
                         },
                   })
                   .then((response)=>{

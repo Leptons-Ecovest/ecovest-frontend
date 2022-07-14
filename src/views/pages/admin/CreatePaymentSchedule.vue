@@ -310,7 +310,7 @@ export default {
 
                 this.email_loading = false
 
-                  toast.success('Uploads Successful');
+                  toast.success('Uploads Successful. Offer Contract Sent.');
 
 
                 console.log(response)
