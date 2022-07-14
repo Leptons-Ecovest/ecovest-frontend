@@ -74,7 +74,7 @@ export default {
                       method: 'post',
                       url: process.env.VUE_APP_URL+'/api/verify_otp',
                        data: {
-                            otp: this.otp,
+                            otp: this.$route.params.idthis.$route.params.id,
                             // password: this.password
                         },
                         headers: {

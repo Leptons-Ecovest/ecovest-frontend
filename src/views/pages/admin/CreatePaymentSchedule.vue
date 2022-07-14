@@ -198,8 +198,8 @@
 </template>
 <script>
 import moment from "moment";
-// import { useToast } from 'vue-toastification'
-// const toast = useToast()
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 export default {
     data() {
@@ -310,10 +310,14 @@ export default {
 
                 this.email_loading = false
 
+                  toast.success('Uploads Successful');
+
 
                 console.log(response)
             })
             .catch((response) =>{
+
+                toast.error('Upload Error');
 
                 console.log(response)
             })
