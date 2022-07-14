@@ -18,7 +18,7 @@
 
                 <div class="col-md-12">
 
-                    <h6 class="text-center ">Step 2/4</h6>
+                    <h6 class="text-center ">Step 2/2</h6>
 
                     
 

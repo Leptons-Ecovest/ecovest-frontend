@@ -109,7 +109,7 @@ const routes = [
 
 
   {
-    path: '/verify',
+    path: '/verify/:id',
     name: 'EmailOTP',
     component: Fullwidth,
       children: [

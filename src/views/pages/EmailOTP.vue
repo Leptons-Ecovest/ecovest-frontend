@@ -44,7 +44,7 @@ export default {
     data() {
         return {
              fullPage: false,
-             otp: '',
+             otp: this.$route.params.id,
 
         }
     },
