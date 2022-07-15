@@ -149,6 +149,7 @@ export default {
                         subscribers_email: this.subscribers_email,
                         building_project_title: this.building_project_title,
                         description: this.description
+                        
 
                     },
                     headers: {

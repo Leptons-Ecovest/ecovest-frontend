@@ -175,7 +175,8 @@ export default {
                         start_date: this.start_date,
                         subscribers_email: this.user_data.email,
                         building_project_title: this.building_project_title,
-                        description: this.description
+                        description: this.description,
+                        duration: 12
 
                     },
                     headers: {
