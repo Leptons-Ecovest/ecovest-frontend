@@ -111,12 +111,32 @@
                                     <div class="card-body col-md-6 mx-auto">
 
                                         <div class="form-group py-1">
+                                            <div class="text-center py-2">
+                                                <img 
+                                                    
+                                                    id="previewImg1" 
+                                                    style="height: 189px; width: 189px; object-fit: cover; " 
+                                                    class="shadow border border-primary " 
+                                                    src=""
+                                                     >
+
+                                            </div>
                                             <div class="custom-file">
                                                 <input @change="previewFile1" type="file"  class="custom-file-input" ref="brochure" aria-describedby="inputGroupFileAddon01">
                                                 <label class="custom-file-label" for="inputGroupFile01">Upload Brochure</label>
                                             </div>
                                         </div>
                                         <div class="form-group py-1">
+                                            <div class="text-center py-2">
+                                                <img 
+                                                    
+                                                    id="previewImg2" 
+                                                    style="height: 189px; width: 189px; object-fit: cover; " 
+                                                    class="shadow border border-primary " 
+                                                    src=""
+                                                     >
+
+                                            </div>
                                             <div class="custom-file">
                                                 <input @change="previewFile2" type="file"  class="custom-file-input" ref="offer_letter" aria-describedby="inputGroupFileAddon01">
                                                 <label class="custom-file-label" for="inputGroupFile01">Upload Offer Letter</label>
@@ -243,11 +263,11 @@ export default {
             console.log(event)
 
                if(event.target.files.length > 0){
-                // var src = URL.createObjectURL(event.target.files[0]);
+                var src = URL.createObjectURL(event.target.files[0]);
 
                 // document.getElementById("previewImg").classList.add('d-none')
                 // document.getElementById("previewImg2").classList.remove('d-none')
-                // var preview = document.getElementById("previewImg2");
+                // var preview = document.getElementById("previewImg1");
                 // preview.src = src;
                
                 // preview.style.display = "block";
@@ -267,12 +287,10 @@ export default {
             console.log(event)
 
                if(event.target.files.length > 0){
-                // var src = URL.createObjectURL(event.target.files[0]);
+                var src = URL.createObjectURL(event.target.files[0]);
 
                 // document.getElementById("previewImg").classList.add('d-none')
                 // document.getElementById("previewImg2").classList.remove('d-none')
-                // var preview = document.getElementById("previewImg2");
-                // preview.src = src;
                
                 // preview.style.display = "block";
 
