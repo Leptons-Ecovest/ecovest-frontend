@@ -6,6 +6,8 @@ import Login from '../views/pages/Login.vue'
 
 import Register from '../views/pages/Register.vue'
 
+import Congratulations from '../views/pages/Congratulations.vue'
+
 import EmailOTP from '../views/pages/EmailOTP.vue'
 
 import UserHome from '../views/pages/subscribers/Dashboard.vue'
@@ -116,6 +118,18 @@ const routes = [
         {
           path: '',
           component: EmailOTP,
+        }
+      ]
+  },
+
+  {
+    path: '/congratulations',
+    name: 'Congratulations',
+    component: Fullwidth,
+      children: [
+        {
+          path: '',
+          component: Congratulations,
         }
       ]
   },

@@ -18,7 +18,7 @@
                                 <div class="nk-block-between">
                                    
                                 </div>
-                                <div class="mt-3">
+                                <div class="mt-3 text-left">
                                     <p>&copy; 2021 Leptons. All Rights Reserved.</p>
                                 </div>
                             </div><!-- .nk-block -->

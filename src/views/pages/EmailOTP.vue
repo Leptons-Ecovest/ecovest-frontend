@@ -74,7 +74,7 @@ export default {
                       method: 'post',
                       url: process.env.VUE_APP_URL+'/api/verify_otp',
                        data: {
-                            otp: this.$route.params.idthis.$route.params.id,
+                            otp: this.$route.params.id,
                             // password: this.password
                         },
                         headers: {
@@ -98,7 +98,7 @@ export default {
 
                     toast.success('Email Verified');
 
-                    return this.$router.push('/user')
+                    return this.$router.push('/congratulations')
 
                                 
         
