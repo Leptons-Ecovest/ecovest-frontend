@@ -17,47 +17,74 @@
                 <div class="container-fluid">
 
                     <div class="row match-height">
-                        <div class="col-md-6 p-3">
-
-                                
+                        <div class="col-md-12 p-3">
                          
-                            <div v-if="unpaid_schedules_notify_list.length > 0" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div  id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    <li v-for="payment_plan,key in payment_plans" :key="key" data-target="#carouselExampleIndicators" :data-slide-to="key" class="active"></li>
+                                  
                                 </ol>
                                 <div class="carousel-inner">
                                     <div v-for="payment_plan,key in payment_plans" :key="key" :class="'carousel-item '+(key==0?'active':'')">
 
-                                        <div style="height: 280px;" class="card card-bordered bg-dark">
+                                        <div style="min-height: 280px;" class="card card-bordered bg-dark">
                                             <div class="card-header">
                                                 <button class="btn btn-primary btn-sm float-right">{{payment_plan.status}}</button>
                                             </div>
-                                            <div  class="card-body text-white py-2">
-                                                <h6> Project Subscribed</h6>
+                                            <div  class="card-body text-white  py-2">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h3> {{payment_plan.id * 2340}}</h3>
+                                                        <span class="text-muted">Project Code</span>
+
+                                                        <h4 class="pt-3"><span class="text-primary">{{payment_plan.building_project.title}}</span></h4>
+                                                        <span class="text-muted">Project Title</span>
+
+                                                        <h4 class="pt-3"><span class="text-primary">{{payment_plan.building_project.location}}</span></h4>
+                                                        <span class="text-muted">Project Location</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="pt-3">
+                                                                <div  style="height: 35px;" class="progress progress-lg shadow">
+                                                                    <div :style="'height:35px; width: '+payment_plan.percent_completion+'%;'" class="progress-bar" data-progress="75">{{payment_plan.percent_completion}}%</div>
+                                                                </div>
+                                                        </div>
+                                                        <div class=" pt-3">
+                                                            <span class="text-muted ">Project Progress</span>
+
+                                                        </div>
+                                                        <div class=" pt-3">
+
+                                                            <h4><span class="text-primary pt-5">12 May, 2023</span></h4>
+                                                            <span class="text-muted">Next Payment</span>
+
+                                                        </div> 
+                                                        <div class="pt-3">
+                                                            <button class="btn btn-primary">details</button>
+                                                        </div>  
+
+                                                    
+                                                    </div>
+                                            
                                                 
-                                                <h6 class="">
-                                                    <span class="">Description:</span> <br><h4>{{payment_plan.description}}</h4>
-                                                </h6>
-                                                <h4 class="pt-3"><span class="text-primary py-1">{{payment_plan.building_project.title}}</span></h4>
-                                                <h6>Location: <br><span class="text-primary py-1">{{payment_plan.building_project.location}}</span></h6>
-                                                <!-- <h6>Payment Plan: <br><span class="text-primary py-1">{{payment_plan.building_project.payment_plan}}</span></h6> -->
+
+                                                </div>
 
 
-                                            </div>
+                                         </div>
                                         </div>
                                     
                                     </div>
                                     
                                 </div>
                                 <div class="bg-dark">
-                                    <button style="margin-top: 250px;" class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+                                    <button style="margin-top: 280px;" class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                     <button class="btn-primar py-5 btn"></button>
                                 </button>
-                                <button style="margin-top: 250px;" class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+                                <button style="margin-top: 280px;" class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
                                     <span class=" carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                     <button class="btn-primar py-5 btn"></button>
@@ -66,99 +93,11 @@
                             </div>
 
 
-                            <div v-else class="card-body">
-                                    <h4 class="py-2">Projects</h4>
-                                        <h6 class="py-2 text-center">No Projects created yet.</h6>
-                                </div>
+           
 
                             
                         </div>
-                        <div class="col-md-6 p-3">
-
-                            <div style="min-height: 250px;"  class="card border shadow">
-                                <div v-if="unpaid_schedules_notify_list.length > 0" class="card-body">
-
-                                    <h4 class="py-2">Next Payment</h4>
-                                    <h6> {{ unpaid_schedules_building_project.title}}</h6>
-                                    <h6> {{ unpaid_schedules_building_project.location}}</h6>
-
-                                    <!-- {{unpaid_schedules_notify_list_filtered}} -->
-
-                                
-
-                                    <!-- <h6> {{ unpaid_schedules_building_project.payment_plan}}</h6> -->
-
-                                    <h6 style="width: 90px; height: 20px; overflow: hidden;" class="">
-                                    
-                                        {{unpaid_schedules_notify_list[0].amount_paid != 0?'':
-                                        
-                                        '30% = ' +unpaid_schedules_notify_list[0].expected_amount+'M'
-                                        
-                                        }} 
-                                        {{unpaid_schedules_notify_list[1].amount_paid != 0?'':
-                                        
-                                        '20% = ' +unpaid_schedules_notify_list[1].expected_amount+'M'
-                                        
-                                        }} 
-                                        {{unpaid_schedules_notify_list[2].amount_paid != 0?'':
-                                        
-                                        '20% = ' +unpaid_schedules_notify_list[2].expected_amount+'M'
-                                        
-                                        }} 
-                                        {{unpaid_schedules_notify_list[3].amount_paid != 0?'':
-                                        
-                                        '20% = ' +unpaid_schedules_notify_list[3].expected_amount+'M'
-                                        
-                                        }} 
-                                        {{unpaid_schedules_notify_list[4].amount_paid != 0?'':
-                                        
-                                        '10% = ' +unpaid_schedules_notify_list[4].expected_amount+'M'
-                                        
-                                        }}
-                                    </h6>
-
-                                        <h6 style="width: 120px; height: 20px; overflow: hidden;" class="">
-                                        {{unpaid_schedules_notify_list[0].amount_paid != 0?'':
-                                        
-                                        unpaid_schedules_notify_list[0].payment_due_date+','
-                                        
-                                        }} 
-                                        {{unpaid_schedules_notify_list[1].amount_paid != 0?'':
-                                        
-                                        unpaid_schedules_notify_list[1].payment_due_date+','
-                                        
-                                        }} 
-                                        {{unpaid_schedules_notify_list[2].amount_paid != 0?'':
-                                        
-                                        unpaid_schedules_notify_list[2].payment_due_date+','
-                                        
-                                        }} 
-                                        {{unpaid_schedules_notify_list[3].amount_paid != 0?'':
-                                        
-                                        unpaid_schedules_notify_list[3].payment_due_date+','
-                                        
-                                        }} 
-                                        {{unpaid_schedules_notify_list[4].amount_paid != 0?'':
-                                        
-                                        unpaid_schedules_notify_list[4].payment_due_date+','
-                                        
-                                        }}
-                                    </h6>
-
-                                    <!-- <h6> N {{ unpaid_schedules_building_project.property_price}}Million</h6>-->
-                                    <!-- <h6> {{ unpaid_schedules.payment_due_date}}</h6>  -->
-
-                                    <div class="c py-5 text-center">
-                                        <router-link to="/user/payment-page" class="btn btn-primary">Make Payment</router-link>
-                                    </div>
-                                </div>
-
-                                <div v-else class="card-body">
-                                    <h4 class="py-2">Next Payment</h4>
-                                        <h6 class="py-2 text-center">No Payment Plans Yet.</h6>
-                                </div>
-                            </div>
-                        </div>
+                     
                     </div>
 
 
@@ -166,48 +105,6 @@
             </div>
 
 
- 
-         
-            <div class="nk-block">
-                <div class="card card-bordered">
-                    <div class="card-inner card-inner-md">
-                        <div class="card-title-group">
-                            <h6 class="card-title">Latest Payment</h6>
-                            <div class="card-action">
-                                <a href="html/subscription/payments.html" class="link link-sm">See All <em class="icon ni ni-chevron-right"></em></a>
-                            </div>
-                        </div>
-                    </div>
-                    <table v-if="unpaid_schedules_notify_list.length > 0" class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Due Date</th>
-                                <th>Expected Amount</th>
-                                <th>Amount Paid</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr v-for="payment_schedule,key in unpaid_schedules_notify_list" :key="key">
-                                <td>{{key + 1}}</td>
-                                <td>{{payment_schedule.payment_due_date}}</td>
-                                <td>{{payment_schedule.expected_amount}} Million</td>
-                                <td>{{payment_schedule.amount_paid}}</td>
-                                <td>
-                                    <span :class="'badge badge-'+payment_schedule.color_code">{{payment_schedule.status}}</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div v-else class="card-body">
-                                    
-                                        <h6 class="py-2 text-center">No Payments yet.</h6>
-                                </div>
-                </div><!-- .card -->
-            </div><!-- .nk-block -->
         </div>
         <!-- footer @s -->
       
@@ -261,8 +158,7 @@ export default {
                     url: process.env.VUE_APP_URL+'/api/payment_plans',
                     data: {
                         start_date: this.start_date,
-         
-
+        
                     },
                     headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -273,50 +169,52 @@ export default {
             })
             .then((response)=>{
 
+      
+
                 console.log(response)
 
                  loader.hide()
 
-                 this.payment_plans = response.data.payment_plan??null
+                 this.payment_plans = response.data
 
 
-                 this.unpaid_schedules_notify_list = response.data.unpaid_schedules_notify_list
+                //  this.unpaid_schedules_notify_list = response.data.unpaid_schedules_notify_list
 
-                this.unpaid_schedules_notify_list_filtered = this.unpaid_schedules_notify_list
-                    .filter(element => 
-                    (element.amount_paid
-                    ==0))
+                // this.unpaid_schedules_notify_list_filtered = this.unpaid_schedules_notify_list
+                //     .filter(element => 
+                //     (element.amount_paid
+                //     ==0))
 
                 //  this.building_project = response.data.payment_plan.building_project
 
                 // this.payment_schedules = response.data.payment_plan.payment_schedules
 
-                this.unpaid_schedules = response.data.unpaid_schedules
+                // this.unpaid_schedules = response.data.unpaid_schedules
 
-                if (this.unpaid_schedules.length == 0) {
+                // if (this.unpaid_schedules.length == 0) {
 
-                    this.unpaid_schedules_building_project = []
+                //     this.unpaid_schedules_building_project = []
                     
-                } else {
+                // } else {
 
-                    this.unpaid_schedules_building_project = response.data.unpaid_schedules.payment_plan.building_project??null 
+                //     this.unpaid_schedules_building_project = response.data.unpaid_schedules.payment_plan.building_project??null 
                     
-                }
+                // }
                 
 
                 
 
-                this.paid_schedules = response.data.paid_schedules
+                // this.paid_schedules = response.data.paid_schedules
 
                 // this.next_payment = this.payment_schedules[0]
 
-                console.log(response)
+                // console.log(response)
 
-                console.log(this.unpaid_schedules)
+                // console.log(this.unpaid_schedules)
 
-                console.log(this.paid_schedules)
+                // console.log(this.paid_schedules)
 
-                console.log(this.unpaid_schedules_building_project)
+                // console.log(this.unpaid_schedules_building_project)
             })
             .catch((response)=>{
 

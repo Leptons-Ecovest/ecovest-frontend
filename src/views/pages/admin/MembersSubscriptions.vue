@@ -60,6 +60,24 @@
       </div>
       <div style="min-height: 230px;" class="modal-body table-responsive">
           <div class="">
+            <div class="col-md-6 mx-auto py-5">
+                <div class="form-group">
+                    <label for="">Percent</label>
+                    <input type="number" v-model="percentage" class="form-control">
+                </div>
+                 <div class="form-group">
+                    <label for="">Status</label>
+                    <select class="form-control" v-model="status" id="" >
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="onhold">On hold</option>
+                        <option value="revoked">Revoked</option>
+                    </select>
+                </div>
+                <div class="pb-3">
+                    <button @click="updatePlan()" class="btn btn-primary float-right">submit</button>
+                </div>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -75,10 +93,10 @@
                 <tbody>
                     <tr v-for="payment_schedule in user_payment_schedules" :key="payment_schedule.index">
                         <td>#</td>
-                        <td>{{payment_schedule.payment_due_date}}</td>
-                        <td>{{payment_schedule.expected_amount}} Million</td>
+                        <td>{{payment_schedule.bboundary_date}}</td>
+                        <td>₦ {{payment_schedule.amount}} </td>
                         <td>
-                            <input :id="payment_schedule.id" type="number" class="form-control" :value="payment_schedule.amount_paid">
+                            <input :id="payment_schedule.id" type="number" class="form-control" :value="payment_schedule.amount_remitted">
                         </td>
                         <td>{{payment_schedule.status}}</td>
                         <td>
@@ -116,7 +134,12 @@ export default {
             payment_plans: [],
             user_payment_schedules: [],
             plan: null,
-            loading: false
+            loading: false,
+            selected_id: '',
+
+            status: '',
+            percentage: '',
+
         }
     },
 
@@ -124,14 +147,14 @@ export default {
 
         loadPaymentSchedule(index){
 
-            // alert(index)
+            this.selected_id = index
                        this.plan = 
                     this.payment_plans.filter(element => 
                                         (element.id == index))
 
                     this.plan = this.plan[0]
 
-                    this.user_payment_schedules = this.plan.payment_schedules
+                    this.user_payment_schedules = this.plan.stages
 
                     console.log(this.user_payment_schedules)
         },
@@ -215,6 +238,39 @@ export default {
                 console.log(response)
             })
 
+        },
+
+        updatePlan(){
+
+            // alert(this.selected_id)
+            // alert(this.status)
+            // alert(this.percentage)
+
+                this.axios({
+                url: process.env.VUE_APP_URL + '/api/update_plan',
+                method: 'post',
+                headers:{
+                    'Authorization': 'Bearer '+localStorage.getItem('user_token')
+                },
+                data:{
+                    payment_plan_id: this.selected_id,
+                    status: this.status,
+                    percentage: this.percentage
+                }
+            })
+            .then((response) =>{
+                this.loading = false
+                console.log(response)
+
+                 toast.success('Plan Updated');
+
+                this.getPaymentPlans()
+
+
+            })
+            .catch((response) =>{
+                console.log(response)
+            })
         }
     },
 

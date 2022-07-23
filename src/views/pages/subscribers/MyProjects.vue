@@ -16,9 +16,9 @@
 
         <div class="container">
 
-                                        <div v-for="project,key in my_projects" :key="key" class="card shadow">
+                            <div v-for="project,key in my_projects" :key="key" class="card shadow">
                                 <div class="card-body d-flex justify-content-around">
-                                <div class="c p-1">
+                                <div class="c ">
                                     <img style="width: 120px; height: 120px; object-fit: cover; border-raduis: 23px;" :src="project.building_project.featured_image??'https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png'" alt="">
 
                                 </div>
@@ -27,8 +27,12 @@
                                     <div class="t text-primary">
                                         <h6> {{project.building_project.title}}</h6>
                                     <h6> {{project.building_project.location}}</h6>
+
+                                    <div class="c">
+                                        <button class="btn btn-secondary btn-sm shadow ml-2" v-for="stage,key in project.stages" :key="key">{{stage.percent}}% </button> 
+                                    </div>
                                     
-                                    <h6> {{project.building_project.payment_plan}}</h6>
+                                  
                                     </div>
 
                                     <router-link :to="{name: 'my-payment-history', params:{id:project.id}}" class="btn btn-primary mt-1 float-right">details</router-link>
@@ -223,7 +227,7 @@ export default {
 
                  loader.hide()
 
-                 this.my_projects = response.data.payment_plan
+                 this.my_projects = response.data
 
                  this.my_payments = response.data.payment_schedules
 
