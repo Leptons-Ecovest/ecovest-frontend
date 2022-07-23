@@ -263,7 +263,7 @@ export default {
             console.log(event)
 
                if(event.target.files.length > 0){
-                var src = URL.createObjectURL(event.target.files[0]);
+                var src = URL.createObjectURL(event.target.files[0])??'';
 
                 // document.getElementById("previewImg").classList.add('d-none')
                 // document.getElementById("previewImg2").classList.remove('d-none')
@@ -287,7 +287,7 @@ export default {
             console.log(event)
 
                if(event.target.files.length > 0){
-                var src = URL.createObjectURL(event.target.files[0]);
+                var src = URL.createObjectURL(event.target.files[0])??'';
 
                 // document.getElementById("previewImg").classList.add('d-none')
                 // document.getElementById("previewImg2").classList.remove('d-none')
