@@ -178,43 +178,6 @@ export default {
                  this.payment_plans = response.data
 
 
-                //  this.unpaid_schedules_notify_list = response.data.unpaid_schedules_notify_list
-
-                // this.unpaid_schedules_notify_list_filtered = this.unpaid_schedules_notify_list
-                //     .filter(element => 
-                //     (element.amount_paid
-                //     ==0))
-
-                //  this.building_project = response.data.payment_plan.building_project
-
-                // this.payment_schedules = response.data.payment_plan.payment_schedules
-
-                // this.unpaid_schedules = response.data.unpaid_schedules
-
-                // if (this.unpaid_schedules.length == 0) {
-
-                //     this.unpaid_schedules_building_project = []
-                    
-                // } else {
-
-                //     this.unpaid_schedules_building_project = response.data.unpaid_schedules.payment_plan.building_project??null 
-                    
-                // }
-                
-
-                
-
-                // this.paid_schedules = response.data.paid_schedules
-
-                // this.next_payment = this.payment_schedules[0]
-
-                // console.log(response)
-
-                // console.log(this.unpaid_schedules)
-
-                // console.log(this.paid_schedules)
-
-                // console.log(this.unpaid_schedules_building_project)
             })
             .catch((response)=>{
 
