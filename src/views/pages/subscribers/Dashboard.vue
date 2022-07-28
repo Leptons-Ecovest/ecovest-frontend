@@ -56,12 +56,12 @@
                                                         </div>
                                                         <div class=" pt-3">
 
-                                                            <h4><span class="text-primary pt-5">12 May, 2023</span></h4>
+                                                            <h4><span class="text-primary pt-5">{{payment_plan.stages[0].aboundary_date}}</span></h4>
                                                             <span class="text-muted">Next Payment</span>
 
                                                         </div> 
                                                         <div class="pt-3">
-                                                            <button class="btn btn-primary">details</button>
+                                                            <router-link :to="'/user/payment-history/'+payment_plan.id" class="btn btn-primary">details</router-link>
                                                         </div>  
 
                                                     
@@ -96,6 +96,24 @@
            
 
                             
+                        </div>
+
+                        <div class="col-md-12 p">
+
+                            <div v-for="payment_plan,key in payment_plans" :key="key" class="car">
+                               
+                                  
+                                    <table class="table">
+                                        <tr v-for="stage,key in payment_plan.stages" :key="key" >
+                                            <td>{{stage.id}}</td>
+                                            <td>{{stage.amount}}</td>
+                                            <td>{{stage.amount_remitted}}</td>
+                                        </tr>
+                                    </table>
+
+                               
+                            </div>
+
                         </div>
                      
                     </div>
