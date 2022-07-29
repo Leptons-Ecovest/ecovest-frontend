@@ -8,8 +8,8 @@
 
                         <h6>Project Title: {{title}}</h6>
                         <h6>Project Location: {{location}}</h6>
-                        <h6>Project Payment Plan: {{payment_plan}}</h6>
-                        <h6>Date Created: {{date_created}}</h6>
+                        <h6>Project Payment Plan: {{description}}</h6>
+                        <h6>Date Created: {{created_at}}</h6>
                        
                     </div>
                 </div>
@@ -34,12 +34,22 @@
                     <h6>Floor Plan and 3D Designs</h6>
 
                     <div class="d-flex justify-content-start flex-wrap">
+
+
                         
-                        <div class="p-1"><img class="shadow" style="max-height: 250px; " src="https://wpmedia.roomsketcher.com/content/uploads/2022/01/06145940/What-is-a-floor-plan-with-dimensions.png" alt=""></div>
+                      <div v-for="asset,key in assets" :key="key" class="p-1">
+                        
+                        <a :href="asset.media_url" target="_blank">
+
+                          <img class="shadow" style="max-height: 100px; " :src="asset.media_url" alt="">
+
+                        </a>
+                        
+                      </div>
         
                    
         
-                        <div class="p-1"><img class="shadow" style="max-height: 250px; " src="https://wpmedia.roomsketcher.com/content/uploads/2021/12/07133333/RoomSketcher-High-Quality-3D-Floor-Plans.jpg" alt=""></div>
+                        <!-- <div class="p-1"><img class="shadow" style="max-height: 250px; " src="https://wpmedia.roomsketcher.com/content/uploads/2021/12/07133333/RoomSketcher-High-Quality-3D-Floor-Plans.jpg" alt=""></div> -->
                     </div>
 
 
@@ -70,9 +80,9 @@
                 <tbody>
                     <tr v-for="payment_schedule,key in payment_schedules" :key="key">
                         <td>{{key + 1}}</td>
-                        <td>{{payment_schedule.payment_due_date}}</td>
-                        <td>{{payment_schedule.expected_amount}} Million</td>
-                        <td>{{payment_schedule.amount_paid}}</td>
+                        <td>{{payment_schedule.bboundary_date}}</td>
+                        <td>₦ {{payment_schedule.amount}} </td>
+                        <td>₦ {{payment_schedule.amount_remitted}}</td>
                         <td>{{payment_schedule.status}}</td>
                     </tr>
                 </tbody>
@@ -138,11 +148,18 @@ export default {
         return {
            
             payment_schedules: [],
-            title: '',
-            location: '',
+
             payment_plan: '',
             date_created: '',
-            reports: []
+            reports: [],
+
+            assets: [],
+
+            title: '',
+            location: '',
+            description: '',
+            created_at: '',
+            
   
         }
     },
@@ -159,7 +176,7 @@ export default {
         },
       
 
-        load_payment_schedules(){
+        async load_payment_schedules(){
 
             // alert(this.building_project_title)
             // alert(this.subscribers_email)
@@ -184,13 +201,28 @@ export default {
             })
             .then((response)=>{
                 console.log(response)
-                this.payment_schedules = response.data
 
-                this.title = response.data[0].payment_plan.building_project.title
-                this.location = response.data[0].payment_plan.building_project.location
-                this.payment_plan = response.data[0].payment_plan.building_project.payment_plan
-                this.date_created = response.data[0].payment_plan.created_at
+                this.payment_plan = response.data
 
+                this.title = response.data.building_project.title??''
+
+                this.location = response.data.building_project.location??''
+
+                this.description = response.data.building_project.description??''
+
+                this.created_at = response.data.created_at??''
+
+
+                this.payment_schedules = response.data.stages
+
+
+                // console.log()
+
+
+
+                this.assets = response.data.building_project.assets
+
+                console.log(this.assets)
                
             })
             .catch((response)=>{
@@ -239,9 +271,11 @@ export default {
 
         this.getUserData()
      
-        this.load_payment_schedules()
+   
 
         this.getReports()
+
+        this.load_payment_schedules()
     },
 }
 </script>

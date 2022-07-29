@@ -44,14 +44,25 @@
                             </div>
                         </div>
 
+
+
                         <div class=" py-3">
-                            <input @change="previewFile4" ref="file" type="file" id="customFile"  multiple> 
+                            <label for="">Floor Plan</label> <br>
+                            <input @change="previewFile4" ref="file1" type="file" id="customFile"  multiple> 
                         </div>
 
-                        <div class="form-group">
-                            <label for="">Project 3d</label>
-                            <input @change="handleFileUpload()" type="file" ref="file" class="form-control-file" >
+                        <div  class=" d-flex flex-wrap justify-content-start">
+                            <div id="previewImg2" class="">
+    
+                            </div>
                         </div>
+
+                        <div class=" py-3">
+                            <label for="">3D of Project</label> <br>
+                            <input @change="previewFile5" ref="file2" type="file" id="customFile2"  multiple> 
+                        </div>
+
+
 
                 </div>
 
@@ -80,10 +91,17 @@
                     </div>
 
 
+                        <div  class=" d-flex flex-wrap justify-content-start">
+                            <div id="previewImg3" class="">
+    
+                            </div>
+                        </div>
+
+
 
                         <div class="form-group">
                             <label for="">Featured Image</label>
-                            <input @change="handleFileUpload()" type="file" ref="file" class="form-control-file" >
+                            <input @change="handleFileUpload" type="file" ref="file3" class="form-control-file" >
                         </div>
 
 
@@ -171,7 +189,9 @@ export default {
             duration : '',
             file: '',
 
-            media: ''
+            media: [],
+
+            mediay: [],
 
   
         }
@@ -290,11 +310,17 @@ export default {
 
         },
 
-        handleFileUpload(){
-            this.file = this.$refs.file.files[0];
+        handleFileUpload(event){
+
+            console.log(event)
+
+            this.file = this.$refs.file3.files[0];
+
+            document.getElementById("previewImg3").insertAdjacentHTML("afterend", "<div class=' p-2'><img class='border border-primary' style='width: 100px; height: 100px; object-fit: cover;' src='"+URL.createObjectURL(event.target.files[0])+"'></div>");
 
             console.log(this.file)
         },
+
         getUserData(){
             this.user_data = JSON.parse(localStorage.getItem('user_data'));
 
@@ -304,6 +330,7 @@ export default {
                 this.user = false
             }
         },
+
         get_building_projects(){
 
                  let loader = this.$loading.show({
@@ -325,7 +352,7 @@ export default {
             .then((response)=>{
 
                 loader.hide()
-
+                console.log(response)
 
                 // console.log(response.data.building_projects)
 
@@ -339,6 +366,7 @@ export default {
             });
 
         },
+
         add_project(){
 
 
@@ -353,6 +381,24 @@ export default {
                 });
 
                 let formData = new FormData();
+
+                var mediax = this.$refs.file1.files;
+
+                var mediay = this.$refs.file2.files;
+
+                
+            for (let index = 0; index < mediax.length; index++) {
+
+                formData.append('floor_plans[]',this.$refs.file1.files[index]);
+                
+            }
+
+            
+            for (let index = 0; index < mediay.length; index++) {
+
+                formData.append('project3ds[]',this.$refs.file2.files[index]);
+                
+            }
 
                 formData.append('featured_image', this.file);
                 formData.append('title', this.title);
@@ -407,11 +453,11 @@ export default {
 
             var total_file = event.target.files.length;            
 
-           var mediax = this.$refs.file.files;
+           var mediax = this.$refs.file1.files;
 
             for (let index = 0; index < mediax.length; index++) {
 
-                this.media.push(this.$refs.file.files[index]);
+                this.media.push(this.$refs.file1.files[index]);
                 
             }
 
@@ -432,6 +478,48 @@ export default {
                 } else {
 
                     document.getElementById("previewImg").insertAdjacentHTML("afterend", "<div class=' p-2'><img class='border border-primary' style='width: 100px; height: 100px; object-fit: cover;' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+                    
+                }
+
+                
+                
+            }
+
+
+        },
+
+        previewFile5(event){
+
+
+            console.log(event)
+
+            var total_file2 = event.target.files.length;            
+
+           var mediay = this.$refs.file2.files;
+
+            for (let index = 0; index < mediay.length; index++) {
+
+                this.mediay.push(this.$refs.file2.files[index]);
+                
+            }
+
+            console.log(this.mediay)
+
+            
+
+             for(var i=0; i<total_file2; i++)
+            {
+                
+
+
+
+                if (event.target.files[i].type.includes('video')) {
+
+                    document.getElementById("previewImg2").insertAdjacentHTML("afterend", "<div class=' p-2'><video class='border border-primary' style='width: 200px; height: 200px; object-fit: cover;' src='"+URL.createObjectURL(event.target.files[i])+"' controls></video></div>");
+                    
+                } else {
+
+                    document.getElementById("previewImg2").insertAdjacentHTML("afterend", "<div class=' p-2'><img class='border border-primary' style='width: 100px; height: 100px; object-fit: cover;' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
                     
                 }
 
