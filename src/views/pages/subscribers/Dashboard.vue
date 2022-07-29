@@ -104,9 +104,9 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Amount Due</th>
+                                        <th style="width: 230px;">Amount Due</th>
 
-                                        <th>amount Remitted</th>
+                                        <th style="width: 230px;">amount Remitted</th>
                                         <th>Status</th>
 
                                     </tr>
@@ -118,10 +118,10 @@
                                   
                                     <table class="table table-striped">
                                         <tr v-for="stage,key in payment_plan.stages" :key="key" >
-                                            <td>{{stage.id}}</td>
-                                            <td style="width: 230px;">{{stage.amount}}</td>
-                                            <td style="width: 230px;">{{stage.amount_remitted}}</td>
-                                            <td></td>
+                                            <td>{{key + 1}}</td>
+                                            <td style="width: 230px;" >₦ {{stage.amount}}</td>
+                                            <td style="width: 230px;" >₦ {{stage.amount_remitted}}</td>
+                                            <td>{{stage.status}}</td>
                                         </tr>
                                     </table>
 
