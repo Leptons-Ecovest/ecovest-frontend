@@ -98,7 +98,7 @@
                             
                         </div>
 
-                        <div class="col-md-12 p">
+                        <div class="col-md-12 p ">
 
                             <table class="table">
                                 <thead>
@@ -106,14 +106,14 @@
                                         <th>#</th>
                                         <th style="width: 230px;">Amount Due</th>
 
-                                        <th style="width: 230px;">amount Remitted</th>
+                                        <th style="width: 230px;">Amount Remitted</th>
                                         <th>Status</th>
 
                                     </tr>
                                 </thead>
                             </table>
 
-                            <div v-for="payment_plan,key in payment_plans" :key="key" class="car">
+                            <div v-for="payment_plan,key in payment_plans" :key="key" class="">
                                
                                   
                                     <table class="table table-striped">
@@ -121,7 +121,7 @@
                                             <td>{{key + 1}}</td>
                                             <td style="width: 230px;" >₦ {{stage.amount}}</td>
                                             <td style="width: 230px;" >₦ {{stage.amount_remitted}}</td>
-                                            <td>{{stage.status}}</td>
+                                            <td><span class="badge badge-primary">{{stage.status}}</span></td>
                                         </tr>
                                     </table>
 
