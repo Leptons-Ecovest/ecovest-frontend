@@ -38,6 +38,21 @@
                         <input type="text" class="form-control" v-model="payment_plan" placeholder="Payment Plan">
                     </div>
 
+                        <div  class=" d-flex flex-wrap justify-content-start">
+                            <div id="previewImg" class="">
+    
+                            </div>
+                        </div>
+
+                        <div class=" py-3">
+                            <input @change="previewFile4" ref="file" type="file" id="customFile"  multiple> 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Project 3d</label>
+                            <input @change="handleFileUpload()" type="file" ref="file" class="form-control-file" >
+                        </div>
+
                 </div>
 
 
@@ -64,7 +79,9 @@
                         <input type="number" class="form-control" v-model="duration" placeholder="Duration">
                     </div>
 
-                      <div class="form-group">
+
+
+                        <div class="form-group">
                             <label for="">Featured Image</label>
                             <input @change="handleFileUpload()" type="file" ref="file" class="form-control-file" >
                         </div>
@@ -153,6 +170,8 @@ export default {
             estate_facilities : '',
             duration : '',
             file: '',
+
+            media: ''
 
   
         }
@@ -379,7 +398,49 @@ export default {
 
                  toast.error('An error occured');
             })
-        }
+        },
+
+        previewFile4(event){
+
+
+            console.log(event)
+
+            var total_file = event.target.files.length;            
+
+           var mediax = this.$refs.file.files;
+
+            for (let index = 0; index < mediax.length; index++) {
+
+                this.media.push(this.$refs.file.files[index]);
+                
+            }
+
+            console.log(this.media)
+
+            
+
+             for(var i=0; i<total_file; i++)
+            {
+                
+
+
+
+                if (event.target.files[i].type.includes('video')) {
+
+                    document.getElementById("previewImg").insertAdjacentHTML("afterend", "<div class=' p-2'><video class='border border-primary' style='width: 200px; height: 200px; object-fit: cover;' src='"+URL.createObjectURL(event.target.files[i])+"' controls></video></div>");
+                    
+                } else {
+
+                    document.getElementById("previewImg").insertAdjacentHTML("afterend", "<div class=' p-2'><img class='border border-primary' style='width: 100px; height: 100px; object-fit: cover;' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+                    
+                }
+
+                
+                
+            }
+
+
+        },
      
     },
 
