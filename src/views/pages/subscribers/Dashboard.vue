@@ -100,14 +100,28 @@
 
                         <div class="col-md-12 p">
 
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Amount Due</th>
+
+                                        <th>amount Remitted</th>
+                                        <th>Status</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+
                             <div v-for="payment_plan,key in payment_plans" :key="key" class="car">
                                
                                   
-                                    <table class="table">
+                                    <table class="table table-striped">
                                         <tr v-for="stage,key in payment_plan.stages" :key="key" >
                                             <td>{{stage.id}}</td>
-                                            <td>{{stage.amount}}</td>
-                                            <td>{{stage.amount_remitted}}</td>
+                                            <td style="width: 230px;">{{stage.amount}}</td>
+                                            <td style="width: 230px;">{{stage.amount_remitted}}</td>
+                                            <td></td>
                                         </tr>
                                     </table>
 
