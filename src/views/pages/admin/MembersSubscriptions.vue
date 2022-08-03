@@ -34,7 +34,7 @@
                         </td>
                         <td>{{user_plan.user.name}}</td>
                         <td>{{user_plan.user.email}}</td>
-                        <td>{{user_plan.building_project.title}}</td>
+                        <td>{{user_plan.building_project?.title}}</td>
                         <td>
                             <button @click="loadPaymentSchedule(user_plan.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Details
