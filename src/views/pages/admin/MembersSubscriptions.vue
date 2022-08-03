@@ -147,6 +147,8 @@ export default {
 
         loadPaymentSchedule(index){
 
+           
+
             this.selected_id = index
                        this.plan = 
                     this.payment_plans.filter(element => 
@@ -154,7 +156,7 @@ export default {
 
                     this.plan = this.plan[0]
 
-                    this.user_payment_schedules = this.plan.stages
+                    this.user_payment_schedules = this.plan.payment_schedules
 
                     console.log(this.user_payment_schedules)
         },
