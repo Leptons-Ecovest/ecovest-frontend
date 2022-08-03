@@ -96,7 +96,7 @@
                         <td>{{payment_schedule.bboundary_date}}</td>
                         <td>₦ {{payment_schedule.amount}} </td>
                         <td>
-                            <input :id="payment_schedule.id" type="number" class="form-control" :value="payment_schedule.amount_remitted">
+                            <input :id="payment_schedule.id" type="number" class="form-control" :max="payment_schedule.amount" :value="payment_schedule.amount_remitted">
                         </td>
                         <td>{{payment_schedule.status}}</td>
                         <td>
@@ -156,7 +156,7 @@ export default {
 
                     this.plan = this.plan[0]
 
-                    this.user_payment_schedules = this.plan.payment_schedules
+                    this.user_payment_schedules = this.plan.stages
 
                     console.log(this.user_payment_schedules)
         },
