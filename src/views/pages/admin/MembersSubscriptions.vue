@@ -68,10 +68,12 @@
                  <div class="form-group">
                     <label for="">Status</label>
                     <select class="form-control" v-model="status" id="" >
-                        <option value="pending">Pending</option>
-                        <option value="completed">Completed</option>
-                        <option value="onhold">On hold</option>
-                        <option value="revoked">Revoked</option>
+                        <option :value="'Active'">Active</option>
+                        <option :value="'On Going'">On Going</option>
+                        <option :value="'Due'">Due</option>
+                        <option :value="'Revoked'">Revoked</option>
+                        <option :value="'Completed'">Completed</option>
+
                     </select>
                 </div>
                 <div class="pb-3">
