@@ -30,7 +30,7 @@
                     <tr v-for="user_plan in payment_plans" :key="user_plan.index">
                         <td></td>
                         <td>
-                            <img style="width: 54px; height: 54px; border-radius: 50%;" :src="getImgUrl(user_plan.user.avatar)" alt="">
+                            <img style="width: 54px; height: 54px; border-radius: 50%;" :src="getImgUrl(user_plan?.user?.avatar)" alt="">
                         </td>
                         <td>{{user_plan.user.name}}</td>
                         <td>{{user_plan.user.email}}</td>
