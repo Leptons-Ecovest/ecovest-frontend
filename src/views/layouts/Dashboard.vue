@@ -6,7 +6,7 @@
         <div class="nk-main ">
             <!-- wrap @s -->
             <div class="nk-wrap ">
-                <div class="nk-header nk-header-fixed is-light">
+                <div class="nk-header nk-header-fixed  is-light">
                     <div class="container-lg wide-xl">
                         <div class="nk-header-wrap">
                             <div class="nk-header-brand">
@@ -96,11 +96,11 @@
                 <!-- content @s -->
                 <div class="nk-content ">
                     <div class="container wide-xl">
-                        <div class="nk-content-inner">
-                            <div class="nk-aside" data-content="sideNav" data-toggle-overlay="true" data-toggle-screen="lg" data-toggle-body="true">
-                                <div class="nk-sidebar-menu" data-simplebar>
+                        <div class="nk-content-inner b">
+                            <div class="nk-aside " data-content="sideNav" data-toggle-overlay="true" data-toggle-screen="lg" data-toggle-body="true">
+                                <div class="nk-sidebar-menu " data-simplebar>
                                     <!-- Menu -->
-                                    <ul v-if="user" class="nk-menu">
+                                    <ul v-if="user" class="nk-menu ">
                                         <li class="nk-menu-heading">
                                             <h6 class="overline-title">Menu</h6>
                                         </li>
@@ -223,8 +223,10 @@
                                     <a  class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
                                 </div><!-- .nk-aside-close -->
                             </div><!-- .nk-aside -->
+                           
+                                   <router-view></router-view>
+
                                
-                                    <router-view></router-view>
 
                                     
                                

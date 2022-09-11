@@ -14,7 +14,7 @@
          
         </div>
 
-        <div class="container table-responsive">
+        <div style="height: 540px; overflow: scroll;" class="container table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -80,6 +80,26 @@
                     <button @click="updatePlan()" class="btn btn-primary float-right">submit</button>
                 </div>
             </div>
+
+            <div class="accordion" id="accordionExample">
+                
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Collapsible Group Item #1
+                        </button>
+                    </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+                    </div>
+                    </div>
+                </div>
+
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -88,28 +108,63 @@
                         <th>Expected Amount</th>
                         <th>Amount Paid</th>
                         <th>Status</th>
-                        <th></th>
+                        
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr v-for="payment_schedule in user_payment_schedules" :key="payment_schedule.index">
+
+
+
                         <td>#</td>
-                        <td>{{payment_schedule.bboundary_date}}</td>
-                        <td>₦ {{payment_schedule.amount}} </td>
-                        <td>
-                            <input :id="payment_schedule.id" type="number" class="form-control" :max="payment_schedule.amount" :value="payment_schedule.amount_remitted">
+                        
+                        <td style="max-width: 70px;">
+                       
+                            {{payment_schedule.bboundary_date}}
+                         
                         </td>
-                        <td>{{payment_schedule.status}}</td>
-                        <td>
+                        <td style="max-width: 70px;">   ₦ {{payment_schedule.amount}}</td>
+                        <td >
+                            <div  class="accordion" id="accordionExample">
+    
+                                <div  class="card">
+                                    <div class="card-header" id="headingOne">
+                                    <div class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" :data-target="'#collapseOn'+payment_schedule.id" aria-expanded="true" aria-controls="collapseOne">
+                                            <input :id="payment_schedule.id" type="number" class="form-control" :max="payment_schedule.amount" :value="payment_schedule.amount_remitted" disabled> edit
+                        
+                                        </button>
+                                    </div>
+                                    </div>
 
-                            <button v-if="loading"  class="btn btn-primary" disabled>updating...</button>
+                                    <div :id="'collapseOn'+payment_schedule.id" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <input :id="'field'+payment_schedule.id" type="number" class="form-control" :max="payment_schedule.amount" :value="payment_schedule.amount_remitted"><br>
+                                        <label for="receipt">Upload Receipt</label>
+                                        <input type="file"  @change="previewFile4" ref="file">
+                                        <button :id="'btn'+payment_schedule.id" @click="updatePaymentPlan(payment_schedule.id, 'field'+payment_schedule.id, 'btn'+payment_schedule.id)" class="btn btn-primary float-right mb-2">update</button>
 
-                            <button v-else @click="updatePaymentPlan(payment_schedule.id)" class="btn btn-primary">update</button>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td><span class="badge badge-primary">{{payment_schedule.status}}</span></td>
+                        <td class="d-none">
+
+                      
+
+                            <button :id="'btn'+payment_schedule.id" @click="updatePaymentPlan(payment_schedule.id, this.id)" class="btn btn-primary">update</button>
 
                       
                             <!-- <router-link target="_blank" :to="{name: 'update-payment-plan', params:{id: payment_schedule.id}}" class="btn btn-primary">update payment</router-link> -->
                         </td>
+                        
+                          
+
+                    
                     </tr>
                 </tbody>
             </table>
@@ -141,6 +196,8 @@ export default {
 
             status: '',
             percentage: '',
+
+            receipt: ''
 
         }
     },
@@ -209,12 +266,51 @@ export default {
 
         },
 
-        updatePaymentPlan(payment_schedule_id){
+        previewFile4(event){
 
-            this.loading = true
+
+            console.log(event)
+
+            if(event.target.files.length > 0){
+                // var src = URL.createObjectURL(event.target.files[0]);
+
+                // var preview = document.getElementById("previewImg2");
+                // preview.src = src;
+            
+                // preview.style.display = "block";
+
+                this.receipt = event.target.files[0];
+
+                console.log(this.receipt)
+
+            
+            }
+
+        },
+
+        updatePaymentPlan(id, payment_schedule_id, btn){
+
+            // alert(payment_schedule_id)
+
+            var bbtn = document.getElementById(btn);
+            
+            bbtn.innerHTML='updating...';
+            bbtn.disabled
+
+           
             var payment_amount = document.getElementById(payment_schedule_id).value
 
             // alert(payment_amount)
+
+            
+
+            let formData = new FormData();
+
+            formData.append('payment_schedule_id',id)
+            formData.append('payment_amount',payment_amount)
+            formData.append('receipt',this.receipt)
+
+
 
 
             this.axios({
@@ -223,14 +319,14 @@ export default {
                 headers:{
                     'Authorization': 'Bearer '+localStorage.getItem('user_token')
                 },
-                data:{
-                    payment_schedule_id: payment_schedule_id,
-                    payment_amount: payment_amount
-                }
+                data:formData
             })
             .then((response) =>{
-                this.loading = false
+              
                 console.log(response)
+
+                bbtn.innerHTML='update';
+                bbtn.disabled
 
                  toast.success('Plan Updated');
 
