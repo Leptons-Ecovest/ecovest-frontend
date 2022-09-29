@@ -102,9 +102,22 @@
                                                 <div class="form-group">
                                                     <label for="">Stage</label>
                                                     <select v-model="stage" id="" class="form-control">
+                                                        <option value="Site clearance & preliminary works">Site clearance & preliminary works</option>
                                                         <option value="Foundation">Foundation</option>
-                                                        <option value="Slab">Slab</option>
+                                                        <option value="Oversite concrete works">Oversite concrete works</option>
+                                                        <option value="Ground floor column works">Ground floor column works</option>
+                                                        <option value="Suspended slab works">Suspended slab works</option>
+                                                        <option value="First floor ( and above) column works">First floor ( and above) column works</option>
+                                                        <option value="Blockwork ">Blockwork </option>
+                                                        <option value="Roof beam works">Roof beam works</option>
+                                                        <option value="Roof structure">Roof structure</option>
+                                                        <option value="Exterior windows">Exterior windows</option>
+                                                        <option value="Exterior plastering">Exterior plastering</option>
                                                         <option value="Interior Design">Interior Design</option>
+                                                        <option value="External electricals">External electricals</option>
+                                                        <option value="External plumbing works">External plumbing works</option>
+                                                        <option value="Other external works">Other external works</option>
+                                                       
                                         
                                                     </select>
                                                 </div>
@@ -114,13 +127,14 @@
 
                                                 <div class="form-group">
                                                 <label for="">Percentage Completion</label>
-                                                <select v-model="percent" name="" id="" class="form-control">
+                                                <input type="number" v-model="percent" step="10" max="100" class="form-control" id="">
+                                                <!-- <select v-model="percent" name="" id="" class="form-control">
                                                     <option value="10">10</option>
                                                     <option value="20">20</option>
                                                     <option value="60">60</option>
                                                     <option value="80">80</option>
                                                     <option value="100">100</option>
-                                                </select>
+                                                </select> -->
                                                 </div>
                                                 
                                             </div>
