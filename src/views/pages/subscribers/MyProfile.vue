@@ -24,7 +24,7 @@
 
                                     <div class="container ">
                                         <div class="row">
-                                        <div class="col-md-4 ">
+                                        <div class="col-sm-4 ">
                                             <div class="form-group mx-auto text-center">
 
                                             
@@ -32,7 +32,7 @@
                                                   <img 
                                                 onclick="document.getElementById('customFile').click()" 
                                                 id="previewImg" 
-                                                style="height: 189px; width: 189px; object-fit: cover; border-radius: 50%;" 
+                                                style="height: 120px; width: 120px; object-fit: cover; border-radius: 50%;" 
                                                 class="shadow border border-primary" 
                                                 :src="avatar??'https://eu.ui-avatars.com/api/?name='+name"
                                                  >
@@ -41,7 +41,7 @@
                                                   <img 
                                                 onclick="document.getElementById('customFile').click()" 
                                                 id="previewImg2" 
-                                                style="height: 189px; width: 189px; object-fit: cover; border-radius: 50%;" 
+                                                style="height: 120px; width: 120px; object-fit: cover; border-radius: 50%;" 
                                                 class="shadow border border-primary d-none" 
                                                 src=""
                                                  >

@@ -136,12 +136,42 @@
                 </div>
             </div>
 
+            
+         <button class="btn btn-primary d-none"
+         data-toggle="modal"
+         data-target="#profile"
+         id="modalLoader"
+
+         >
+            show modal
+         </button>   
+
+         <div class="modal fade" id="profile" data-backdrop="false" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_9n1h4nww.json"  background="transparent"  speed="1"  style="max-width: 400px; max-height: 400px; "  class="text-cente mx-auto"   autoplay></lottie-player>
+
+                        <h4>Please your profile to proceed.</h4>
+
+                        <div class="py-5">
+                            
+                            <router-link :to="'/user/profile'" class="btn btn-primary text-center">Profile Page</router-link>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+         </div>
+
 
         </div>
         <!-- footer @s -->
       
         <!-- footer @e -->
     </div>
+
+    
 </template>
 <script>
 export default {
@@ -223,16 +253,52 @@ export default {
 
             console.log(this.user_data)
 
+          
+
             if(localStorage.getItem('user_role') == 'admin'){
 
                 this.user = false
             }
+        },
+
+        loadProfile(){
+             this.axios({
+                url: process.env.VUE_APP_URL+'/api/profiles',
+                method: 'get',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                },
+
+            })
+            .then((response)=>{
+
+                // this.profileData = response.data
+
+                if (response.data.status == 'unverified') {
+                    document.getElementById('modalLoader').click()
+                }
+
+                
+
+
+                console.log(response)
+            })
+            .catch((response)=>{
+
+                console.log(response)
+            })
+
+
         },
      
     },
 
     mounted() {
         this.getUserData()
+        this.loadProfile()
 
         this.load_payment_plan()
     },
