@@ -152,7 +152,7 @@
                     <div class="modal-body text-center">
                         <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_9n1h4nww.json"  background="transparent"  speed="1"  style="max-width: 400px; max-height: 400px; "  class="text-cente mx-auto"   autoplay></lottie-player>
 
-                        <h4>Please your profile to proceed.</h4>
+                        <h4>Please update your profile to proceed.</h4>
 
                         <div class="py-5">
                             
