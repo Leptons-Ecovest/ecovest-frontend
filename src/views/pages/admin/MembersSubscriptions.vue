@@ -16,7 +16,7 @@
 
         <div class="d-flex justify-content-start py-3">
             <div class="form-group col-md-10">
-                <input type="text" class="form-control" v-model="key" placeholder="Search...">
+                <input type="text" class="form-control" v-model="key" placeholder="Search email, fullname, project name ...">
             </div>
             <div class="">
                 <button @click=getPaymentPlans() class="btn btn-primary">search</button>
