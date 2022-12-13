@@ -14,6 +14,15 @@
          
         </div>
 
+        <div class="d-flex justify-content-start py-3">
+            <div class="form-group col-md-10">
+                <input type="text" class="form-control" v-model="key" placeholder="Search...">
+            </div>
+            <div class="">
+                <button @click=getPaymentPlans() class="btn btn-primary">search</button>
+            </div>
+        </div>
+
         <div style="height: 540px; overflow: scroll;" class="container table-responsive">
             <table class="table">
                 <thead>
@@ -100,6 +109,7 @@
                 </div>
 
             </div>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -184,6 +194,7 @@
 <script>
 import { useToast } from 'vue-toastification'
 
+
 const toast = useToast()
 export default {
     data() {
@@ -193,13 +204,18 @@ export default {
             plan: null,
             loading: false,
             selected_id: '',
-
+            key: '',
             status: '',
             percentage: '',
 
             receipt: ''
 
         }
+    },
+
+    // add to component
+    components: {
+
     },
 
     methods: {
@@ -223,6 +239,7 @@ export default {
         getImgUrl(url){
             return url;
         },
+
         getPaymentPlans(){
 
                 let loader = this.$loading.show({
@@ -239,6 +256,9 @@ export default {
 
             this.axios({
                 url: process.env.VUE_APP_URL+'/api/payment_plans',
+                params: {
+                    key: this.key
+                },
                 method: 'get',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
