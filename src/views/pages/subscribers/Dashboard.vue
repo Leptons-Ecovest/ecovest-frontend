@@ -150,13 +150,13 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body text-center">
-                        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_9n1h4nww.json"  background="transparent"  speed="1"  style="max-width: 400px; max-height: 400px; "  class="text-cente mx-auto"   autoplay></lottie-player>
+                        <!-- <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_9n1h4nww.json"  background="transparent"  speed="1"  style="max-width: 400px; max-height: 400px; "  class="text-cente mx-auto"   autoplay></lottie-player> -->
 
-                        <h4>Please update your profile to proceed.</h4>
+                 
 
                         <div class="py-5">
                             
-                            <router-link :to="'/user/profile'" class="btn btn-primary text-center">Profile Page</router-link>
+                            <router-link :to="'/user/profile'" class="btn btn-primary text-center">Accept Terms and conditions</router-link>
                         </div>
 
                     </div>
