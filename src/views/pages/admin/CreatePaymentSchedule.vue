@@ -188,7 +188,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button @click="createStages()" class="btn btn-primary">Submit</button>
+                            <button @click="create_paymentPlan_and_stages()" class="btn btn-primary">Submit</button>
                         </div>
 
                         
@@ -382,15 +382,72 @@ export default {
 
         },
 
-        createStages(){
+        async create_payment_plan(){
 
+            // alert(this.building_project_title)
+            // alert(this.subscribers_email)
+            // alert(this.start_date)
+            // alert(this.description)
+            return new Promise((resolve, reject) =>{
+                let loader = this.$loading.show({
+                    // Optional parameters
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: false,
+                    onCancel: this.onCancel,
+                    color: '#6CC3EC',
+                });
+
+                this.axios({
+                    method: "post",
+                    url: process.env.VUE_APP_URL+'/api/create_payment_plan',
+                    data: {
+                        start_date: this.$route.query.start_date,
+                        subscribers_email: this.$route.query.subscribers_email,
+                        building_project_title: this.$route.query.building_project_title,
+                        description: this.$route.query.description,
+                        duration: this.no_months,
+                        total_amount: this.amount
+
+                    },
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' +localStorage.getItem('user_token')
+                    },
+                })
+                .then((response)=>{
+
+                    if (typeof(response.data) !== 'object'){
+                        loader.hide()
+                        console.log(response)
+                        throw new Error("Invalid 'data' in response")
+                    }
+
+                    loader.hide()
+                    toast.success('Plan created successfully!!');
+
+                    console.log(response)
+                    resolve(response.data.payment_plan.id);
+                })
+                .catch((response)=>{
+
+                    loader.hide()
+                    toast.error('Could not create plan');
+                    console.log(response)
+                    reject(response)
+                })
+            })
+        },
+
+        createStages(payment_plan_id){
 
             this.axios({
                 url: process.env.VUE_APP_URL+'/api/create_payment_stage',
                 data:{
                     no_stages: this.no_stages,
                     amount: this.amount,
-                    payment_plan_id: this.$route.params.id,
+                    payment_plan_id: payment_plan_id,
                     start_date: this.start_date, 
                     no_months: this.no_months, 
                 },
@@ -410,6 +467,16 @@ export default {
 
             });
 
+        },
+
+        async create_paymentPlan_and_stages(){
+            try{
+                const payment_plan_id = await this.create_payment_plan()
+                this.createStages(payment_plan_id)
+            } catch(error) {
+                toast.error('Could not create stages')
+                console.log(error)
+            }
         },
 
         paymentStages(){
