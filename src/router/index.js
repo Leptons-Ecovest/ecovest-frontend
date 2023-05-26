@@ -252,7 +252,7 @@ const routes = [
       },
 
       {
-        path: 'create-payment-schedule/:id',
+        path: 'create-payment-schedule',
         component: CreatePaymentSchedule
       },
       {
